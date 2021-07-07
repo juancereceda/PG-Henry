@@ -1,7 +1,7 @@
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 
 const desktopStartWidth = 996;
-const desktop = `@media (min-width: ${desktopStartWidth}px)`;
+// const desktop = `@media (min-width: ${desktopStartWidth}px)`;
 const mobile = `@media (max-width: ${desktopStartWidth}px)`;
 
 

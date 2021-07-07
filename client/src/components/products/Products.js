@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total} from './ProductsStyles'
 const Products = (props) => {
 
-    useEffect(() => props.getProducts(), [])
+    useEffect(() => props.getProducts(), [props])
     return(
         <Container>
 
