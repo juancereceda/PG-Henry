@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
 import { Signform, FormForm, Inputs, Buttons, TwoButtons, LogButton, SigButton, Linking, GoogleButton, CloseButton } from './Styles';
 import { FcGoogle } from "react-icons/fc";
 

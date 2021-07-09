@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 // ESTILOS HOME
 
@@ -73,9 +74,15 @@ export const Stores = styled.div`
 
 // ESTILOS MOVIE CARDS
 
-export const Movie = styled.img`
+// Pendiente de ser borrado, puede ser usado para optimización
+export const MovieCont = styled(Link)`
     height: 100%;
-    width: 20%;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 100%;
 `;
+
+export const Movie = styled.img`
+        height: 100%;
+        width: 200%;
+        margin-left: 5px;
+        margin-right: 5px;
+    `;

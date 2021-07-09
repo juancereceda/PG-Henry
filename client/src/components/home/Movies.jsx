@@ -1,8 +1,17 @@
 import React from 'react';
-import {Movie} from './Styles';
+// import {Link} from 'react-router-dom';
+import {Movie, MovieCont} from './Styles';
 
 export default function MovieCard ({props}) {
+
+    function auxiliar (e, id) {
+        e.preventDefault();
+        window.open(`http://localhost:3000/movies/${id}`)
+    };
+
     return (
-        <Movie src={props.poster} />
+        // <MovieCont to={`/movies/${props._id}`} >
+            <Movie src={props.poster} onClick={(e) => auxiliar(e, props._id)} />
+        // </MovieCont>
     )
 };
