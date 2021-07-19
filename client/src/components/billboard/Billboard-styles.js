@@ -28,7 +28,7 @@ export const StyledAside = styled.aside`
     top: 1%;
     right: 1%;
     height: 73%;
-    width: 18%;
+    width: 16%;
     background-color: #30475E88;
     border: 5px solid #30475E;
     box-sizing: border-box;
