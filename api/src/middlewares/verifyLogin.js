@@ -6,17 +6,18 @@ const checkUser = async (req, res, next) => {
     const user =
       (await User.findOne({ email: name })) ||
       (await User.findOne({ username: name }));
-    if(user.banned) {
-      return (
-        res.json({ message: "You have been banned due to inappropiate behaviour" })
-      )
-    }
     if (!user) {
       return (
         res
           // .status(404)
           .json({ message: "Invalid username or email" })
       );
+    }
+
+    if (user.banned) {
+      return res.json({
+        message: "You have been banned due to inappropiate behaviour",
+      });
     }
 
     const isValidPassword = await user.validatePassword(
