@@ -107,11 +107,10 @@ const[state, setState]=React.useState({
          <div>                   
           {(!admin && movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null) || 
           (admin? (<Btn onClick={handleRender}>set shows<ArrowDown size='35'/></Btn>):null)}
-          {state.render ? (<label>{movieDetail.shows ? (movieDetail.shows.map(el=> 
-            
+          {state.render ? (<label>{movieDetail.shows ? (movieDetail.shows.map(el=>             
             { 
-              if(counter < 8 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) === currentDate.slice(5, 7) && el.date.slice(8, 10) >= currentDate.slice(8, 10) || 
-                 counter < 8 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) > currentDate.slice(5, 7)){
+              if((counter < 7 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) === currentDate.slice(5, 7) && el.date.slice(8, 10) >= currentDate.slice(8, 10)) || 
+                 (counter < 7 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) > currentDate.slice(5, 7))){
                    counter++
               return (
                 <div>
@@ -123,6 +122,7 @@ const[state, setState]=React.useState({
                 </div>
               )            
             }
+            return null
             }
           )):<h2>No Shows</h2>}</label>) : null}
         {state.confirm ? (<Link to ='/products'><Confirm>Confirm</Confirm> </Link>):null}
