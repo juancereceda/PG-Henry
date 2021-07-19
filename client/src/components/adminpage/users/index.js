@@ -14,9 +14,9 @@ const Users = () => {
       : 
       statusFilter === 'Users' ? !user.isAdmin 
       : 
-      statusFilter === 'Disables' ? user.banned
+      statusFilter === 'UserBloqued' ? user.banned
       :
-      statusFilter === 'Enables' ? !user.banned
+      statusFilter === 'Enabled' ? !user.banned
       : 
       user
   ))
@@ -35,7 +35,7 @@ const Users = () => {
     e.preventDefault();
     const blockDisable = await swal({
       title: `Are you sure you want to ${
-        user.banned ? "disable" : "block"
+        user.banned ? "Enabled" : "Blocked"
       }  to ${user.username}?`,
       icon: "warning",
       buttons: true,
@@ -43,7 +43,6 @@ const Users = () => {
     });
     if (blockDisable) {
       dispatch(getUsers());
-      console.log("Admin: ", user.isAdmin);
       dispatch(
         updateUser(
           {
@@ -131,11 +130,11 @@ const Users = () => {
                   </select>
                 </td>
                 <td>                                    
-                  <span> Dis/Block </span>
+                  <span> Enabled / UserBlocked </span>
                   <select onChange={(e) => handleFilterStatus(e)}>
                     <option>All</option>
-                    <option>Disables</option>
-                    <option>Enables</option>
+                    <option>UserBloqued</option>
+                    <option>Enabled</option>
                   </select>
                 </td>
               </tr>
@@ -164,7 +163,7 @@ const Users = () => {
                           className="userButton"
                           onClick={(e) => ChangeClick(user, e)}
                         >
-                          {user.banned ? "UserBlocked" : "Available"}
+                          {user.banned ? "UserBlocked" : "Enabled"}
                         </button>
                       </td>
                     </tr>
