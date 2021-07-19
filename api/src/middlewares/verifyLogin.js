@@ -13,6 +13,11 @@ const checkUser = async (req, res, next) => {
           .json({ message: "Invalid username or email" })
       );
     }
+    if (user.banned) {
+      return res.json({
+        message: "You have been banned due to inappropiate behaviour",
+      });
+    }
 
     if (user.banned) {
       return res.json({
