@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
+import {Link} from 'react-router-dom';
 import swal from "sweetalert";
 import AdminContainer from "./AdminStyles";
 import NotFound from "../404/NotFound";
@@ -219,8 +220,10 @@ function AdminMovies() {
         buttons: false,
         timer: 1000,
       });
+      
     } else {
       swal({ title: "Welcome back!", buttons: false, timer: 1000 });
+
     }
   }
   return (
@@ -254,12 +257,12 @@ function AdminMovies() {
                             >
                               X
                             </button>
-                            <img
+                            <Link  to={`/movies/${movie._id}`}><img
                               className="edit"
                               onClick={() => handleEdit(movie)}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            />
+                            /></Link>
                           </div>
                         </div>
                       );
@@ -298,12 +301,12 @@ function AdminMovies() {
                             >
                               X
                             </button>
-                            <img
+                            <Link to={`/movies/${movie._id}`}><img
                               className="edit"
                               onClick={() => handleEdit(movie)}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            />
+                            /></Link>
                           </div>
                         </div>
                       );
