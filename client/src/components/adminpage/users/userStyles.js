@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
     color: #ffffff;
-   
+    .titleSearch {
+        display: flex;
+        text-align: center;
+    }
     h1 {
         font-weight: 800;
         font-size: 2em;
@@ -10,11 +13,13 @@ const StyledDiv = styled.div`
     }
 
     .container {
+        table-layout: fixed;
         background-color: #2d4059;
         box-shadow: 0 0 20px #333;
-        margin: 50px auto;
-        width: 800px;
-        padding: 15px
+        margin: .8em auto;
+        width: 95%;
+        padding: 0 1em;
+        border-radius: .8em;
     }
 
     .header {
@@ -23,11 +28,11 @@ const StyledDiv = styled.div`
     
     .th, td {
         border: solid 1px black;
+        word-wrap:break-word;
     }
 
     .userButton {
-        background-color: #f05454;
-        width: 97px;
+        background-color: #f05454;        
         height: 25px;
         margin: 10px;
         color: #ffffff;
@@ -73,6 +78,9 @@ const StyledDiv = styled.div`
     .searchBarContainer{
         display: flex;
         margin: 30px
+    }
+    .center {
+        text-align: center;
     }
     `;
     
