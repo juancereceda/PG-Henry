@@ -8,12 +8,6 @@ import NotFound from "../../404/NotFound";
 const Users = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-
-  //search
-  const [name, setName] = useState("");
-
-  const dispatch = useDispatch();
-  const users = useSelector(state => state.users);
   const [statusFilter, setStatusFilter] = React.useState(null);
   const usersCurrent = users?.filter(user => (
       statusFilter === 'Admins' ? user.isAdmin 
@@ -26,7 +20,10 @@ const Users = () => {
       : 
       user
   ))
-    
+  
+  //search
+  const [name, setName] = useState("");
+      
   function handleSubmit(e) {
     e.preventDefault();
     setName("");
@@ -121,24 +118,24 @@ const Users = () => {
             <thead className="title">
               <h1>Users registrates</h1>     
               <tr className="header">
-                  <td>Username</td>
-                  <td>Email</td>
-                  <td>
-                     <span> Adm/User </span>
-                     <select onChange={(e) => handleFilterStatus(e)}>
-                          <option>All</option>
-                          <option>Admins</option>
-                          <option>Users</option>
-                      </select>
-                  </td>
-                  <td>                                    
-                      <span> Dis/Block </span>
-                      <select onChange={(e) => handleFilterStatus(e)}>
-                          <option>All</option>
-                          <option>Disables</option>
-                          <option>Enables</option>
-                      </select>
-                  </td>
+                <td>Username</td>
+                <td>Email</td>
+                <td>
+                  <span> Adm/User </span>
+                  <select onChange={(e) => handleFilterStatus(e)}>
+                    <option>All</option>
+                    <option>Admins</option>
+                    <option>Users</option>
+                  </select>
+                </td>
+                <td>                                    
+                  <span> Dis/Block </span>
+                  <select onChange={(e) => handleFilterStatus(e)}>
+                    <option>All</option>
+                    <option>Disables</option>
+                    <option>Enables</option>
+                  </select>
+                </td>
               </tr>
             </thead>
             <tbody className="item">
@@ -149,18 +146,18 @@ const Users = () => {
                   )
                   .map(user => (
                     <tr key={user._id}>
-                        <td>{user.username}</td>
-                        <td>{user.email}</td>
-                        <td>
-                          <label>Is {user.isAdmin ? 'Admin' : 'User'}</label>
-                          <button
-                            className='userButton'
-                            onClick={(e) => handleClick(user, e)}
-                          >
-                            {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
-                          </button>
-                        </td>
-                        <td>
+                      <td>{user.username}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        <label>Is {user.isAdmin ? 'Admin' : 'User'}</label>
+                        <button
+                          className='userButton'
+                          onClick={(e) => handleClick(user, e)}
+                        >
+                          {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                        </button>
+                      </td>
+                      <td>
                         <button
                           className="userButton"
                           onClick={(e) => ChangeClick(user, e)}
@@ -169,7 +166,7 @@ const Users = () => {
                         </button>
                       </td>
                     </tr>
-                  ))
+                ) )
               :
                 <StyledDiv>
                   <div className="errorCnt">
@@ -181,13 +178,14 @@ const Users = () => {
                     <h1 className="errorMsg">Sorry! No users with this parameter</h1>
                   </div>
                 </StyledDiv>
-              </tbody>
+              }     
+            </tbody>
           </table>
-      </StyledDiv>
-    :
-      <NotFound />
-    }
-   </>
+        </StyledDiv>
+      :
+        <NotFound />
+      }
+    </>
   )
 }
 
