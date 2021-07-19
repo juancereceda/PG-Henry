@@ -4,8 +4,8 @@ export const StyledTitle = styled.h1`
     position: relative;
     color: #E8E8E8;
     font-size: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 40%;
+    transform: translateX(-60%);
     line-height: 0;
 `;
 
@@ -37,4 +37,42 @@ export const StyledAside = styled.aside`
     align-items: center;
     justify-content: space-around;
 
+`;
+
+export const StyledPagination = styled.div`
+    position: relative;
+    right: -25%;
+    margin: 0;
+    padding: 5px;
+    border: 2px solid #30475E88;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    width: 10%;
+    background-color: #F05454;
+    border-radius: 15px;
+    & p{
+        grid-column: 2/3;
+        text-align: center;
+        font-size: 2.1rem;
+        line-height: 0;
+        color: #222831;
+    }
+`;
+
+export const StyledIndexChanger = styled.input`
+        color: #222831;
+        margin: 0;
+        padding: 0;
+        font-size: 1.7rem;
+        text-align: center;
+        vertical-align: middle;
+        border: 2px solid #222831;
+        border-radius: 15px;
+        background-color: #E8E8E8;
+    &.plus{
+        grid-column: 1/2;
+    }
+    &.minus{
+        grid-column: 3/4;
+    }
 `;

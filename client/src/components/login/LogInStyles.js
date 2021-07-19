@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const form = styled.div`
-  padding-top: .2em;
+  padding-top: 0.2em;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -13,12 +13,21 @@ const form = styled.div`
     justify-content: space-evenly;
     align-items: center;
     background-color: #2d4059;
-    margin-top: .5em;
+    margin-top: 0.5em;
     // border: .1em solid #ea5455;
-    border-radius: .8em;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
-                inset 2px 3px 5px rgba(0,0,0,0.3),
-                inset -2px -3px 5px rgba(0,0,0,0.5);
+    border-radius: 0.8em;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
+      inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+      inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+    .passwordCnt {
+      display: flex;
+      flex-direction: column;
+      .passwordLink {
+        color: #e55151;
+        font-size: 16px;
+        margin-bottom: -16px;
+      }
+    }
     input {
       font-family: Questrial;
       font-size: 18px;
@@ -38,17 +47,11 @@ const form = styled.div`
         width: 135px;
         border: none;
         border-radius: 10px;
-        box-shadow:
-              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-        // &:hover {
-        //   opacity: 0.5;
-        //   transition: 0.2s;
-        // }
+        box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+          inset -2px -3px 5px rgba(0, 0, 0, 0.5);
         &:focus {
-          box-shadow:
-              inset -2px -3px 5px rgba(0, 0, 0, 0.3),
-              inset 2px 3px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: inset -2px -3px 5px rgba(0, 0, 0, 0.3),
+            inset 2px 3px 5px rgba(0, 0, 0, 0.5);
         }
       }
       .logIn {
@@ -71,13 +74,11 @@ const form = styled.div`
       font-family: Questrial;
       font-size: 20px;
       border-radius: 10px;
-      box-shadow:
-              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+        inset -2px -3px 5px rgba(0, 0, 0, 0.5);
       &:focus {
-        box-shadow:
-            inset -2px -3px 5px rgba(0, 0, 0, 0.3),
-            inset 2px 3px 5px rgba(0, 0, 0, 0.5);
+        box-shadow: inset -2px -3px 5px rgba(0, 0, 0, 0.3),
+          inset 2px 3px 5px rgba(0, 0, 0, 0.5);
       }
     }
   }

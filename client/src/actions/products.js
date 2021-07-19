@@ -1,4 +1,11 @@
 import axios from 'axios';
+import { getTokenLocalStorage } from "../reducer/reducer";
+const config = {
+  headers: {
+    "Access-Control-Allow-Headers": "x-access-token",
+    "x-access-token": getTokenLocalStorage(),
+  },
+};
 
 export function getProducts() {
       return async function(dispatch) {
@@ -39,6 +46,15 @@ export function sendToProducts(data) {
     dispatch({ type: SEND_TO_PRODUCTS, payload: data });
   };
 }
+export async function postPayment(data) {
+  let response = await axios.post('http://localhost:3001/payment', data, config)
+  window.location.assign(response.data)
+}
+
+export function updateStatus(data) {
+  axios.put("http://localhost:3001/users/bookings", data, config)
+}
+
 
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const SUBSTRACT_TOTAL = 'SUBSTRACT_TOTAL'

@@ -1,4 +1,9 @@
-import { GET_MOVIES_DETAIL, GET_MOVIE_LIST } from "../actions/movies";
+import {
+  GET_GENRES,
+  GET_MOVIES_BY_GENRE,
+  GET_MOVIES_DETAIL,
+  GET_MOVIE_LIST,
+} from "../actions/movies";
 import { ORDER_USERS_BY_POINTS } from "../actions/points";
 import {
   GET_PRODUCTS,
@@ -9,7 +14,17 @@ import {
   DELETE_PRODUCT,
   SEND_TO_PRODUCTS,
 } from "../actions/products";
-import { GET_USERS, SIGNUP, LOGIN, LOG_OUT } from "../actions/users";
+import {
+  GET_USERS,
+  GET_USER_BY_ID,
+  SIGNUP,
+  LOGIN,
+  LOG_OUT,
+  GET_BOOKINGS,
+  SEARCH_USERS,
+  USER_INFO,
+} from "../actions/users";
+import { GET_PAYMENTS } from "../actions/orders";
 
 const initialState = {
   products: [],
@@ -23,12 +38,19 @@ const initialState = {
     extras:{},
     total:0
   }, */
-  slot:'',
+  slot: "",
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
+  moviesGenre: [],
+  genre: "",
   users: [],
   movieList: [],
   token: getTokenLocalStorage(),
+  bookings: [],
+  payments: [],
+  searchUserByName: [],
+  searchUserById: [],
+  userData: {},
 };
 
 export function getTokenLocalStorage() {
@@ -36,9 +58,19 @@ export function getTokenLocalStorage() {
   return token ? JSON.parse(token) : "";
 }
 
-function setTokenLocalStorage(token) {
+export function setTokenLocalStorage(token) {
   window.localStorage.setItem("token", JSON.stringify(token));
 }
+
+export function getUserDataStorage() {
+  const userdata = window.localStorage.getItem("userdata");
+  return userdata ? JSON.parse(userdata) : "";
+}
+
+function setUserDataLocalStorage(userdata) {
+  window.localStorage.setItem("userdata", JSON.stringify(userdata));
+}
+
 export function getPurchaseLocalStorage() {
   const purchase = window.localStorage.getItem("purchase");
   return purchase ? JSON.parse(purchase) : "";
@@ -63,12 +95,42 @@ export default function reducer(state = initialState, action) {
         movieDetail: action.payload,
       };
     }
+    case GET_MOVIES_BY_GENRE: {
+      return {
+        ...state,
+        genre: action.payload,
+      };
+    }
+    case GET_GENRES: {
+      const moviesGenres = state.movieList.map((movie) =>
+        movie.onBillboard ? movie.genre : ", "
+      );
+      let moviesGenresFiltred = [];
+      moviesGenres.forEach((element) =>
+        moviesGenresFiltred.push(
+          element.includes(", ")
+            ? element
+                .split(", ")
+                .forEach((element) => moviesGenresFiltred.push(element))
+            : element
+        )
+      );
+      moviesGenresFiltred = moviesGenresFiltred.filter(
+        (el) => el !== undefined && el !== ""
+      );
+      let genresList = [...new Set(moviesGenresFiltred)];
+      return {
+        ...state,
+        moviesGenre: genresList,
+      };
+    }
+
     //Products
     case SEND_TO_PRODUCTS: {
       let purchase = action.payload;
       purchase.total = action.payload.price;
       purchase.extras = {};
-      purchase.slot = '';
+      purchase.slot = "";
       setPurchaseLocalStorage(purchase);
       return state;
     }
@@ -96,8 +158,8 @@ export default function reducer(state = initialState, action) {
       setPurchaseLocalStorage(purchase);
       return {
         ...state,
-        slot: action.payload
-      }
+        slot: action.payload,
+      };
     }
     case SAVE_PRODUCT: {
       let purchase = getPurchaseLocalStorage();
@@ -130,6 +192,18 @@ export default function reducer(state = initialState, action) {
         users: action.payload,
       };
     }
+    case GET_USER_BY_ID: {
+      return {
+        ...state,
+        searchUserById: action.payload,
+      };
+    }
+    case SEARCH_USERS: {
+      return {
+        ...state,
+        searchUserByName: action.payload,
+      };
+    }
     // Ordenar usuarios por cantidad de puntos asc/desc
     case ORDER_USERS_BY_POINTS: {
       //Si no hay payload, order desc
@@ -159,11 +233,31 @@ export default function reducer(state = initialState, action) {
         token: action.payload,
       };
     }
+    case USER_INFO: {
+      setUserDataLocalStorage(action.payload);
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    }
     case LOG_OUT: {
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("userdata");
       return {
         ...state,
         token: "",
+      };
+    }
+    case GET_BOOKINGS: {
+      return {
+        ...state,
+        bookings: action.payload,
+      };
+    }
+    case GET_PAYMENTS: {
+      return {
+        ...state,
+        payments: action.payload,
       };
     }
     default: {

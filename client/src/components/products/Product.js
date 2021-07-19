@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
-import { connect } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { connect, useDispatch } from "react-redux";
 import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts } from '../../actions/products'
-import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center } from './ProductStyles'
-import {getPurchaseLocalStorage} from '../../reducer/reducer'
+import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center, AdminButton } from './ProductStyles'
+import {getPurchaseLocalStorage, getTokenLocalStorage} from '../../reducer/reducer'
+import { isAdmin } from '../../actions/users';
+import axios from 'axios';
 
 const Product = (props) => {
+    const dispatch = useDispatch();
     const[state, setState] = useState({
         counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
     })
+
+    const [admin, setAdmin] = useState(null);
+    const [pricing, setPricing] = useState({name: props.name, show: false,
+    price: props.price});
+    
+    useEffect(() => {
+        async function verify () {
+            const autho = await isAdmin();
+            setAdmin(autho);
+        };
+
+        verify();
+    }, [admin]);
 
     const handleSubtract = function(e){
         e.preventDefault()
@@ -34,17 +50,52 @@ const Product = (props) => {
             props.saveProduct(props.name)
         }
     }
+
+    function handleEdit (e) {
+        e.preventDefault();
+        setPricing({...pricing, show: true});
+    }
+
+    const config = {
+        headers: {
+          "Access-Control-Allow-Headers": "x-access-token",
+          "x-access-token": getTokenLocalStorage(),
+        },
+      };
+
+    async function handleClick (e) {
+        e.preventDefault();
+        let prod = {name: pricing.name, price: pricing.price}
+
+        await axios.put('http://localhost:3001/products', prod, config);
+
+        setPricing({...pricing, show: false});
+
+        dispatch(getProducts());
+    }
+
+    function handleChange (e) {
+        e.preventDefault();
+        setPricing({...pricing, price: e.target.value});
+    }
+
+    function handleCancel (e) {
+        e.preventDefault();
+        setPricing({...pricing, show: false});
+    }
+
     return(
         <ProductBox>
             <div>
             <InfoBox>
-                <div>
+                <div id="ctn">
                 <ImgBox>
                     <img src={props.imgUrl} height='150px' width='160px' alt=''/>
                 </ImgBox>
                 <TextBox>
                     <Text><p>{props.name}</p></Text>
-                    <Text><Price>${props.price}</Price></Text>
+                    <Text><Price>${props.price}</Price>{admin ? <AdminButton onClick={(e) => handleEdit(e)}>Edit</AdminButton> : null}</Text>
+                    {pricing.show ? <div id="cnt"><input id="inp" type="number" value={pricing.newPricing} onChange={(e) => handleChange(e)} placeholder="New price..." min="1" /><AdminButton className="btn" onClick={(e) => handleClick(e)}>Confirm</AdminButton><AdminButton className="btn" onClick={(e) => handleCancel(e)}>Cancel</AdminButton></div> : null}
                 </TextBox>
                 </div>
             </InfoBox>

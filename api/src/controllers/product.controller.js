@@ -27,7 +27,22 @@ const addProduct = async (req, res) => {
   }
 };
 
+const updateProduct = async (req, res) => {
+  try {
+    const { name, price } = req.body;
+    let result = await Product.findOneAndUpdate({ name }, { price });
+
+    if (!result) {
+      return res.status(404).send("Product not found");
+    }
+    return res.send("Product modified");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   getProducts,
   addProduct,
+  updateProduct,
 };

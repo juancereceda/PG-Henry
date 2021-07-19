@@ -89,6 +89,7 @@ export const Movie = styled.img`
   object-fit: cover;
   margin-left: 10px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 // ESTILOS MERCH CARDS

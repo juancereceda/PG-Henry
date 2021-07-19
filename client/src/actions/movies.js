@@ -4,6 +4,8 @@ export const GET_MOVIES_DETAIL = 'GET_MOVIES_BY_DETAIL';
 export const GET_MOVIE_LIST = 'GET_MOVIE_LIST';
 export const POST_MOVIE = 'POST_MOVIE';
 export const UPDATE_MOVIE = 'UPDATE_MOVIE';
+export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
+export const GET_GENRES = 'GET_GENRES';
 
 const config = {
   headers: {
@@ -59,3 +61,17 @@ export function updateMovie(movie, id) {
   axios.put(`http://localhost:3001/movies/${id}`, movie, config)
 }
 
+export function getMoviesByGenre(genre){
+  return function (dispatch) {
+    dispatch({
+      type: GET_MOVIES_BY_GENRE,
+      payload: genre
+    })
+  }
+}
+
+export function getGenres() { 
+  return  { 
+   type: GET_GENRES, 
+ };  
+}

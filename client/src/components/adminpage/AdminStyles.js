@@ -123,7 +123,7 @@ const AdminContainer = styled.div`
   }
   .postMovieForm {
     background-color: #2d4059;
-    height: 600px;
+    height: 1200px;
     width: 850px;
     display: flex;
     flex-direction: column;

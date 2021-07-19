@@ -7,5 +7,6 @@ router.get("/:id", movieCtrl.getMovieById);
 router.post("/", [authentication.verifyToken, authentication.isAdmin], movieCtrl.postMovie);
 router.put("/:id", [authentication.verifyToken, authentication.isAdmin], movieCtrl.putMovie);
 router.get("/", movieCtrl.getMovies);
+// router.get("/genre", movieCtrl.getMovieByGenre);
 
 module.exports = router;

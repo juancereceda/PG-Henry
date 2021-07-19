@@ -14,16 +14,42 @@ export const ProductBox = styled.div`
 export const InfoBox = styled.div`
     display:flex;   
     justify-content: center;
+    align-items: center;
+
+    #ctn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 export const TextBox = styled.div`
     display:flex;
     flex-direction:column; 
     color:rgb(232, 232, 232);
     font-family: Questrial;
+
+    #cnt {
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    };
+
+    #inp {
+        width: 50%;
+        height: 75%;
+        border: none;
+        border-radius: 5px;
+    };
+
+    .btn {
+        margin-bottom: 5.5px;
+    }
 `;
 export const Text = styled.div`
     display:flex;
-    justify-content:center;
+    justify-content: center;
 `;
 
 export const ImgBox = styled.div`
@@ -71,4 +97,18 @@ export const Counter = styled.p`
 export const Center = styled.div`
     display:flex;
     justify-content: center;
+`;
+
+export const AdminButton = styled.button`
+    height: 75%;
+    border-radius: 5px;
+    margin-top: 6px;
+    background-color: #E8E8E8;
+    color: #222831;
+    box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+                inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+    border: none;
+    &:focus {
+        box-shadow: inset -2px -3px 5px rgba(0, 0, 0, 0.3), inset 2px 3px 5px rgba(0, 0, 0, 0.5);
+    }
 `;
