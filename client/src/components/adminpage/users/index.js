@@ -100,23 +100,25 @@ const Users = () => {
   return (
     <>
       {window.localStorage.token && users?.length ? 
-        <StyledDiv>
-          <div className="search">
-            <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
-              <div className="searchBarContainer">
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Search Username..."
-                  type="text"
-                  className="input"
-                ></input>
-              </div>
-            </form>
-          </div>    
+        <StyledDiv>          
           <table className="container" >
             <thead className="title">
-              <h1>Users registrates</h1>     
+              <div className='titleSearch'>
+                <h1>Users registrates</h1> 
+                <div className="search">
+                  <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
+                    <div className="searchBarContainer">
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Search Username..."
+                        type="text"
+                        className="input"
+                      ></input>
+                    </div>
+                  </form>
+                </div>      
+              </div>  
               <tr className="header">
                 <td>Username</td>
                 <td>Email</td>
@@ -145,7 +147,7 @@ const Users = () => {
                     name ? user.username.includes(name) : user
                   )
                   .map(user => (
-                    <tr key={user._id}>
+                    <tr key={user._id} className='center'>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
                       <td>
@@ -168,16 +170,7 @@ const Users = () => {
                     </tr>
                 ) )
               :
-                <StyledDiv>
-                  <div className="errorCnt">
-                    <img
-                        className="sadFace"
-                        src="https://res.cloudinary.com/juancereceda/image/upload/v1625945361/sad-face-in-rounded-square_q7qmr7.png"
-                        alt="404"
-                    />
-                    <h1 className="errorMsg">Sorry! No users with this parameter</h1>
-                  </div>
-                </StyledDiv>
+                <NotFound />
               }     
             </tbody>
           </table>
