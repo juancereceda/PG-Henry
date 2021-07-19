@@ -10,13 +10,6 @@ const ValidationColors ={
 }
 
 
-const MoviesColors = {
-  white: "#E8E8E8",
-  red: "#F05454",
-  grey: "#30475E",
-  black: "#222831",
-};
-
 
 export const ErrorIcon = styled(VscError)`
      position: relative;

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPayments } from "../../../actions/orders";
 import { isAdmin } from "../../../actions/users";
 import StyledDiv from "./OrderStyles";
-import { getTokenLocalStorage } from "../../../reducer/reducer";
 import Pagination from "./paginateOrders.js";
+import NotFound from "../../404/NotFound";
 function AdminOrders() {
   const dispatch = useDispatch();
   const payments = useSelector((state) => state.payments);
@@ -39,7 +39,7 @@ function AdminOrders() {
     };
     verifyAdmin();
     dispatch(getPayments());
-  }, []);
+  }, [dispatch]);
 
   function handleFilterStatus(e) {
     setStatusFilter(e.target.value === "All" ? null : e.target.value);
@@ -57,7 +57,6 @@ function AdminOrders() {
 
   return (
     <StyledDiv>
-      <h1>Orders List</h1>
       {admin ? (
         <div className="listContainer boxContainer">
           <div className="listItem">
@@ -122,19 +121,29 @@ function AdminOrders() {
             <h4>
               Page 1 of{" "}
               {Math.ceil(
-                payments.filter((el) => el.movie_title).length / paymentsPerPage
+                payments
+                  .filter((el) => el.movie_title)
+                  .filter((el) =>
+                    statusFilter ? el.status === statusFilter : el
+                  ).length / paymentsPerPage
               )}{" "}
               |{" "}
             </h4>
             <Pagination
               paymentsPerPage={paymentsPerPage}
-              totalPayments={payments.filter((el) => el.movie_title).length}
+              totalPayments={
+                payments
+                  .filter((el) => el.movie_title)
+                  .filter((el) =>
+                    statusFilter ? el.status === statusFilter : el
+                  ).length
+              }
               paginate={renderPage}
             />
           </div>
         </div>
       ) : (
-        <h1>You are not and admin</h1>
+        <NotFound />
       )}
     </StyledDiv>
   );

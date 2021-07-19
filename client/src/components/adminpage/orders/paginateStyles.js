@@ -8,6 +8,10 @@ const paginateStyle = styled.nav`
   .numPage {
     cursor: pointer;
     padding: 0px 10px 0px 10px;
+    &:hover {
+      color: #acacac;
+      transition: 500ms;
+    }
   }
 `;
 

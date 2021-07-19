@@ -13,7 +13,8 @@ import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
 import AdminOrders from "./components/adminpage/orders/AdminOrders";
 import Success from "./components/success/Success";
-
+import ComingSoon from "./components/comingSoon/ComingSoon";
+import ResetPassword from "./components/restorepassword/restorePassword";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/login" component={LogInForm} />
       <Route path="/movies/:id" component={MovieDetail} />
       <Route path="/billboard" component={Billboard} />
+      <Route path="/comingsoon" component={ComingSoon} />
       <Route exact path="/administration/:id" component={EditMovie} />
       <Route exact path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
@@ -32,6 +34,7 @@ function App() {
       <Route path="/AdminMovies" component={AdminMovies} />
       <Route path="/adminorders" component={AdminOrders} />
       <Route path="/success/:id" component={Success} />
+      <Route path="/restorepassword" component={ResetPassword} />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import StyledContainer from "./LogInStyles";
 import { logIn } from "../../actions/users";
 import { useDispatch } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 function LogIn() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function LogIn() {
     name: "",
     password: "",
   });
+
 
   function handleInputChange(e) {
     setLogInState({
@@ -74,16 +76,22 @@ function LogIn() {
           onChange={(e) => handleInputChange(e)}
           required
         />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          onChange={(e) => handleInputChange(e)}
-          required
-        />
-        <button
-          className="google"
-        ><FcGoogle size="35"/>Login with Google</button>
+        <div className="passwordCnt">
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={(e) => handleInputChange(e)}
+            required
+          />
+          <Link to="/restorepassword" className="passwordLink">
+            <span>Forgot your password?</span>
+          </Link>
+        </div>
+        <button className="google">
+          <FcGoogle size="35" />
+          Login with Google
+        </button>
         <div className="btnContainer">
           <button type="submit" className="logIn">
             Log in

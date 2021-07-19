@@ -8,6 +8,7 @@ const div = styled.div`
   height: 500px;
   color: #e8e8e8;
   margin-bottom: 100px;
+  margin-top: 2%;
   .boxContainer {
     padding-bottom: 10px;
     height: 500px;
@@ -103,12 +104,6 @@ const div = styled.div`
       display: flex;
       justify-content: space-evenly;
       width: 10%;
-    }
-  }
-  .numPage {
-    &:hover {
-      color: #acacac;
-      transition: 500ms;
     }
   }
 `;

@@ -19,6 +19,15 @@ const form = styled.div`
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
       inset 2px 3px 5px rgba(0, 0, 0, 0.3),
       inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+    .passwordCnt {
+      display: flex;
+      flex-direction: column;
+      .passwordLink {
+        color: #e55151;
+        font-size: 16px;
+        margin-bottom: -16px;
+      }
+    }
     input {
       font-family: Questrial;
       font-size: 18px;

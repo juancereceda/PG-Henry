@@ -10,6 +10,7 @@ import {
   BiStore,
   BiListCheck,
 } from "react-icons/bi";
+import NotFound from "../404/NotFound";
 
 function AdminPage({ props }) {
   const dispatch = useDispatch();
@@ -55,14 +56,7 @@ function AdminPage({ props }) {
           </div>
         </div>
       ) : (
-        <div className="errorCnt">
-          <img
-            className="sadFace"
-            src="https://res.cloudinary.com/juancereceda/image/upload/v1625945361/sad-face-in-rounded-square_q7qmr7.png"
-            alt="404"
-          />
-          <h1 className="errorMsg">Sorry! We've nothing for you here</h1>
-        </div>
+        <NotFound />
       )}
     </AdminContainer>
   );

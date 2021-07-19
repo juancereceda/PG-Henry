@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { StyledForm, StyledInput, StyledButton,Legend, ErrorIcon, CheckIcon } from "./SignupFormStyle.js";
+import { StyledForm } from "./SignupFormStyle.js";
 import { signUp } from "../../actions/users";
 import { FcGoogle } from "react-icons/fc";
 import swal from "sweetalert";
@@ -19,10 +19,6 @@ export default function SignupForm() {
     passMatch: false,
   });
 
-  const[error, setError]= useState({
-      email:'',
-      password:''
-  })
 
     function handleUsername(e){setInfo({...info, username: e.target.value})}
     function handleEmail(e){setInfo({...info, email: e.target.value})}

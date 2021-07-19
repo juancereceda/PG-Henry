@@ -50,7 +50,7 @@ const processPayment = async (req, res) => {
       ],
       auto_return: "approved",
       back_urls: {
-        failure: "http://localhost:3000/products",
+        failure: `http://localhost:3000/success/${req.userId}/`,
         pending: "http://localhost:3000/products",
         success: `http://localhost:3000/success/${req.userId}/`,
       },
@@ -93,58 +93,64 @@ const updateBooking = async (req, res) => {
     let date = foundShow.date;
     let parking_lot = foundShow.parking_lot;
     let time = foundShow.time;
+    if (status === "approved") {
+      let movieFound = await Movie.findOne({ title: movie_title });
 
-    let movieFound = await Movie.findOne({ title: movie_title });
+      let updatedShows = movieFound.shows.map((el) =>
+        el.date.includes(date)
+          ? {
+              ...el,
+              time: el.time.map((show) =>
+                show.hasOwnProperty(time)
+                  ? {
+                      ...show,
+                      [time]: show[time].map((slot) =>
+                        slot.slot === parking_lot
+                          ? { ...slot, ocuppied: true }
+                          : slot
+                      ),
+                    }
+                  : show
+              ),
+            }
+          : el
+      );
 
-    let updatedShows = movieFound.shows.map((el) =>
-      el.date.includes(date)
-        ? {
-            ...el,
-            time: el.time.map((show) =>
-              show.hasOwnProperty(time)
-                ? {
-                    ...show,
-                    [time]: show[time].map((slot) =>
-                      slot.slot === parking_lot
-                        ? { ...slot, ocuppied: true }
-                        : slot
-                    ),
-                  }
-                : show
-            ),
-          }
-        : el
-    );
-
-    await Movie.findOneAndUpdate(
-      { title: movie_title },
-      { shows: updatedShows }
-    );
+      await Movie.findOneAndUpdate(
+        { title: movie_title },
+        { shows: updatedShows }
+      );
+    }
 
     await User.findByIdAndUpdate(req.userId, {
       bookings,
     });
-    await transporter.sendMail({
-      from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
-      to: user.email, // list of receivers
-      subject: "Ticket booked succesfully", // Subject line
-      html: `
-      <h1>Thanks for choosing us!</h1>
-      <h4> You have successfully bought a new ticket, here is the ticket info:<h4>
-      <ul>
-        <li>Movie: ${movie_title}</li>
-        <li>Date: ${date}</li>
-        <li>Time: ${time}</li>
-        <li>Parking lot: ${parking_lot}</li>
-      </ul>
-      <span>${
-        foundShow.extras[0] ? "Extras: " + foundShow.extras[0] : ""
-      }</span>
 
-      <span>Show this e-mail at the entrance</span><br/>
-      <span>Ticket id: ${preference_id}</span>
-      `, // html body
-    });
+    if (status === "approved") {
+      await transporter.sendMail({
+        from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
+        to: user.email, // list of receivers
+        subject: "Ticket booked succesfully", // Subject line
+        html: `
+        <h1 style="color: #f05454;">Thanks for choosing us!</h1>
+        <p style="color: #000000">Hello ${
+          user.username
+        } you have successfully bought a new ticket for ${movie_title}, here is the show info:</p>
+        <div style="background-color: #f05454; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px 10px; font-weight: bold; border-radius: 5px;">
+        <ul>
+        <li style="color: #fff;">Movie: ${movie_title}</li>
+        <li style="color: #fff;">Date: ${date}</li>
+        <li style="color: #fff;">Time: ${time}</li>
+        <li style="color: #fff;">Parking lot: ${parking_lot}</li>
+        <li style="color: #fff;">${
+          foundShow.extras[0] ? "Extras: " + foundShow.extras[0] : "No extras"
+        }</li>
+        </ul>
+        </div>
+        <p style="color: #000000">Show this e-mail at the entrance to access to the cinema, and the info above in the candy-bar.<br /><br />Ticket ID: <span style="font-weight: bold; text-decoration: underline;">${preference_id}</span><br /><br />All rights reserved by &copy; <a href="https://www.google.com.ar">Autocinema App</a></p>
+        `, // html body
+      });
+    }
     res.send("Ok");
   } catch (error) {
     console.log(error);
@@ -154,7 +160,7 @@ const updateBooking = async (req, res) => {
 const getPayments = async (req, res) => {
   try {
     let result = await axios.get(
-      "https://api.mercadopago.com/v1/payments/search",
+      "https://api.mercadopago.com/v1/payments/search?limit=1000",
       config
     );
     let mapped = result.data.results.map((el) => {

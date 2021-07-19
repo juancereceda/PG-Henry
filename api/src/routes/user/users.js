@@ -16,6 +16,12 @@ router.get(
   UserCtrl.getUsers
 );
 
+router.get(
+  "/:id",
+  [authentication.verifyToken, authentication.isAdmin],
+  UserCtrl.getUsers
+);
+
 router.put(
   "/bookings",
   [authentication.verifyToken],
@@ -23,9 +29,17 @@ router.put(
 );
 
 router.put(
+  "/restorepassword",
+  [authentication.verifyToken],
+  UserCtrl.restorePassword
+);
+router.put(
   "/:id",
   [authentication.verifyToken, authentication.isAdmin],
   UserCtrl.putUser
 );
+
+router.post("/verifyuser", UserCtrl.verifyUser);
+router.post("/verifytoken", UserCtrl.verifyToken);
 
 module.exports = router;

@@ -6,6 +6,11 @@ const checkUser = async (req, res, next) => {
     const user =
       (await User.findOne({ email: name })) ||
       (await User.findOne({ username: name }));
+    if(user.banned) {
+      return (
+        res.json({ message: "You have been banned due to inappropiate behaviour" })
+      )
+    }
     if (!user) {
       return (
         res
