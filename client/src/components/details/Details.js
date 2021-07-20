@@ -75,9 +75,10 @@ const[state, setState]=React.useState({
     })
   }
   async function handleShowCancel(e){
-    let id = e.target.id.split(', ');
-    let date = id[0];
-    let time = id[1];
+    dispatch(getMovieById(id))
+    let iD = e.target.id.split(', ');
+    let date = iD[0];
+    let time = iD[1];
     let movie_title = movieDetail.title;
     const option = await swal({
       text: "Are you sure you want to cancel/restore this show?",
@@ -85,7 +86,7 @@ const[state, setState]=React.useState({
     })
     if (option) {
       updateShow(movie_title, date, time)
-      window.location.reload()
+      dispatch(getMovieById(id))
       await swal("Editing show...", {
         icon: "success",
         buttons: false,
@@ -147,7 +148,8 @@ const[state, setState]=React.useState({
                           {admin? <button id={el.date.concat(', ').concat(Object.keys(e)[0])} onClick={e =>handleShowCancel(e)}>x</button> : null}
                         </div>
                         )
-                      }                                               
+                        return null  
+                      }                                                                
                     )}
                  </Show> 
                 </div>
