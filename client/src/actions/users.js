@@ -10,6 +10,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const GET_BOOKINGS = "GET_BOOKINGS";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 
 const config = {
   headers: {
@@ -211,5 +212,14 @@ export async function changePassword(password, token) {
     return result.data.message;
   } catch (error) {
     return error.response.data.message;
+  }
+}
+
+export async function deleteAccount() {
+  try{
+    let answer= await axios.delete('http://localhost:3001/users/deleteAccount', config)
+    return answer.data.message
+  } catch(error){
+     console.log(error)
   }
 }

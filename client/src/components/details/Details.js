@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 function MovieDetail(){
  const dispatch = useDispatch();
  const movieDetail = useSelector(state => state.movieDetail);
-//  const usersList = useSelector(state=>state.users);
 const[admin, setAdmin] = React.useState(null);
 const[state, setState]=React.useState({
    render:false,
@@ -143,11 +142,6 @@ const[state, setState]=React.useState({
   )
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//       isAdmin: ()=>{dispatch(isAdmin())}
-//   };
-// }
 
 
 
