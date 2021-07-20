@@ -142,11 +142,6 @@ const[state, setState]=React.useState({
   )
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//       isAdmin: ()=>{dispatch(isAdmin())}
-//   };
-// }
 
 
 

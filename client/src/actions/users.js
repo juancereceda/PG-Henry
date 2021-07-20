@@ -165,11 +165,8 @@ export async function changePassword(password, token) {
 
 export async function deleteAccount() {
   try{
-    return (dispatch) =>
-    axios.delete(`http://localhost:3001/users/deleteAccount`)
-    .then((res) => {
-      dispatch({ type: DELETE_ACCOUNT, payload: res.data});
-    });
+    let answer= await axios.delete('http://localhost:3001/users/deleteAccount', config)
+    return answer.data.message
   } catch(error){
      console.log(error)
   }
