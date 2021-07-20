@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieList, getGenres } from "../../actions/movies";
-import { StyledTitle, StyledBillboard, StyledAside, StyledPagination, StyledIndexChanger } from "./Billboard-styles";
+import {
+  StyledTitle,
+  StyledBillboard,
+  StyledAside,
+  StyledPagination,
+  StyledIndexChanger,
+} from "./Billboard-styles";
 import {
   StyledFirstAside,
   StyledSecondAside,
@@ -10,38 +16,52 @@ import {
 import BillboardCard from "./BillboardCard";
 import { Link } from "react-router-dom";
 import Footer from "../footer/Footer";
-import  GenreFilter from "../GenreFilter/GenreFilter";
-import Slider from '../comboSlider/slider'
+import GenreFilter from "../GenreFilter/GenreFilter";
+import Slider from "../comboSlider/slider";
+import BillboardSkeleton from "./BillboardSkeletons";
 
 export default function Billboard() {
   const dispatch = useDispatch();
   const movieList = useSelector((state) => state.movieList);
-
-  const genre = useSelector(state => state.genre);
-  const filtredMovies = movieList.filter(movie => movie.genre.includes(genre))
+  const genre = useSelector((state) => state.genre);
+  const filtredMovies = movieList.filter((movie) =>
+    movie.genre.includes(genre)
+  );
+  const moviesPerPage = 3;
+  let skeletons = [];
+  for (let i = 0; i < moviesPerPage; i++) {
+    skeletons.push(i);
+  }
 
   const [index, setIndex] = useState(0);
 
-
   useEffect(() => {
     dispatch(getMovieList());
-    dispatch(getGenres())
+    dispatch(getGenres());
   }, [dispatch]);
 
-  function HandleIndex (caller) {
+  function HandleIndex(caller) {
     const option = caller.target.value;
-    switch (option){
+    switch (option) {
       case "→":
-        if(index < Math.ceil(filtredMovies.filter((movie) => movie.onBillboard).length/3) - 1){
-          setIndex(index + 1)
+        if (
+          index <
+          Math.ceil(
+            filtredMovies.filter((movie) => movie.onBillboard).length /
+              moviesPerPage
+          ) -
+            1
+        ) {
+          setIndex(index + 1);
         }
-        break
+        break;
       case "←":
-        if(index > 0){
-          setIndex(index - 1)
+        if (index > 0) {
+          setIndex(index - 1);
         }
-        break
-      default: return null;
+        break;
+      default:
+        return null;
     }
   }
 
@@ -50,9 +70,19 @@ export default function Billboard() {
       <GenreFilter />
       <StyledTitle>Billboard Movies</StyledTitle>
       <StyledPagination>
-        <StyledIndexChanger type="button" value="←" onClick={HandleIndex} className="plus"/>
-        <p>{index+1}</p>
-        <StyledIndexChanger type="button" value="→" onClick={HandleIndex} className="minus"/>
+        <StyledIndexChanger
+          type="button"
+          value="←"
+          onClick={HandleIndex}
+          className="plus"
+        />
+        <p>{index + 1}</p>
+        <StyledIndexChanger
+          type="button"
+          value="→"
+          onClick={HandleIndex}
+          className="minus"
+        />
       </StyledPagination>
       <StyledAside>
         <StyledFirstAside>
@@ -64,19 +94,17 @@ export default function Billboard() {
             <img
               src="https://image.flaticon.com/icons/png/512/86/86511.png"
               alt=""
-              />
+            />
           </Link>
         </StyledSecondAside>
         <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
       </StyledAside>
-      {filtredMovies.length > 0 ? (
-        filtredMovies
-        .filter((movie) => movie.onBillboard)
-        .slice(index * 3, index * 3 + 3)
-        .map((movie) => <BillboardCard props={movie} key={movie._id} />)
-        ) : (
-          <h2>Error 404!</h2>
-        )}
+      {filtredMovies.length > 0
+        ? filtredMovies
+            .filter((movie) => movie.onBillboard)
+            .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
+            .map((movie) => <BillboardCard props={movie} key={movie._id} />)
+        : skeletons.map((el) => <BillboardSkeleton />)}
       <Footer marginTop="120%" />
     </StyledBillboard>
   );
