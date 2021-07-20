@@ -7,7 +7,7 @@ const skeleton = styled.div`
   align-items: center;
   background-color: #30475e;
   margin: 50px 0px 50px 0px;
-  height: 500px;
+  height: 300px;
   .shimmer {
     position: relative;
     background: #3a3a3a;
@@ -21,7 +21,7 @@ const skeleton = styled.div`
       #3a3a3a 100%
     );
     background-repeat: no-repeat;
-    background-size: 800px 500px;
+    background-size: 800px 300px;
 
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -56,8 +56,8 @@ const skeleton = styled.div`
   }
 
   #square {
-    width: 300px;
-    height: 500px;
+    width: 200px;
+    height: 300px;
   }
 
   #content {
