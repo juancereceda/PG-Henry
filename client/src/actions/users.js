@@ -58,6 +58,30 @@ export function signUp(username, email, password) {
   };
 }
 
+export function signUpWithGoogle(tokenId) {
+  return async function (dispatch) {
+    try {
+      const token = await axios.post(
+        "http://localhost:3001/users/google_signup",
+        {
+          token: tokenId,
+        }
+      );
+      dispatch({ type: SIGNUP, payload: token.data.token });
+      dispatch({
+        type: USER_INFO,
+        payload: { username: token.data.username, email: token.data.email },
+      });
+      return "Account created";
+    } catch (error) {
+      if (error.response.status === 400) {
+        console.log(error.response.data.message);
+        return error.response.data.message;
+      }
+    }
+  };
+}
+
 export function logIn(name, password) {
   return async function (dispatch) {
     try {
@@ -65,6 +89,34 @@ export function logIn(name, password) {
         name,
         password,
       });
+      if (response.data.token) {
+        await dispatch({ type: LOGIN, payload: response.data.token });
+        dispatch({
+          type: USER_INFO,
+          payload: {
+            username: response.data.username,
+            email: response.data.email,
+          },
+        });
+        return "Logged in succesfully";
+      } else {
+        return response.data.message;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function logInWithGoogle(token) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/users/google_login",
+        {
+          token,
+        }
+      );
       if (response.data.token) {
         await dispatch({ type: LOGIN, payload: response.data.token });
         dispatch({
