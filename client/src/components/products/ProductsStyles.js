@@ -122,3 +122,46 @@ export const StoredProducts = styled.p`
   font-size: 20px;
   margin-right: 7px;
 `;
+export const AddProduct = styled.div`
+    display:flex;
+    justify-content:center;
+    height:fit-content;
+    height: 352px;
+    margin:10px;
+    min-width:200px;
+    padding: 15px;
+    font-size: 1.4em;    
+    background-color: rgb(48, 71, 94);
+    .addButton{
+      width: 100%;
+      height: 100%;
+      border:none;
+      outline:0;
+      background-color:transparent;
+      font-size: 100px;
+      border:none;
+      color: rgba(255, 255, 255, 0.5);
+      &:hover{
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+    .submit{
+      margin-top: 70px;
+      display:flex;
+      flex-direction: column;
+      .submitBtn{
+        background-color: rgba(34, 40, 49, 1);
+        border:none;
+        outline:0;
+        color:rgba(255, 255, 255, 1);
+        height:25px;
+        &:hover{
+          background-color: rgba(34, 40, 49, 0.7);
+          color:rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+    .input{
+      margin-top: 30px;
+    }
+`;
