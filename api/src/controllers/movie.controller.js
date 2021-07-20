@@ -126,9 +126,20 @@ const putMovie = async (req, res) => {
   }
 }
 
+const deleteMovie = async (req, res) => {
+  try {
+    const { _id } = req.body
+    await Movie.deleteOne( { _id } )
+    res.json( {message: `Movie has been deleted`})
+  } catch {
+    res.status(400).send(error)
+  }
+}
+
 module.exports = {
   getMovieById,
   getMovies,
   postMovie,
   putMovie,
+  deleteMovie
 };
