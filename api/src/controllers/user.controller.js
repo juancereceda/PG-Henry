@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-//ykxotzanjxikdvjt
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -15,18 +14,30 @@ let transporter = nodemailer.createTransport({
 const signUp = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    let newUser = await new User({
-      username,
-      email,
-      password: await User.hashPassword(password),
-      isAdmin: false,
-      bookings: [],
-      banned: false,
-    });
-    let userSaved = await newUser.save();
-    const token = await jwt.sign({ id: userSaved._id }, "group8", {
-      expiresIn: 86400,
-    });
+    let userByEmail = await User.findOne({ email });
+    let token;
+    if (userByEmail) {
+      await User.findOneAndUpdate(
+        { email },
+        { username, password: await User.hashPassword(password) }
+      );
+      token = await jwt.sign({ id: userByEmail._id }, "group8", {
+        expiresIn: 86400,
+      });
+    } else {
+      let newUser = await new User({
+        username,
+        email,
+        password: await User.hashPassword(password),
+        isAdmin: false,
+        bookings: [],
+        banned: false,
+      });
+      let userSaved = await newUser.save();
+      token = await jwt.sign({ id: userSaved._id }, "group8", {
+        expiresIn: 86400,
+      });
+    }
 
     res.status(201).send({ token, username, email });
   } catch (error) {

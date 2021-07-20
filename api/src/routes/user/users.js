@@ -41,5 +41,15 @@ router.put(
 
 router.post("/verifyuser", UserCtrl.verifyUser);
 router.post("/verifytoken", UserCtrl.verifyToken);
+router.post(
+  "/google_signup",
+  [verifySignup.verifyGoogleToken],
+  UserCtrl.signUp
+);
+router.post(
+  "/google_login",
+  [verifySignup.verifyGoogleToken, verifyLogin.checkUser],
+  UserCtrl.logIn
+);
 
 module.exports = router;
