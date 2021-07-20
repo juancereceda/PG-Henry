@@ -6,12 +6,17 @@ import { getMovieList } from "../../actions/movies";
 import Footer from '../footer/Footer'
 import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
+import Skeleton from './HomeSkeletons'
 
 export default function Home() {
     const dispatch = useDispatch();
     const movieList = useSelector(state => state.movieList);
     const releaseList = useSelector(state => state.movieList);
     let [admin, setAdmin] = useState(null);
+    let arr = [];
+  for (let i = 0; i < 6; i++) {
+    arr.push(i);
+  }
 
     useEffect(() => {
         dispatch(getMovieList())
@@ -32,11 +37,11 @@ export default function Home() {
                 <Movies>
                     <Labels>Billboard</Labels>
                     <Billboard>
-                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <h2>Loading movies...</h2>}
+                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}
                     </Billboard>
                     <Labels>Coming Soon</Labels>
                     <ComingSoon>
-                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <h2>Loading movies...</h2>}
+                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}
                     </ComingSoon>
                 </Movies>
                 <Stores>
