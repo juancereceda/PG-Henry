@@ -31,7 +31,6 @@ const getMovies = async (req, res) => {
 const postMovie = async (req, res) => {
   try {
     const { start, finish, functionDays, times, price, date, title, poster, description, genre, onBillboard, cast, trailer, rated, runtime, director } = req.body;
-    console.log('ruta back')
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     const shows = [];
     const startArr = start.split('-')
@@ -43,7 +42,8 @@ const postMovie = async (req, res) => {
         if(functionDays.includes(day)){
           let date = new Date(i)
           let time = times.map(
-            e => e = {[e] : [
+            e => e = {
+            [e] : [
             {"slot":"A1","ocuppied":false},
             {"slot":"A2","ocuppied":false},
             {"slot":"A3","ocuppied":false},
@@ -74,7 +74,9 @@ const postMovie = async (req, res) => {
             {"slot":"C8","ocuppied":false},
             {"slot":"C9","ocuppied":false},
             {"slot":"C10","ocuppied":false}
-          ]}
+          ],
+          cancelled: false,
+        }
         )
           shows.push({date, day, price, time})
         }
@@ -126,9 +128,40 @@ const putMovie = async (req, res) => {
   }
 }
 
+const updateShow = async (req, res) => {  
+  try {
+    console.log('cancel back')
+    const { movie_title, date, time} = req.body;
+      let movieFound = await Movie.findOne({ title: movie_title });
+      let updatedShows = movieFound.shows.map((el) =>
+        el.date.includes(date)
+          ? {
+              ...el,
+              time: el.time.map((show) =>
+                show.hasOwnProperty(time)
+                  ? {
+                      ...show,
+                      cancelled: !show.cancelled
+                    }
+                  : show
+              ),
+            }
+          : el
+      );
+      await Movie.findOneAndUpdate(
+        { title: movie_title },
+        { shows: updatedShows }
+      );    
+    res.send("Ok");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getMovieById,
   getMovies,
   postMovie,
   putMovie,
+  updateShow,
 };

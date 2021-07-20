@@ -7,7 +7,8 @@ import {sendToProducts} from'../../actions/products';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown, Show,Inp, Confirm, Label} from './styled';
 import ReactPlayer from 'react-player';
 import { Link } from "react-router-dom";
-
+import { getTokenLocalStorage } from "../../reducer/reducer";
+import axios from 'axios';
 
 function MovieDetail(){
  const dispatch = useDispatch();
@@ -25,6 +26,13 @@ const[state, setState]=React.useState({
  const yyyy = today.getFullYear();
  
  const currentDate = yyyy + '-' + mm + '-' + dd + 'T00:00:00.000Z'
+
+ const config = {
+  headers: {
+    "Access-Control-Allow-Headers": "x-access-token",
+    "x-access-token": getTokenLocalStorage(),
+  },
+};
 
  const {id}= useParams();
     useEffect(()=>{
@@ -54,6 +62,7 @@ const[state, setState]=React.useState({
      })
     
     const elemento = movieDetail.shows.filter(el => el.date.slice(5, 10) === day[0])[0]
+    if(elemento.day === "Twesday" || elemento.day === "Wednesday") elemento.price = elemento.price*0.7
     const info ={
         title: movieDetail.title,
         price: parseInt(elemento.price),
@@ -75,11 +84,20 @@ const[state, setState]=React.useState({
      render: true
     })
   }
-
+  async function handleShowCancel(e){
+    console.log('cancel Details')
+    e.preventDefault();
+    let id = e.target.id.split(', ');
+    let date = id[0];
+    let time = id[1];
+    let movie_title = movieDetail.title;
+    console.log(date + ' ' + time + ' ' + movie_title);
+    await axios.put(`http://localhost:3001/movies/updateShow`, {movie_title, date, time}, config);
+  }
  return(
      <Container>
      {typeof movieDetail=== 'object' && (<Grid>
-        <div> 
+        <div>
            <Title>{movieDetail.title}</Title><br></br>
            <Poster src={movieDetail.poster}/><br></br>
         </div>
@@ -116,7 +134,19 @@ const[state, setState]=React.useState({
                 <div>
                   <Show>
                     {el.time.map(e =>
-                       <Inp type= 'button' onClick= {handleShow} value={el.date.slice(5, 10).concat(', ').concat(Object.keys(e)[0])}/>            
+                      {if (e.cancelled === true) return (
+                        <div>
+                          {admin? <Inp type= 'button' onClick= {e =>handleShow(e)} value={el.date.slice(5, 10).concat(', ').concat(Object.keys(e)[0])}/> : null}
+                          {admin? <button id={el.date.concat(', ').concat(Object.keys(e)[0])} onClick={e =>handleShowCancel(e)}>+</button> : null}
+                        </div> 
+                        )
+                        else if (e.cancelled === false) return(
+                        <div>
+                          <Inp type= 'button' onClick= {e =>handleShow(e)} value={el.date.slice(5, 10).concat(', ').concat(Object.keys(e)[0])}/> 
+                          {admin? <button id={el.date.concat(', ').concat(Object.keys(e)[0])} onClick={e =>handleShowCancel(e)}>x</button> : null}
+                        </div>
+                        )
+                      }                                               
                     )}
                  </Show> 
                 </div>
