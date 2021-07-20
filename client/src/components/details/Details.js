@@ -1,14 +1,13 @@
 import {useParams} from 'react-router-dom';
 import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getMovieById, clearMovie} from '../../actions/movies';
+import { getMovieById, clearMovie, updateShow} from '../../actions/movies';
 import{ isAdmin } from '../../actions/users';
 import {sendToProducts} from'../../actions/products';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown, Show,Inp, Confirm, Label} from './styled';
 import ReactPlayer from 'react-player';
 import { Link } from "react-router-dom";
-import { getTokenLocalStorage } from "../../reducer/reducer";
-import axios from 'axios';
+import swal from "sweetalert";
 
 function MovieDetail(){
  const dispatch = useDispatch();
@@ -27,12 +26,6 @@ const[state, setState]=React.useState({
  
  const currentDate = yyyy + '-' + mm + '-' + dd + 'T00:00:00.000Z'
 
- const config = {
-  headers: {
-    "Access-Control-Allow-Headers": "x-access-token",
-    "x-access-token": getTokenLocalStorage(),
-  },
-};
 
  const {id}= useParams();
     useEffect(()=>{
@@ -71,10 +64,7 @@ const[state, setState]=React.useState({
         date: elemento.date.slice(0, 10),
         parking: elemento.time.filter(e => Object.keys(e)[0] === day[1])[0][day[1]]
     } 
-    console.log(info)
-    dispatch(sendToProducts(info))    
-
-    
+    dispatch(sendToProducts(info))        
    }
 
   function handleRender(e){
@@ -85,14 +75,25 @@ const[state, setState]=React.useState({
     })
   }
   async function handleShowCancel(e){
-    console.log('cancel Details')
-    e.preventDefault();
     let id = e.target.id.split(', ');
     let date = id[0];
     let time = id[1];
     let movie_title = movieDetail.title;
-    console.log(date + ' ' + time + ' ' + movie_title);
-    await axios.put(`http://localhost:3001/movies/updateShow`, {movie_title, date, time}, config);
+    const option = await swal({
+      text: "Are you sure you want to cancel/restore this show?",
+      buttons: true
+    })
+    if (option) {
+      updateShow(movie_title, date, time)
+      window.location.reload()
+      await swal("Editing show...", {
+        icon: "success",
+        buttons: false,
+        timer: 1500,
+      });
+    }
+    
+
   }
  return(
      <Container>
