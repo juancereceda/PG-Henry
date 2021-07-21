@@ -135,10 +135,6 @@ const Products = (props) => {
   }
   const handleSubmitCombo = async function(e){
     e.preventDefault();
-    setState({
-      ...state,
-      combo:true,
-    })
     await axios.post('http://localhost:3001/products', state, config);
     setState({
       name: '', 
@@ -156,6 +152,10 @@ const Products = (props) => {
       extra:true,
       combo:false
     })
+    setState({
+      ...state,
+      combo:false,
+    })
     getProducts();
   }
   const handleShowAddCombo= function(e){
@@ -163,6 +163,10 @@ const Products = (props) => {
     setShowForm({
       extra:false,
       combo:true
+    })
+    setState({
+      ...state,
+      combo:true,
     })
     getProducts();
   }
