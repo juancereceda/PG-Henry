@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const StyledTitle = styled.h1`
-    position: relative;
     color: #E8E8E8;
     font-size: 5rem;
-    left: 40%;
-    transform: translateX(-60%);
     line-height: 0;
 `;
 
@@ -21,6 +18,14 @@ export const StyledBillboard = styled.div`
     z-index: -100;
     margin: auto;
     font-family: 'Questrial', sans-serif;
+`;
+
+export const StyledHeader = styled.div`
+    position: relative;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const StyledAside = styled.aside`
@@ -42,7 +47,6 @@ export const StyledAside = styled.aside`
 
 export const StyledPagination = styled.div`
     position: relative;
-    right: -25%;
     margin: 0;
     padding: 5px;
     border: 2px solid #30475E88;

@@ -35,7 +35,7 @@ export const Movies = styled.div`
 
 export const Billboard = styled.div`
   height: 250px;
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -76,6 +76,7 @@ export const Stores = styled.div`
   height: 80%;
   min-height: 500px;
   width: 15%;
+  max-width: 200px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -100,6 +101,7 @@ export const Movie = styled.img`
 // ESTILOS MERCH CARDS
 
 export const MerchCard = styled.div`
+  z-index: 100;
   height: 50%;
   width: 100%;
   border-radius: 5px;

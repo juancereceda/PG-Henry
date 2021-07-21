@@ -7,6 +7,7 @@ import {
   StyledAside,
   StyledPagination,
   StyledIndexChanger,
+  StyledHeader
 } from "./Billboard-styles";
 import {
   StyledFirstAside,
@@ -65,23 +66,25 @@ export default function Billboard() {
 
   return (
     <StyledBillboard>
-      <GenreFilter />
-      <StyledTitle>Billboard Movies</StyledTitle>
-      <StyledPagination>
-        <StyledIndexChanger
-          type="button"
-          value="←"
-          onClick={HandleIndex}
-          className="plus"
-        />
-        <p>{index + 1}</p>
-        <StyledIndexChanger
-          type="button"
-          value="→"
-          onClick={HandleIndex}
-          className="minus"
-        />
-      </StyledPagination>
+      <StyledHeader>
+        <GenreFilter />
+        <StyledTitle>Billboard Movies</StyledTitle>
+        <StyledPagination>
+          <StyledIndexChanger
+            type="button"
+            value="←"
+            onClick={HandleIndex}
+            className="plus"
+          />
+          <p>{index + 1}</p>
+          <StyledIndexChanger
+            type="button"
+            value="→"
+            onClick={HandleIndex}
+            className="minus"
+          />
+        </StyledPagination>
+      </StyledHeader>
       <StyledAside>
         <StyledFirstAside>
           <Slider />

@@ -7,6 +7,13 @@ import Footer from '../footer/Footer'
 import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
 import Skeleton from './HomeSkeletons'
+import {
+    StyledAside,
+  } from "../billboard/Billboard-styles";
+  import {
+    StyledFirstAside,
+    StyledAsidePublicity,
+  } from "../billboard/Aside-styles";
 
 
 export default function Home() {
@@ -45,12 +52,12 @@ export default function Home() {
                         {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}
                     </ComingSoon>
                 </Movies>
-                <Stores>
-                    <MerchCard><Slider /></MerchCard>
-                    <PubliCard>
+                <StyledAside>
+                    <StyledFirstAside><Slider /></StyledFirstAside>
+                    <StyledAsidePublicity>
                         Publicity
-                    </PubliCard>
-                </Stores>
+                    </StyledAsidePublicity>
+                </StyledAside>
             </ContMovies>
             <Footer />
         </HomeCont>
