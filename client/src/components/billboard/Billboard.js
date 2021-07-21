@@ -7,12 +7,9 @@ import {
   StyledAside,
   StyledPagination,
   StyledIndexChanger,
-  StyledHeader
+  StyledHeader,
 } from "./Billboard-styles";
-import {
-  StyledFirstAside,
-  StyledAsidePublicity,
-} from "./Aside-styles";
+import { StyledFirstAside, StyledAsidePublicity } from "./Aside-styles";
 import BillboardCard from "./BillboardCard";
 import Footer from "../footer/Footer";
 import GenreFilter from "../GenreFilter/GenreFilter";
@@ -67,7 +64,7 @@ export default function Billboard() {
   return (
     <StyledBillboard>
       <StyledHeader>
-        <GenreFilter />
+        <GenreFilter setIndex={setIndex} />
         <StyledTitle>Billboard Movies</StyledTitle>
         <StyledPagination>
           <StyledIndexChanger
@@ -97,7 +94,9 @@ export default function Billboard() {
             .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
             .map((movie) => <BillboardCard props={movie} key={movie._id} />)
         : skeletons.map((el) => <BillboardSkeleton />)}
-      <Footer marginTop="120%" />
+      <Footer
+        moviesLength={filtredMovies.filter((movie) => movie.onBillboard).length}
+      />
     </StyledBillboard>
   );
 }

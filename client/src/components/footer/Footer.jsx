@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BiCameraMovie as Camera } from "react-icons/bi";
 
-function Footer({ marginTop }) {
+function Footer({moviesLength}) {
     const HeaderIcon = styled(Camera)`
     height: 55px;
     width: 55px;
@@ -19,8 +19,10 @@ function Footer({ marginTop }) {
 `;  
 
     const StyledDiv = styled.div`
-    // margin-top: ${marginTop};
-    // position: absolute;
+    position: relative;
+    ${({ moviesLength }) => moviesLength === 1 ? `
+    top: 200px;
+  ` : `top: 10px;`}
     width:100%;
     .footer {
     display: flex;
@@ -112,7 +114,7 @@ function Footer({ marginTop }) {
     `;
 
     return (
-        <StyledDiv>
+        <StyledDiv moviesLength={moviesLength} >
             <footer className="footer">
                 <div className="l-footer">
                     <h2><HeaderIcon className='asd'/></h2>
