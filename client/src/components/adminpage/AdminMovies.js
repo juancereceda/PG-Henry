@@ -110,6 +110,8 @@ function AdminMovies() {
       buttons: false,
       timer: 3000,
     });
+
+    dispatch(getMovieList());
     setMovie({
       title: "",
       date: "",
@@ -190,17 +192,17 @@ function AdminMovies() {
             }) */
     }
   }
-  async function handleDelete(_id) {
+  async function handleDelete(id) {
     const willDelete = await swal({
       title: "Are you sure you want to remove movie?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     });
-    if (willDelete) {
-      //console.log(_id)
-      //dispatch(deleteMovie(_id))
-      await swal("Movie've been removed!", {
+    if (willDelete) {      
+      const message = await deleteMovie(id)      
+      dispatch(getMovieList());
+      await swal(message, {
         icon: "success",
         buttons: false,
         timer: 1500,
@@ -250,7 +252,7 @@ function AdminMovies() {
                           <div className="removeEdit">
                             <button
                               className="remove"
-                              onClick={() => handleDelete(movie)}
+                              onClick={() => handleDelete(movie._id)}
                             >
                               X
                             </button>
