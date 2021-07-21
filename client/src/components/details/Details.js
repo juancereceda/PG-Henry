@@ -7,6 +7,7 @@ import {sendToProducts} from'../../actions/products';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown, Show,Inp, Confirm, Label, DelBtn, ShowBox} from './styled';
 import ReactPlayer from 'react-player';
 import { Link } from "react-router-dom";
+import Footer from '../footer/Footer';
 import swal from "sweetalert";
 
 function MovieDetail(){
@@ -168,6 +169,7 @@ const[state, setState]=React.useState({
      <br/>
      <br/>
      <br/>
+            <Footer />
      </Container> 
   )
 }

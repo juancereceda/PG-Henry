@@ -8,6 +8,7 @@ export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_BOOKINGS = "GET_BOOKINGS";
+export const GET_BOOK = "GET_BOOK";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
@@ -214,6 +215,13 @@ export async function changePassword(password, token) {
     return error.response.data.message;
   }
 }
+
+export function getBook(id) {
+  return async function (dispatch) {
+    const book = await axios.get("google", config);
+    await dispatch({type: GET_BOOK, payload: book.data});
+  }
+};
 
 export async function deleteAccount() {
   try{
