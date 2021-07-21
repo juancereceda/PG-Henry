@@ -22,17 +22,9 @@ router.get(
   UserCtrl.getUsers
 );
 
-router.put(
-  "/bookings",
-  [authentication.verifyToken],
-  PaymentCtrl.updateBooking
-);
+router.put("/bookings",[authentication.verifyToken], PaymentCtrl.updateBooking);
 
-router.put(
-  "/restorepassword",
-  [authentication.verifyToken],
-  UserCtrl.restorePassword
-);
+router.put("/restorepassword",[authentication.verifyToken], UserCtrl.restorePassword);
 router.put(
   "/:id",
   [authentication.verifyToken, authentication.isAdmin],
