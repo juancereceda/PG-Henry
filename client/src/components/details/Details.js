@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getMovieById, clearMovie, updateShow} from '../../actions/movies';
 import{ isAdmin } from '../../actions/users';
 import {sendToProducts} from'../../actions/products';
-import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown, Show,Inp, Confirm, Label} from './styled';
+import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown, Show,Inp, Confirm, Label, DelBtn, ShowBox} from './styled';
 import ReactPlayer from 'react-player';
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
@@ -47,7 +47,7 @@ const[state, setState]=React.useState({
 
   function handleShow(e){    
     e.preventDefault()
-    const day= e.target.value.split(', ')
+    const day= e.target.id.split(', ')
 
     setState({
       ...state,
@@ -92,7 +92,6 @@ const[state, setState]=React.useState({
       });
       dispatch(getMovieById(id))
     }
-    dispatch(getMovieById(id))
   }
  return(
      <Container>
@@ -122,42 +121,42 @@ const[state, setState]=React.useState({
              <Label>{movieDetail.rated}</Label><br></br>
            </Rated>  
          </div>
-         <div>                   
+         <Show>                   
           {(!admin && movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null) || 
           (admin? (<Btn onClick={handleRender}>Edit Shows<ArrowDown size='35'/></Btn>):null)}
-          {state.render ? (<label>{movieDetail.shows ? (movieDetail.shows.map(el=>             
+          {state.render ? (<div className="showDiv">{movieDetail.shows ? (movieDetail.shows.map(el=>             
             { 
               if((counter < 7 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) === currentDate.slice(5, 7) && el.date.slice(8, 10) >= currentDate.slice(8, 10)) || 
                  (counter < 7 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) > currentDate.slice(5, 7))){
                    counter++
               return (
-                <div>
-                  <Show>
+                  <ShowBox>
+                    <span className='showSpan'>{el.day.concat(', '.concat(el.date.slice(5, 10)))}</span>
                     {el.time.map(e =>
                       {if (e.cancelled === true) return (
-                        <div>
-                          {admin? <Inp type= 'button' onClick= {e =>handleShow(e)} value={el.date.slice(5, 10).concat(', ').concat(Object.keys(e)[0])}/> : null}
-                          {admin? <button id={el.date.concat(', ').concat(Object.keys(e)[0])} onClick={e =>handleShowCancel(e)}>+</button> : null}
+                        <div>                          
+                          {admin? <Inp type= 'button' id={el.date.slice(5, 10).concat(', ').concat(Object.keys(e)[0])} onClick= {e =>handleShow(e)} value={Object.keys(e)[0]}/> : null}
+                          {admin? <DelBtn id={el.date.concat(', ').concat(Object.keys(e)[0])} onClick={e =>handleShowCancel(e)}>Restore</DelBtn> : null}
                         </div> 
                         )
                         else if (e.cancelled === false) return(
                         <div>
-                          <Inp type= 'button' onClick= {e =>handleShow(e)} value={el.date.slice(5, 10).concat(', ').concat(Object.keys(e)[0])}/> 
-                          {admin? <button id={el.date.concat(', ').concat(Object.keys(e)[0])} onClick={e =>handleShowCancel(e)}>x</button> : null}
+                          <Inp type= 'button' id={el.date.slice(5, 10).concat(', ').concat(Object.keys(e)[0])} onClick= {e =>handleShow(e)} value={Object.keys(e)[0]}/> 
+                          {admin? <DelBtn id={el.date.concat(', ').concat(Object.keys(e)[0])} onClick={e =>handleShowCancel(e)}>Cancel</DelBtn> : null}
                         </div>
                         )
                         return null  
                       }                                                                
                     )}
-                 </Show> 
-                </div>
+                 </ShowBox> 
+
               )            
             }
             return null
             }
-          )):<h2>No Shows</h2>}</label>) : null}
-        {state.confirm ? (<Link to ='/products'><Confirm>Confirm</Confirm> </Link>):null}
-         </div>
+          )):<h2>No Shows</h2>}</div>) : null}
+        {state.confirm ? (<Link to ='/products'><Confirm>Confirm</Confirm></Link>):null}
+         </Show>
          <SubH2>Director</SubH2><br></br> 
          <Box>{movieDetail.director}</Box><br></br>
          <SubH2>Cast</SubH2><br></br> 
