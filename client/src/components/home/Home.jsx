@@ -6,6 +6,7 @@ import { getMovieList } from "../../actions/movies";
 import Footer from '../footer/Footer'
 import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
+import Loading from './Loading.gif';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -32,11 +33,11 @@ export default function Home() {
                 <Movies>
                     <Labels>Billboard</Labels>
                     <Billboard>
-                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <h2>Loading movies...</h2>}
+                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <img src={Loading} />}
                     </Billboard>
                     <Labels>Coming Soon</Labels>
                     <ComingSoon>
-                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <h2>Loading movies...</h2>}
+                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <img src={Loading} />}
                     </ComingSoon>
                 </Movies>
                 <Stores>
