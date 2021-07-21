@@ -8,6 +8,7 @@ import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
 import Skeleton from './HomeSkeletons'
 
+
 export default function Home() {
     const dispatch = useDispatch();
     const movieList = useSelector(state => state.movieList);
