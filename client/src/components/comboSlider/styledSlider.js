@@ -22,4 +22,16 @@ export const SliderImg = styled.img`
     width: 90%;
 `;
 
-export const SliderText = styled.div``;
+export const SliderText = styled.div`
+    position: absolute;
+    z-index: 500;
+    bottom: 0;
+    transform: translateY(25%) translateX(-17.5%);
+    width: 150%;
+    & > p{
+        text-align: center;
+        color: #F05454;
+        background-color: #222831;
+    }
+    transition: .3s ease all;
+`;

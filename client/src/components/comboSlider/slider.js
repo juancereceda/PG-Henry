@@ -42,7 +42,7 @@ const Slider = () => {
                     <div key={combo._id}>
                         <SliderImg src={combo.imgUrl} alt=""/>
                         <SliderText>
-                            <p>{combo.description}</p>
+                            <p>{combo.name}</p>
                         </SliderText>
                     </div>
                 )
