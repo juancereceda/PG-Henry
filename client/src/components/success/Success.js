@@ -13,12 +13,12 @@ const Success = (props) => {
     const [counter, setCounter] = useState(3)
 
     useEffect(() => {
-        updateStatus({status, preference_id})
+        if (counter === 3) updateStatus({status, preference_id});
         let intervalo = null;
         intervalo = setInterval(() => {  
             if(counter > 0) setCounter(counter - 1)
             if(counter === 1){
-                intervalo.clearInterval()  
+                clearInterval(intervalo)  
                 window.location.assign('http://localhost:3000/profile')
             }
         }, 1000)            

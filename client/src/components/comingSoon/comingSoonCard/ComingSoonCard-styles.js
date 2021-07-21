@@ -4,10 +4,9 @@ export const StyledCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    max-width: 350px;  
-    width: 25%;
-    margin:40px;
+    max-width: 19%;  
+    width: 18.1%;
+    margin:20px;
     height: 580px;
     border-radius: 5px;
     position: relative;

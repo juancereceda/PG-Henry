@@ -5,8 +5,9 @@ const axios = require("axios");
 const access_token =
   "TEST-4845784497089801-071314-abf58aac96d8d07a310c5d5c3575363d-170585248";
 const nodemailer = require("nodemailer");
+const QRCode = require("qrcode");
 //ykxotzanjxikdvjt
-let transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true, // true for 465, false for other ports
@@ -127,10 +128,17 @@ const updateBooking = async (req, res) => {
     });
 
     if (status === "approved") {
+      const img = await QRCode.toDataURL(
+        `http://localhost:3000/bookings/${preference_id}`,
+        {
+          width: 400,
+        }
+      );
       await transporter.sendMail({
         from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
         to: user.email, // list of receivers
         subject: "Ticket booked succesfully", // Subject line
+        attachDataUrls: true,
         html: `
         <h1 style="color: #f05454;">Thanks for choosing us!</h1>
         <p style="color: #000000">Hello ${
@@ -147,6 +155,7 @@ const updateBooking = async (req, res) => {
         }</li>
         </ul>
         </div>
+        <img src="${img}">
         <p style="color: #000000">Show this e-mail at the entrance to access to the cinema, and the info above in the candy-bar.<br /><br />Ticket ID: <span style="font-weight: bold; text-decoration: underline;">${preference_id}</span><br /><br />All rights reserved by &copy; <a href="https://www.google.com.ar">Autocinema App</a></p>
         `, // html body
       });

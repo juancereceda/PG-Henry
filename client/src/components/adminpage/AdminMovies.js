@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
+import { getMovieList, postMovie, updateMovie, deleteMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
 import {Link} from 'react-router-dom';
 import swal from "sweetalert";
@@ -67,8 +67,9 @@ function AdminMovies() {
       functionDays: movie.days,
       times: movie.times,
       price: movie.price,
+      onBillboard: false
     };
-
+    
     // Validaciones
 
     if (!obj.functionDays.length) {
@@ -110,6 +111,8 @@ function AdminMovies() {
       buttons: false,
       timer: 3000,
     });
+
+    dispatch(getMovieList());
     setMovie({
       title: "",
       date: "",
@@ -190,42 +193,39 @@ function AdminMovies() {
             }) */
     }
   }
-  async function handleDelete(movie) {
+  async function handleDelete(id) {
     const willDelete = await swal({
       title: "Are you sure you want to remove movie?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     });
-    if (willDelete) {
-      await swal("Movie've been removed!", {
+    if (willDelete) {      
+      const message = await deleteMovie(id)      
+      dispatch(getMovieList());
+      await swal(message, {
         icon: "success",
         buttons: false,
         timer: 1500,
       });
-    } else {
-      swal({ title: "Welcome back!", buttons: false, timer: 1000 });
     }
   }
-  async function handleEdit(movie) {
-    const willEdit = await swal({
-      title: "Are you sure you want to edit movie?",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    });
-    if (willEdit) {
-      await swal("Go to edit movie!", {
-        icon: "success",
-        buttons: false,
-        timer: 1000,
-      });
+  // async function handleEdit(movie) {
+  //   const willEdit = await swal({
+  //     title: "Are you sure you want to edit movie?",
+  //     icon: "warning",
+  //     buttons: true,
+  //     dangerMode: true,
+  //   });
+  //   if (willEdit) {
+  //     await swal("Go to edit movie!", {
+  //       icon: "success",
+  //       buttons: false,
+  //       timer: 1000,
+  //     });
       
-    } else {
-      swal({ title: "Welcome back!", buttons: false, timer: 1000 });
-
-    }
-  }
+  //   } 
+  // }
   return (
     <AdminContainer>
       {admin ? (
@@ -253,16 +253,18 @@ function AdminMovies() {
                           <div className="removeEdit">
                             <button
                               className="remove"
-                              onClick={() => handleDelete(movie)}
+                              onClick={() => handleDelete(movie._id)}
                             >
                               X
                             </button>
-                            <Link  to={`/movies/${movie._id}`}><img
-                              className="edit"
-                              onClick={() => handleEdit(movie)}
-                              alt=""
-                              src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            /></Link>
+                            <Link  to={`/movies/${movie._id}`}>
+                              <img
+                                className="edit"
+                                // onClick={() => handleEdit(movie)}
+                                alt=""
+                                src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
+                              />
+                            </Link>
                           </div>
                         </div>
                       );
@@ -297,13 +299,13 @@ function AdminMovies() {
                           <div className="removeEdit">
                             <button
                               className="remove"
-                              onClick={() => handleDelete(movie)}
+                              onClick={() => handleDelete(movie._id)}
                             >
                               X
                             </button>
                             <Link to={`/movies/${movie._id}`}><img
                               className="edit"
-                              onClick={() => handleEdit(movie)}
+                              // onClick={() => handleEdit(movie)}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             /></Link>
@@ -527,21 +529,21 @@ function AdminMovies() {
                 <div>
                   <h4>Times</h4>
                   <div>
-                    <label for="18hs">19hs</label>
+                    <label for="18hs">18hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="19hs"
-                      value="19hs"
+                      name="18hs"
+                      value="18hs"
                     />
                   </div>
                   <div>
-                    <label for="20hs">22hs</label>
+                    <label for="20hs">20hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="22hs"
-                      value="22hs"
+                      name="20hs"
+                      value="20hs"
                     />
                   </div>
                   <div>
