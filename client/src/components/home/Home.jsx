@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, MerchCard, PubliCard } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, DiscountOffer } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
@@ -41,6 +41,9 @@ export default function Home() {
 
     return (
         <HomeCont>
+            <DiscountOffer>
+                <h1>Martes y Miercoles: ¡Oferta especial! 30% OFF en tickets para peliculas.</h1>
+            </DiscountOffer>
             <ContMovies>
                 <Movies>
                     <Labels>Billboard</Labels>
