@@ -73,7 +73,6 @@ const Users = () => {
     });
     if (changeRole) {
       dispatch(getUsers());
-      console.log("Admin: ", user.isAdmin);
       dispatch(
         updateUser(
           {
