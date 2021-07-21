@@ -67,6 +67,7 @@ function AdminMovies() {
       functionDays: movie.days,
       times: movie.times,
       price: movie.price,
+      onBillboard: false
     };
     
     // Validaciones
@@ -528,21 +529,21 @@ function AdminMovies() {
                 <div>
                   <h4>Times</h4>
                   <div>
-                    <label for="18hs">19hs</label>
+                    <label for="18hs">18hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="19hs"
-                      value="19hs"
+                      name="18hs"
+                      value="18hs"
                     />
                   </div>
                   <div>
-                    <label for="20hs">22hs</label>
+                    <label for="20hs">20hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="22hs"
-                      value="22hs"
+                      name="20hs"
+                      value="20hs"
                     />
                   </div>
                   <div>

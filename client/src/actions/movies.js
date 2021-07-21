@@ -69,7 +69,9 @@ export function getMoviesByGenre(genre){
     })
   }
 }
-
+export function updateShow(movie_title, date, time){
+  axios.put(`http://localhost:3001/movies/updateShow`, {movie_title, date, time}, config);
+}
 export function getGenres() { 
   return  { 
    type: GET_GENRES, 
