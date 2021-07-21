@@ -10,12 +10,16 @@ const div = styled.div`
   align-items: center;
   padding-top: 5%;
 
-  .errorCnt {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .sadFace {
-      width: 150px;
+  button {
+    font-family: Questrial;
+    font-size: 1.1em;
+    border: none;
+    background-color: #222831;
+    color: #F05454;
+    opacity: .6;
+    &:hover {
+      opacity: 1;
+      transition: .1s;
     }
   }
 `;
