@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const StyledTitle = styled.h1`
-    position: relative;
     color: #E8E8E8;
     font-size: 5rem;
-    left: 40%;
-    transform: translateX(-60%);
     line-height: 0;
 `;
 
@@ -23,11 +20,20 @@ export const StyledBillboard = styled.div`
     font-family: 'Questrial', sans-serif;
 `;
 
+export const StyledHeader = styled.div`
+    position: relative;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
 export const StyledAside = styled.aside`
     position: absolute;
     top: 1%;
     right: 1%;
-    height: 73%;
+    height: 50%;
+    min-height: 550px;
     width: 16%;
     background-color: #30475E88;
     border: 5px solid #30475E;
@@ -35,13 +41,12 @@ export const StyledAside = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
 `;
 
 export const StyledPagination = styled.div`
     position: relative;
-    right: -25%;
     margin: 0;
     padding: 5px;
     border: 2px solid #30475E88;

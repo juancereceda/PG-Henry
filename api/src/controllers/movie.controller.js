@@ -94,7 +94,8 @@ const postMovie = async (req, res) => {
       trailer,
       rated,
       runtime,
-      director  
+      director,
+      IMDb
   });
   const movieSaved = await movie.save();
   res.send(movieSaved)
@@ -105,7 +106,7 @@ const postMovie = async (req, res) => {
 
 const putMovie = async (req, res) => {
   try {
-    const { title, date, poster, description, genre, onBillboard, shows, cast, trailer, rated, runtime, director } = req.body;
+    const { title, date, poster, description, genre, onBillboard, shows, cast, trailer, rated, runtime, director, IMDb } = req.body;
     const newMovie = ({
       title,
       date,
@@ -118,7 +119,8 @@ const putMovie = async (req, res) => {
       trailer,
       rated,
       runtime,
-      director  
+      director,
+      IMDb
   });
   await Movie.findByIdAndUpdate(req.params.id, newMovie);
   console.log(newMovie);
@@ -156,6 +158,15 @@ const updateShow = async (req, res) => {
     console.log(error);
   }
 };
+const deleteMovie = async (req, res) => {
+  try {
+    const _id  = req.query
+    await Movie.deleteOne( { _id } )
+    res.json( {message: `Movie has been deleted`})
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}
 
 module.exports = {
   getMovieById,
@@ -163,4 +174,5 @@ module.exports = {
   postMovie,
   putMovie,
   updateShow,
+  deleteMovie
 };

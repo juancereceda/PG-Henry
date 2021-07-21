@@ -41,6 +41,7 @@ router.put(
 
 router.post("/verifyuser", UserCtrl.verifyUser);
 router.post("/verifytoken", UserCtrl.verifyToken);
+router.delete('/deleteAccount',authentication.verifyToken, UserCtrl.deleteUserAccount)
 router.post(
   "/google_signup",
   [verifySignup.verifyGoogleToken],

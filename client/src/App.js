@@ -8,7 +8,7 @@ import AdminPage from "./components/adminpage/AdminPage";
 import UserProfile from "./components/userprofile/UserProfile";
 import Home from "./components/home/Home";
 import LogInForm from "./components/login/LogIn";
-import EditMovie from "./components/editmovie/EditMovie";
+import EditMovie from "./components/adminpage/editmovie/EditMovie";
 import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
 import AdminOrders from "./components/adminpage/orders/AdminOrders";
