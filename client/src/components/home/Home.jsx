@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, MerchCard, PubliCard, Icon, Linked } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, MerchCard, PubliCard } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
@@ -41,7 +41,6 @@ export default function Home() {
                 </Movies>
                 <Stores>
                     <MerchCard><Slider /></MerchCard>
-                    <MerchCard><Linked to='/products'><Icon src="https://image.flaticon.com/icons/png/512/86/86511.png" /></Linked></MerchCard>
                     <PubliCard>
                         Publicity
                     </PubliCard>
