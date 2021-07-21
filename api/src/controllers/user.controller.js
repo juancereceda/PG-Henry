@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-//ykxotzanjxikdvjt
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -15,18 +14,30 @@ let transporter = nodemailer.createTransport({
 const signUp = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    let newUser = await new User({
-      username,
-      email,
-      password: await User.hashPassword(password),
-      isAdmin: false,
-      bookings: [],
-      banned: false,
-    });
-    let userSaved = await newUser.save();
-    const token = await jwt.sign({ id: userSaved._id }, "group8", {
-      expiresIn: 86400,
-    });
+    let userByEmail = await User.findOne({ email });
+    let token;
+    if (userByEmail) {
+      await User.findOneAndUpdate(
+        { email },
+        { username, password: await User.hashPassword(password) }
+      );
+      token = await jwt.sign({ id: userByEmail._id }, "group8", {
+        expiresIn: 86400,
+      });
+    } else {
+      let newUser = await new User({
+        username,
+        email,
+        password: await User.hashPassword(password),
+        isAdmin: false,
+        bookings: [],
+        banned: false,
+      });
+      let userSaved = await newUser.save();
+      token = await jwt.sign({ id: userSaved._id }, "group8", {
+        expiresIn: 86400,
+      });
+    }
 
     res.status(201).send({ token, username, email });
   } catch (error) {
@@ -40,11 +51,16 @@ const logIn = async (req, res) => {
     let user =
       (await User.findOne({ email: name })) ||
       (await User.findOne({ username: name }));
-    const token = jwt.sign({ id: user._id }, "group8", {
+    if(!user){
+      res.status(400).json({message: 'That account, does not exists'})
+    }
+    else {
+      const token = jwt.sign({ id: user._id }, "group8", {
       expiresIn: 86400,
     });
 
     res.status(200).json({ token, email: user.email, username: user.username });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -165,9 +181,7 @@ const verifyToken = async (req, res) => {
 const restorePassword = async (req, res) => {
   try {
     if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/.test(
-        req.body.password
-      )
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/.test(req.body.password)
     ) {
       return res.json({
         message:
@@ -187,6 +201,12 @@ const restorePassword = async (req, res) => {
   }
 };
 
+const deleteUserAccount = async(req, res)=>{
+  const userById= await User.findByIdAndDelete(req.userId)
+  console.log(req.userId)
+  res.status(200).json({message: 'Deleted Account'})//no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
+}
+
 module.exports = {
   signUp,
   logIn,
@@ -198,4 +218,5 @@ module.exports = {
   verifyUser,
   verifyToken,
   restorePassword,
+  deleteUserAccount
 };

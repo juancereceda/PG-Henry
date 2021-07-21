@@ -75,3 +75,8 @@ export function getGenres() {
    type: GET_GENRES, 
  };  
 }
+
+export const deleteMovie = async _id => {
+  const res = await axios.delete(`http://localhost:3001/movies`, {params: {_id}}, config)
+  return res.data.message
+}

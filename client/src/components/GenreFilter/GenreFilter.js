@@ -25,7 +25,7 @@ export default function GenreFilter(){
       <select onChange={HandleChange}>
         <option>Film genre</option>
         {
-          genreList && genreList.map(elemento => <option>{elemento}</option>)
+          genreList && genreList.map(elemento => <option key={elemento}>{elemento}</option>)
         }
       </select>
     </StyleFilter>

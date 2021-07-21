@@ -7,11 +7,11 @@ export const StyledCard = styled.div`
     max-width: 19%;  
     width: 18.1%;
     margin:20px;
-    height: auto;
+    height: 580px;
     border-radius: 5px;
     position: relative;
     border: 2px solid rgba(255, 255, 255, 0);
-    padding: 7px;
+    padding: 10px;
     box-shadow: 5px 5px 12px 5px rgba(0,0,0,0.24);
     -webkit-box-shadow: 5px 5px 12px 5px rgba(0,0,0,0.24);
     -moz-box-shadow: 5px 5px 12px 5px rgba(0,0,0,0.24);

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import StyledContainer from "./LogInStyles";
-import { logIn } from "../../actions/users";
+import { logIn, logInWithGoogle } from "../../actions/users";
 import { useDispatch } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
 
 function LogIn() {
   const dispatch = useDispatch();
@@ -13,6 +14,30 @@ function LogIn() {
     password: "",
   });
 
+  async function responseGoogle(response) {
+    let message = await dispatch(logInWithGoogle(response.tokenId));
+    if (message === "Logged in succesfully") {
+      await swal(message, "Logged", "success", {
+        buttons: false,
+        timer: 2000,
+      });
+      window.location.assign("http://localhost:3000/");
+    } else if (message === "Invalid Password") {
+      swal(
+        "There is no existing user with this Google Account. Sign Up first!",
+        "No Logged!",
+        "error",
+        {
+          buttons: true,
+        }
+      );
+    } else {
+      swal(message, "No Logged!", "error", {
+        buttons: false,
+        timer: 3000,
+      });
+    }
+  }
 
   function handleInputChange(e) {
     setLogInState({
@@ -88,10 +113,28 @@ function LogIn() {
             <span>Forgot your password?</span>
           </Link>
         </div>
-        <button className="google">
-          <FcGoogle size="35" />
-          Login with Google
-        </button>
+        <GoogleLogin
+          clientId="901553802516-s4lqslbl590f3bq5bklbgql27p4ktcqe.apps.googleusercontent.com"
+          render={(renderProps) => (
+            <button
+              className="google"
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              <FcGoogle size="35" />
+              Login with Google
+            </button>
+          )}
+          onSuccess={responseGoogle}
+          onFailure={() => {
+            swal("Failed to log in", "Error", "error", {
+              buttons: false,
+              timer: 3000,
+            });
+          }}
+          cookiePolicy={"single_host_origin"}
+          className="google"
+        />
         <div className="btnContainer">
           <button type="submit" className="logIn">
             Log in
