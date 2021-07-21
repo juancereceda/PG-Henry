@@ -27,7 +27,8 @@ export const StyledAside = styled.aside`
     position: absolute;
     top: 1%;
     right: 1%;
-    height: 73%;
+    height: 50%;
+    min-height: 550px;
     width: 16%;
     background-color: #30475E88;
     border: 5px solid #30475E;
@@ -35,7 +36,7 @@ export const StyledAside = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
 `;
 

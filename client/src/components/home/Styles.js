@@ -68,9 +68,13 @@ export const Labels = styled.label`
 `;
 
 export const Stores = styled.div`
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
   margin: 1.25%;
   background-color: #30475e;
-  height: 500px;
+  height: 80%;
+  min-height: 500px;
   width: 15%;
   border-radius: 10px;
   display: flex;
@@ -79,6 +83,7 @@ export const Stores = styled.div`
   align-items: center;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
     inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
 `;
 
 // ESTILOS MOVIE CARDS
@@ -95,8 +100,8 @@ export const Movie = styled.img`
 // ESTILOS MERCH CARDS
 
 export const MerchCard = styled.div`
-  height: 25%;
-  width: 90%;
+  height: 50%;
+  width: 100%;
   border-radius: 5px;
   background-color: #f05454;
   box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
@@ -109,15 +114,14 @@ export const MerchCard = styled.div`
 
 export const PubliCard = styled.div`
   height: 45%;
-  width: 90%;
+  padding: 50% 0;
+  width: 100%;
   border-radius: 5px;
   background-color: #f05454;
   box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
     inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  vertical-align: middle;
 `;
 
 export const Icon = styled.img`

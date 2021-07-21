@@ -10,11 +10,9 @@ import {
 } from "./Billboard-styles";
 import {
   StyledFirstAside,
-  StyledSecondAside,
   StyledAsidePublicity,
 } from "./Aside-styles";
 import BillboardCard from "./BillboardCard";
-import { Link } from "react-router-dom";
 import Footer from "../footer/Footer";
 import GenreFilter from "../GenreFilter/GenreFilter";
 import Slider from "../comboSlider/slider";
@@ -88,15 +86,6 @@ export default function Billboard() {
         <StyledFirstAside>
           <Slider />
         </StyledFirstAside>
-        <StyledSecondAside>
-          <Link>
-            <p>Memories</p>
-            <img
-              src="https://image.flaticon.com/icons/png/512/86/86511.png"
-              alt=""
-            />
-          </Link>
-        </StyledSecondAside>
         <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
       </StyledAside>
       {filtredMovies.length > 0
