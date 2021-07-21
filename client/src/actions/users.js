@@ -23,7 +23,7 @@ export function getUsers() {
   return async function (dispatch) {
     const result = await axios.get("http://localhost:3001/users", config);
     dispatch({ type: GET_USERS, payload: result.data });
-    console.log(result);
+    //console.log(result);
   };
 }
 
