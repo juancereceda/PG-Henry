@@ -130,7 +130,6 @@ const putMovie = async (req, res) => {
 
 const updateShow = async (req, res) => {  
   try {
-    console.log('cancel back')
     const { movie_title, date, time} = req.body;
       let movieFound = await Movie.findOne({ title: movie_title });
       let updatedShows = movieFound.shows.map((el) =>

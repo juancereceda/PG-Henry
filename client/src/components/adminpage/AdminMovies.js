@@ -67,6 +67,7 @@ function AdminMovies() {
       functionDays: movie.days,
       times: movie.times,
       price: movie.price,
+      onBillboard: false
     };
 
     // Validaciones

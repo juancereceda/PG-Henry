@@ -75,7 +75,6 @@ const[state, setState]=React.useState({
     })
   }
   async function handleShowCancel(e){
-    dispatch(getMovieById(id))
     let iD = e.target.id.split(', ');
     let date = iD[0];
     let time = iD[1];
@@ -86,15 +85,14 @@ const[state, setState]=React.useState({
     })
     if (option) {
       updateShow(movie_title, date, time)
-      dispatch(getMovieById(id))
       await swal("Editing show...", {
         icon: "success",
         buttons: false,
         timer: 1500,
       });
+      dispatch(getMovieById(id))
     }
-    
-
+    dispatch(getMovieById(id))
   }
  return(
      <Container>
@@ -126,7 +124,7 @@ const[state, setState]=React.useState({
          </div>
          <div>                   
           {(!admin && movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null) || 
-          (admin? (<Btn onClick={handleRender}>set shows<ArrowDown size='35'/></Btn>):null)}
+          (admin? (<Btn onClick={handleRender}>Edit Shows<ArrowDown size='35'/></Btn>):null)}
           {state.render ? (<label>{movieDetail.shows ? (movieDetail.shows.map(el=>             
             { 
               if((counter < 7 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) === currentDate.slice(5, 7) && el.date.slice(8, 10) >= currentDate.slice(8, 10)) || 
