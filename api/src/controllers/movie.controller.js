@@ -128,10 +128,10 @@ const putMovie = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
   try {
-    const { _id } = req.body
+    const _id  = req.query
     await Movie.deleteOne( { _id } )
     res.json( {message: `Movie has been deleted`})
-  } catch {
+  } catch (error) {
     res.status(400).send(error)
   }
 }
