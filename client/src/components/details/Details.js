@@ -33,7 +33,7 @@ const[state, setState]=React.useState({
       return()=>{
         dispatch(clearMovie())
       }
-    },[dispatch, id])
+    },[dispatch, id, state.movieDetail])
   
     
     useEffect(() => {
