@@ -7,11 +7,11 @@ export default function DetailedBooking() {
     const dispatch = useDispatch();
 
     const selectedBook = useSelector(state => state.selBook);
-    const { id } = useParams();
+    let { id } = useParams();
 
     useEffect(() => {
         dispatch(getBook(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     return (
         <div>

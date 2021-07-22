@@ -8,6 +8,7 @@ import Reservations from "./Reservations";
 import NotFound from "../404/NotFound";
 import {deleteAccount} from '../../actions/users';
 import swal from 'sweetalert';
+import Reviews from "./Reviews";
 
 
 function UserProfile() {
@@ -50,6 +51,7 @@ function UserProfile() {
         <>
           <h1>Welcome back, {user.username}!</h1>
           <Reservations />
+          <Reviews />
         </>
       ) : (
         <NotFound />

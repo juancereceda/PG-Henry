@@ -12,6 +12,7 @@ export const GET_BOOK = "GET_BOOK";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+export const ALL_REV = "ALLOW_REVIEW";
 
 const config = {
   headers: {
@@ -218,7 +219,7 @@ export async function changePassword(password, token) {
 
 export function getBook(id) {
   return async function (dispatch) {
-    const book = await axios.get("google", config);
+    const book = await axios.get(`http://localhost:3001/users/bookings/${id}`, config);
     await dispatch({type: GET_BOOK, payload: book.data});
   }
 };
@@ -230,4 +231,8 @@ export async function deleteAccount() {
   } catch(error){
      console.log(error)
   }
+}
+
+export function allowRev(flag) {
+  return {type: ALL_REV, payload: flag}
 }
