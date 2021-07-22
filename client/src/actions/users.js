@@ -218,16 +218,22 @@ export async function changePassword(password, token) {
 
 export function getBook(id) {
   return async function (dispatch) {
-    const book = await axios.get("google", config);
-    await dispatch({type: GET_BOOK, payload: book.data});
-  }
-};
+    const book = await axios.get(
+      `http://localhost:3001/users/bookings/${id}`,
+      config
+    );
+    await dispatch({ type: GET_BOOK, payload: book.data });
+  };
+}
 
 export async function deleteAccount() {
-  try{
-    let answer= await axios.delete('http://localhost:3001/users/deleteAccount', config)
-    return answer.data.message
-  } catch(error){
-     console.log(error)
+  try {
+    let answer = await axios.delete(
+      "http://localhost:3001/users/deleteAccount",
+      config
+    );
+    return answer.data.message;
+  } catch (error) {
+    console.log(error);
   }
 }
