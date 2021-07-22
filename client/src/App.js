@@ -15,6 +15,7 @@ import AdminOrders from "./components/adminpage/orders/AdminOrders";
 import Success from "./components/success/Success";
 import ComingSoon from "./components/comingSoon/ComingSoon";
 import ResetPassword from "./components/restorepassword/restorePassword";
+import AdminFeedbacks from "./components/adminpage/feedbacks/AdminFeedbacks";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Route path="/users" component={Users} />
       <Route path="/AdminMovies" component={AdminMovies} />
       <Route path="/adminorders" component={AdminOrders} />
+      <Route path="/feedbacks" component={AdminFeedbacks} />
       <Route path="/success/:id" component={Success} />
       <Route path="/restorepassword" component={ResetPassword} />
     </div>

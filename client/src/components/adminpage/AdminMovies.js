@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieList, postMovie, updateMovie, deleteMovie } from "../../actions/movies";
+import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
 import {Link} from 'react-router-dom';
 import swal from "sweetalert";
