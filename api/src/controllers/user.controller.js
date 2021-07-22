@@ -32,6 +32,7 @@ const signUp = async (req, res) => {
         isAdmin: false,
         bookings: [],
         banned: false,
+        resetPassword:false,
       });
       let userSaved = await newUser.save();
       token = await jwt.sign({ id: userSaved._id }, "group8", {
@@ -51,15 +52,16 @@ const logIn = async (req, res) => {
     let user =
       (await User.findOne({ email: name })) ||
       (await User.findOne({ username: name }));
-    if(!user){
-      res.status(400).json({message: 'That account, does not exists'})
-    }
-    else {
+    if (!user) {
+      res.status(400).json({ message: "That account, does not exists" });
+    } else {
       const token = jwt.sign({ id: user._id }, "group8", {
-      expiresIn: 86400,
-    });
+        expiresIn: 86400,
+      });
 
-    res.status(200).json({ token, email: user.email, username: user.username });
+      res
+        .status(200)
+        .json({ token, email: user.email, username: user.username });
     }
   } catch (error) {
     console.log(error);
@@ -111,17 +113,31 @@ const verifyAdmin = async (req, res) => {
 
 const putUser = async (req, res) => {
   try {
-    const { username, email, isAdmin, banned } = req.body;
+    const { username, email, isAdmin, banned, resetPassword } = req.body;
 
     let newUser = {
       username,
       email,
       isAdmin,
       banned,
+      resetPassword,
       bookings: [],
     };
-    await User.findByIdAndUpdate(req.params.id, newUser);
+    
+    let user = await User.findByIdAndUpdate(req.params.id, newUser);
     //console.log(newUser);
+    if(resetPassword){
+      transporter.sendMail({
+        from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
+        to: user.email, // list of receivers
+        subject: "Autocinema Henry has reset your password", // Subject line
+        html: `
+        <h4>Autocinema Henry has reset your password, in order to keep your account security</h4>
+        <span>Here is the link to restore your <a href="http://localhost:3000/restorepassword">password</a></span>
+        <br/><br/>All rights reserved by &copy; <a href="http://localhost:3000">Autocinema App</a></p>
+        `, // html body
+      });
+    }
     res.json({ status: "User Updated" });
   } catch (error) {
     res.status(400).send(error);
@@ -134,6 +150,37 @@ const getBookings = async (req, res) => {
     res.send(user.bookings);
   } catch (error) {
     console.log(error);
+  }
+};
+
+const getBookingById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userFound = await User.findById(req.userId);
+    const foundByUser =
+      userFound && userFound.bookings.find((el) => el.id === id);
+    if (foundByUser) {
+      return foundByUser.status === "approved"
+        ? res.send(foundByUser)
+        : res
+            .status(400)
+            .send({ message: "This payment has not been approved" });
+    } else if (userFound.isAdmin) {
+      const allUsers = await User.find();
+      const foundByAdmin = allUsers.find((user) =>
+        user.bookings.find((el) => el.id === id)
+      );
+      const bookingFound =
+        foundByAdmin && foundByAdmin.bookings.find((el) => el.id === id);
+      return bookingFound.status === "approved"
+        ? res.send(bookingFound)
+        : res
+            .status(400)
+            .send({ message: "This payment has not been approved" });
+    }
+    return res.status(404).send({ message: "No booking found" });
+  } catch (error) {
+    return res.status(404).send({ message: "No booking found" });
   }
 };
 
@@ -181,7 +228,9 @@ const verifyToken = async (req, res) => {
 const restorePassword = async (req, res) => {
   try {
     if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/.test(req.body.password)
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/.test(
+        req.body.password
+      )
     ) {
       return res.json({
         message:
@@ -190,6 +239,7 @@ const restorePassword = async (req, res) => {
     }
     let user = await User.findByIdAndUpdate(req.userId, {
       password: await User.hashPassword(req.body.password),
+      resetPassword:false
     });
     if (user) {
       return res.send({ message: "Password restored" });
@@ -201,11 +251,13 @@ const restorePassword = async (req, res) => {
   }
 };
 
+
 const deleteUserAccount = async(req, res)=>{
   const userById= await User.findByIdAndDelete(req.userId)
   console.log(req.userId)
-  res.status(200).json({message: 'Deleted Account'})//no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
+  res.status(200).json({message: 'Account Deleted'})//no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
 }
+
 
 module.exports = {
   signUp,
@@ -215,8 +267,9 @@ module.exports = {
   verifyAdmin,
   putUser,
   getBookings,
+  getBookingById,
   verifyUser,
   verifyToken,
   restorePassword,
-  deleteUserAccount
+  deleteUserAccount,
 };
