@@ -35,7 +35,7 @@ export const Movies = styled.div`
 
 export const Billboard = styled.div`
   height: 250px;
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -68,10 +68,15 @@ export const Labels = styled.label`
 `;
 
 export const Stores = styled.div`
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
   margin: 1.25%;
   background-color: #30475e;
-  height: 500px;
+  height: 80%;
+  min-height: 500px;
   width: 15%;
+  max-width: 200px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -79,6 +84,7 @@ export const Stores = styled.div`
   align-items: center;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
     inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
 `;
 
 // ESTILOS MOVIE CARDS
@@ -95,8 +101,9 @@ export const Movie = styled.img`
 // ESTILOS MERCH CARDS
 
 export const MerchCard = styled.div`
-  height: 25%;
-  width: 90%;
+  z-index: 100;
+  height: 50%;
+  width: 100%;
   border-radius: 5px;
   background-color: #f05454;
   box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
@@ -109,15 +116,14 @@ export const MerchCard = styled.div`
 
 export const PubliCard = styled.div`
   height: 45%;
-  width: 90%;
+  padding: 50% 0;
+  width: 100%;
   border-radius: 5px;
   background-color: #f05454;
   box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
     inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  vertical-align: middle;
 `;
 
 export const Icon = styled.img`
@@ -128,4 +134,24 @@ export const Icon = styled.img`
 export const Linked = styled(Link)`
   height: 95%;
   width: 95%;
+`;
+
+export const DiscountOffer = styled.div`
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  width: 98%;
+  height: 5%;
+  z-index: 200;
+  background-color: #30475e;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
+              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 0.7em;
+  color: antiquewhite;
 `;

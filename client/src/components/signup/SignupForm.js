@@ -7,8 +7,8 @@ import { signUp, signUpWithGoogle } from "../../actions/users";
 import { FcGoogle } from "react-icons/fc";
 import swal from "sweetalert";
 import { GoogleLogin } from "react-google-login";
-import axios from "axios";
 import ResetPassword from "../restorepassword/restorePassword.js";
+
 
 export default function SignupForm() {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import StyledDiv from "./userStyles";
+import StyledDiv, { StyledPaginate } from "./userStyles";
 import { getUsers, updateUser } from "../../../actions/users";
 import swal from "sweetalert";
 import NotFound from "../../404/NotFound";
@@ -9,7 +9,8 @@ const Users = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const [statusFilter, setStatusFilter] = React.useState(null);
-  const usersCurrent = users?.filter(user => (
+  const [page, setPage] = React.useState(1)
+  const usersCurrent = users?.filter(user => 
       statusFilter === 'Admins' ? user.isAdmin 
       : 
       statusFilter === 'Users' ? !user.isAdmin 
@@ -23,8 +24,8 @@ const Users = () => {
       statusFilter === 'reset'? !user.resetPassword
       : 
       user
-  ))
-  
+  )
+  let ultimateUsers = 0
   //search
   const [name, setName] = useState("");
       
@@ -108,7 +109,6 @@ const Users = () => {
     });
     if (changeRole) {
       dispatch(getUsers());
-      console.log("Admin: ", user.isAdmin);
       dispatch(
         updateUser(
           {
@@ -129,35 +129,32 @@ const Users = () => {
 
   const handleFilterStatus = (e) => {
     setStatusFilter(e.target.value === "All" ? null : e.target.value);
+    setPage(1)
   }
   
   return (
     <>
       {window.localStorage.token && users?.length ? 
-        <StyledDiv>          
+        <StyledDiv>   
           <table className="container" >
             <thead className="title">
               <div className='titleSearch'>
                 <h1>Users registrates</h1> 
-                <div className="search">
-                  <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
-                    <div className="searchBarContainer">
-                      <input
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Search Username..."
-                        type="text"
-                        className="input"
-                      ></input>
-                    </div>
-                  </form>
-                </div>      
+                <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Search Username..."
+                    type="text"
+                    className="input"
+                  />
+                </form>
               </div>  
               <tr className="header">
                 <td>Username</td>
                 <td>Email</td>
                 <td>
-                  <span> Adm/User </span>
+                  <span> Adm / User </span>
                   <select onChange={(e) => handleFilterStatus(e)}>
                     <option>All</option>
                     <option>Admins</option>
@@ -188,7 +185,7 @@ const Users = () => {
                   .filter((user) =>
                     name ? user.username.includes(name) : user
                   )
-                  .map(user => (
+                  .map((user) => 
                     <tr key={user._id} className='center'>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
@@ -216,16 +213,69 @@ const Users = () => {
                         >{user.resetPassword? 'done':'reset'}</button>
                       </td>
                     </tr>
-                ) )
+                ) 
+                .slice(page * 10 - 10, page * 10)
               :
                 <NotFound />
-              }     
+              } 
+              <StyledPaginate className='paginate titleSearch'>
+                  <span>Total Users {
+                      ultimateUsers = usersCurrent?.length &&
+                      usersCurrent
+                        .filter((user) =>
+                          name ? user.username.includes(name) : user
+                        )
+                        .map((user) => 
+                          <tr key={user._id} className='center'>
+                            <td>{user.username}</td>
+                            <td>{user.email}</td>
+                            <td>
+                              <label>Is {user.isAdmin ? 'Admin' : 'User'}</label>
+                              <button
+                                className='userButton'
+                                onClick={(e) => handleClick(user, e)}
+                              >
+                                {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                className="userButton"
+                                onClick={(e) => ChangeClick(user, e)}
+                              >
+                                {user.banned ? "UserBlocked" : "Enabled"}
+                              </button>
+                            </td>
+                          </tr>
+                        ).length
+                    }       
+                  </span>
+                  {
+                    ultimateUsers ?
+                      <span>page {page} of {Math.ceil(ultimateUsers/ 10)}</span>
+                    :
+                      <span>No match</span>
+                  }
+                  {
+                  ultimateUsers > 10 &&
+                    <div>
+                      <input type='button' value='<<' onClick={() => setPage(1)}/>
+                      <input type='button' value='<' onClick={() => (page > 1) && setPage(page - 1)} />
+                      <span>{page}</span>
+                      <input type='button' value='>' onClick={() => (page < Math.ceil(ultimateUsers/ 10)) && setPage(page + 1)}/>                    
+                      <input type='button' value='>>' onClick={() => setPage(Math.ceil(ultimateUsers/ 10))}/>
+                    
+                    </div>
+                  }
+              </StyledPaginate>    
             </tbody>
           </table>
+          
         </StyledDiv>
       :
-        <NotFound />
-      }
+      <NotFound />
+    }
+    
     </>
   )
 }

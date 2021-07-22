@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from 'react-router-dom';
 
 export default function ResRow({
   title,
   date,
-  time,
-  lot,
-  extras,
   status,
-  url,
+  id
 }) {
   function handleClick(e) {
     e.preventDefault();
 
-    window.open(url);
+    window.open("www.google.com");
   }
 
   const But = styled.button`
@@ -43,12 +41,8 @@ export default function ResRow({
 
   return (
     <tr>
-      <td>{title}</td>
+      <td><Link to={`/bookings/${id}`}>{title}</Link></td>
       <td>{date}</td>
-      <td>{time}</td>
-      <td>Field Here</td>
-      <td>{lot}</td>
-      <td>{extras.join(", ")}</td>
       <Stat>{status}</Stat>
       {status === "processing" ? (
         <But onClick={(e) => handleClick(e)}>Pay</But>
