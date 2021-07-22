@@ -50,8 +50,10 @@ function UserProfile() {
       {token ? (
         <>
           <h1>Welcome back, {user.username}!</h1>
+          <div className="row">
           <Reservations />
           <Reviews />
+          </div>
         </>
       ) : (
         <NotFound />

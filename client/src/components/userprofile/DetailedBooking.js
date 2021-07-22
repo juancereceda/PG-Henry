@@ -3,12 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getBook } from '../../actions/users';
 import { useParams } from 'react-router-dom';
 import { Booking } from './DetailedBookingStyles';
-import { getUserDataStorage } from "../../reducer/reducer";
 
 export default function DetailedBooking() {
     const dispatch = useDispatch();
-
-    const user = getUserDataStorage();
 
     const selectedBook = useSelector(state => state.selBook);
     let { id } = useParams();
@@ -16,13 +13,6 @@ export default function DetailedBooking() {
     useEffect(() => {
         dispatch(getBook(id));
     }, [dispatch, id]);
-
-    // movie_title
-    // date
-    // time
-    // parking_lot
-    // extras
-    // status 
 
     return (
         <Booking>
@@ -45,7 +35,7 @@ export default function DetailedBooking() {
                 <div className="col">
                         <h3 className="tit">Extras</h3>
                         <ul>
-                            <li>{selectedBook.extras}</li>
+                            {selectedBook.extras.map(ele => <li>{ele}</li>)}
                         </ul>
                 </div>
             </div>
@@ -53,8 +43,8 @@ export default function DetailedBooking() {
                 <div className="col">
                     <h3 className="tit">Thanks for you buy!</h3>
                     <ul className="ctc">
-                        <li>{user.username}</li>
-                        <li>{user.email}</li>
+                        <li>{selectedBook.username}</li>
+                        <li>{selectedBook.email}</li>
                     </ul>
                 </div>
                 <div className="col">
