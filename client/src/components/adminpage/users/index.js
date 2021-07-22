@@ -202,13 +202,17 @@ const Users = () => {
                     }       
                   </span>
                   <span>page {page} of {Math.ceil(ultimateUsers/ 10)}</span>
-                  <div>
-                    <input type='button' value='<<' onClick={() => setPage(1)}/>
-                    <input type='button' value='<' onClick={() => (page > 1) && setPage(page - 1)} />
-                    <span>{page}</span>
-                    <input type='button' value='>' onClick={() => (page < Math.ceil(ultimateUsers/ 10)) && setPage(page + 1)}/>                    
-                    <input type='button' value='>>' onClick={() => setPage(Math.ceil(ultimateUsers/ 10))}/>
-                  </div>
+                  {
+                  ultimateUsers > 10 &&
+                    <div>
+                      <input type='button' value='<<' onClick={() => setPage(1)}/>
+                      <input type='button' value='<' onClick={() => (page > 1) && setPage(page - 1)} />
+                      <span>{page}</span>
+                      <input type='button' value='>' onClick={() => (page < Math.ceil(ultimateUsers/ 10)) && setPage(page + 1)}/>                    
+                      <input type='button' value='>>' onClick={() => setPage(Math.ceil(ultimateUsers/ 10))}/>
+                    
+                    </div>
+                  }
               </StyledPaginate>    
             </tbody>
           </table>
