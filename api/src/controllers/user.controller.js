@@ -32,7 +32,7 @@ const signUp = async (req, res) => {
         isAdmin: false,
         bookings: [],
         banned: false,
-        resetPassword:false,
+        resetPassword: false,
       });
       let userSaved = await newUser.save();
       token = await jwt.sign({ id: userSaved._id }, "group8", {
@@ -89,8 +89,12 @@ const getUsers = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const userFound = await User.findById(id);
-    return res.json(userFound);
+    const userFoundByParam = await User.findById(id);
+    const userFoundByToken = await User.findById(req.userId);
+    if (id === req.userId || userFoundByToken.isAdmin) {
+      return res.json(userFoundByParam);
+    }
+    return res.status(403).send({ message: "Unauthorized" });
   } catch (error) {
     console.log(error);
   }
@@ -123,10 +127,10 @@ const putUser = async (req, res) => {
       resetPassword,
       bookings: [],
     };
-    
+
     let user = await User.findByIdAndUpdate(req.params.id, newUser);
     //console.log(newUser);
-    if(resetPassword){
+    if (resetPassword) {
       transporter.sendMail({
         from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
         to: user.email, // list of receivers
@@ -239,7 +243,7 @@ const restorePassword = async (req, res) => {
     }
     let user = await User.findByIdAndUpdate(req.userId, {
       password: await User.hashPassword(req.body.password),
-      resetPassword:false
+      resetPassword: false,
     });
     if (user) {
       return res.send({ message: "Password restored" });
@@ -251,13 +255,11 @@ const restorePassword = async (req, res) => {
   }
 };
 
-
-const deleteUserAccount = async(req, res)=>{
-  const userById= await User.findByIdAndDelete(req.userId)
-  console.log(req.userId)
-  res.status(200).json({message: 'Account Deleted'})//no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
-}
-
+const deleteUserAccount = async (req, res) => {
+  const userById = await User.findByIdAndDelete(req.userId);
+  console.log(req.userId);
+  res.status(200).json({ message: "Account Deleted" }); //no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
+};
 
 module.exports = {
   signUp,
