@@ -8,7 +8,7 @@ import Reservations from "./Reservations";
 import NotFound from "../404/NotFound";
 import { deleteAccount } from "../../actions/users";
 import swal from "sweetalert";
-/* import Reviews from "./Reviews"; */
+import Reviews from "./Reviews";
 
 function UserProfile() {
   const token = getTokenLocalStorage();
