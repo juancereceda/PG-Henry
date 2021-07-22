@@ -65,7 +65,7 @@ export default function Home() {
                     </StyledAsidePublicity>
                 </StyledAside>
             </ContMovies>
-            <Footer />
+            <Footer moviesLength={1}/>
         </HomeCont>
     )
 }
