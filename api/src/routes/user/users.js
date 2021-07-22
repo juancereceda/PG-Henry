@@ -25,20 +25,12 @@ router.get(
 router.put("/bookings",[authentication.verifyToken], PaymentCtrl.updateBooking);
 
 router.put("/restorepassword",[authentication.verifyToken], UserCtrl.restorePassword);
-router.put(
-  "/:id",
-  [authentication.verifyToken, authentication.isAdmin],
-  UserCtrl.putUser
-);
+router.put("/:id",[authentication.verifyToken, authentication.isAdmin], UserCtrl.putUser);
 
 router.post("/verifyuser", UserCtrl.verifyUser);
 router.post("/verifytoken", UserCtrl.verifyToken);
 router.delete('/deleteAccount',authentication.verifyToken, UserCtrl.deleteUserAccount)
-router.post(
-  "/google_signup",
-  [verifySignup.verifyGoogleToken],
-  UserCtrl.signUp
-);
+router.post("/google_signup",[verifySignup.verifyGoogleToken], UserCtrl.signUp);
 router.post(
   "/google_login",
   [verifySignup.verifyGoogleToken, verifyLogin.checkUser],

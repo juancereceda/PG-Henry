@@ -32,6 +32,7 @@ const signUp = async (req, res) => {
         isAdmin: false,
         bookings: [],
         banned: false,
+        resetPassword:false,
       });
       let userSaved = await newUser.save();
       token = await jwt.sign({ id: userSaved._id }, "group8", {
@@ -111,13 +112,14 @@ const verifyAdmin = async (req, res) => {
 
 const putUser = async (req, res) => {
   try {
-    const { username, email, isAdmin, banned } = req.body;
+    const { username, email, isAdmin, banned, resetPassword } = req.body;
 
     let newUser = {
       username,
       email,
       isAdmin,
       banned,
+      resetPassword,
       bookings: [],
     };
     await User.findByIdAndUpdate(req.params.id, newUser);
@@ -204,7 +206,7 @@ const restorePassword = async (req, res) => {
 const deleteUserAccount = async(req, res)=>{
   const userById= await User.findByIdAndDelete(req.userId)
   console.log(req.userId)
-  res.status(200).json({message: 'Deleted Account'})//no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
+  res.status(200).json({message: 'Account Deleted'})//no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
 }
 
 module.exports = {
