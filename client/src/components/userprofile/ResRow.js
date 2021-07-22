@@ -6,12 +6,13 @@ export default function ResRow({
   title,
   date,
   status,
+  url,
   id
 }) {
   function handleClick(e) {
     e.preventDefault();
 
-    window.open("www.google.com");
+    window.open(url);
   }
 
   const But = styled.button`
@@ -24,6 +25,15 @@ export default function ResRow({
     &:focus {
       box-shadow: inset -2px -3px 5px rgba(0, 0, 0, 0.3),
         inset 2px 3px 5px rgba(0, 0, 0, 0.5);
+    }
+  `;
+
+  const Li = styled(Link)`
+    text-decoration: none;
+    color: #E8E8E8;
+    &:hover {
+      font-style: italic;
+      color: #F05454;
     }
   `;
 
@@ -41,7 +51,7 @@ export default function ResRow({
 
   return (
     <tr>
-      <td><Link to={`/bookings/${id}`}>{title}</Link></td>
+      <td><Li to={`/bookings/${id}`}>{title}</Li></td>
       <td>{date}</td>
       <Stat>{status}</Stat>
       {status === "processing" ? (

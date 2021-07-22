@@ -12,6 +12,7 @@ export const GET_BOOK = "GET_BOOK";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+export const ALL_REV = "ALLOW_REVIEW";
 
 const config = {
   headers: {
@@ -236,4 +237,8 @@ export async function deleteAccount() {
   } catch (error) {
     console.log(error);
   }
+}
+
+export function allowRev(flag) {
+  return {type: ALL_REV, payload: flag}
 }
