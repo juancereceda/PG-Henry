@@ -9,7 +9,7 @@ function AdminFeedbacks() {
 
     const [feedbacks, setFeedbacks] = useState([]);
     const [filteredFeedbacks, setFilteredFeedbacks] = useState([]);
-    
+
     const getFeedbacks = async () => {
         const response = await axios.get(URL);
         setFeedbacks(response.data);
@@ -31,24 +31,33 @@ function AdminFeedbacks() {
     }
 
     const handleDelete = async (id, author) => {
-        await axios.delete(URL, { data: { id } })
-        await swal(`Feedback from ${author} has been deleted`, {
-            icon: "success",
-            buttons: false,
-            timer: 1000,
+        const deleteFeedback = await swal({
+            title: `Are you sure to delete ${author} feedback?`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
         });
-        await getFeedbacks();
+        if (deleteFeedback) {
+            await axios.delete(URL, { data: { id } })
+
+            await swal(`Feedback from ${author} has been deleted`, {
+                icon: "success",
+                buttons: false,
+                timer: 1000,
+            });
+            await getFeedbacks();
+        }
     }
-    
+
     const handleFilterFeedbacks = e => {
         setFilteredFeedbacks(feedbacks.filter(f => (
-            e.target.value === 'Visible' ? f.visible 
-            : 
-            e.target.value === 'Not Visible' ? !f.visible 
-            :
-            e.target.type === 'text' ? f.author.toLowerCase().includes(e.target.value.toLowerCase())
-            :
-            feedbacks
+            e.target.value === 'Visible' ? f.visible
+                :
+                e.target.value === 'Not Visible' ? !f.visible
+                    :
+                    e.target.type === 'text' ? f.author.toLowerCase().includes(e.target.value.toLowerCase())
+                        :
+                        feedbacks
         )))
     }
     return (
@@ -75,7 +84,7 @@ function AdminFeedbacks() {
                         <td><h3>Feedback</h3></td>
                         <td>
                             <span><h3>Visibility</h3></span>
-                            <select onChange={ handleFilterFeedbacks }>
+                            <select onChange={handleFilterFeedbacks}>
                                 <option>All</option>
                                 <option>Visible</option>
                                 <option>Not Visible</option>
@@ -87,7 +96,7 @@ function AdminFeedbacks() {
                     {filteredFeedbacks?.length ?
                         filteredFeedbacks.map(feedback => (
                             <tr key={feedback._id} className='center'>
-                                <td>{feedback.author}</td>
+                                <td><h3>{feedback.author}</h3></td>
                                 <td>{feedback.text}</td>
                                 <td>
                                     <button
