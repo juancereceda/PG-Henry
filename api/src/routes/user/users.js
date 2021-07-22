@@ -9,6 +9,11 @@ const authentication = require("../../middlewares/authentication");
 router.post("/signup", [verifySignup.checkEmailAndPassword], UserCtrl.signUp);
 router.post("/login", [verifyLogin.checkUser], UserCtrl.logIn);
 router.get("/verifyadmin", [authentication.verifyToken], UserCtrl.verifyAdmin);
+router.get(
+  "/bookings/:id",
+  [authentication.verifyToken],
+  UserCtrl.getBookingById
+);
 router.get("/bookings", [authentication.verifyToken], UserCtrl.getBookings);
 router.get(
   "/",
@@ -41,7 +46,11 @@ router.put(
 
 router.post("/verifyuser", UserCtrl.verifyUser);
 router.post("/verifytoken", UserCtrl.verifyToken);
-router.delete('/deleteAccount',authentication.verifyToken, UserCtrl.deleteUserAccount)
+router.delete(
+  "/deleteAccount",
+  authentication.verifyToken,
+  UserCtrl.deleteUserAccount
+);
 router.post(
   "/google_signup",
   [verifySignup.verifyGoogleToken],

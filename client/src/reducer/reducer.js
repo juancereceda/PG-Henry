@@ -23,6 +23,7 @@ import {
   GET_BOOKINGS,
   SEARCH_USERS,
   USER_INFO,
+  GET_BOOK,
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
 
@@ -47,6 +48,7 @@ const initialState = {
   movieList: [],
   token: getTokenLocalStorage(),
   bookings: [],
+  selBook: {},
   payments: [],
   searchUserByName: [],
   searchUserById: [],
@@ -253,6 +255,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         bookings: action.payload,
       };
+    }
+    case GET_BOOK: {
+      return {
+        ...state,
+        selBook: action.payload,
+      }
     }
     case GET_PAYMENTS: {
       return {

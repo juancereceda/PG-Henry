@@ -7,14 +7,10 @@ import {
   StyledAside,
   StyledPagination,
   StyledIndexChanger,
+  StyledHeader,
 } from "./Billboard-styles";
-import {
-  StyledFirstAside,
-  StyledSecondAside,
-  StyledAsidePublicity,
-} from "./Aside-styles";
+import { StyledFirstAside, StyledAsidePublicity } from "./Aside-styles";
 import BillboardCard from "./BillboardCard";
-import { Link } from "react-router-dom";
 import Footer from "../footer/Footer";
 import GenreFilter from "../GenreFilter/GenreFilter";
 import Slider from "../comboSlider/slider";
@@ -67,36 +63,29 @@ export default function Billboard() {
 
   return (
     <StyledBillboard>
-      <GenreFilter />
-      <StyledTitle>Billboard Movies</StyledTitle>
-      <StyledPagination>
-        <StyledIndexChanger
-          type="button"
-          value="←"
-          onClick={HandleIndex}
-          className="plus"
-        />
-        <p>{index + 1}</p>
-        <StyledIndexChanger
-          type="button"
-          value="→"
-          onClick={HandleIndex}
-          className="minus"
-        />
-      </StyledPagination>
+      <StyledHeader>
+        <GenreFilter setIndex={setIndex} />
+        <StyledTitle>Billboard Movies</StyledTitle>
+        <StyledPagination>
+          <StyledIndexChanger
+            type="button"
+            value="←"
+            onClick={HandleIndex}
+            className="plus"
+          />
+          <p>{index + 1}</p>
+          <StyledIndexChanger
+            type="button"
+            value="→"
+            onClick={HandleIndex}
+            className="minus"
+          />
+        </StyledPagination>
+      </StyledHeader>
       <StyledAside>
         <StyledFirstAside>
           <Slider />
         </StyledFirstAside>
-        <StyledSecondAside>
-          <Link>
-            <p>Memories</p>
-            <img
-              src="https://image.flaticon.com/icons/png/512/86/86511.png"
-              alt=""
-            />
-          </Link>
-        </StyledSecondAside>
         <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
       </StyledAside>
       {filtredMovies.length > 0
@@ -105,7 +94,9 @@ export default function Billboard() {
             .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
             .map((movie) => <BillboardCard props={movie} key={movie._id} />)
         : skeletons.map((el) => <BillboardSkeleton />)}
-      <Footer marginTop="120%" />
+      <Footer
+        moviesLength={filtredMovies.filter((movie) => movie.onBillboard).length}
+      />
     </StyledBillboard>
   );
 }

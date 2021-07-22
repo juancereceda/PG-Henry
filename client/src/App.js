@@ -8,7 +8,7 @@ import AdminPage from "./components/adminpage/AdminPage";
 import UserProfile from "./components/userprofile/UserProfile";
 import Home from "./components/home/Home";
 import LogInForm from "./components/login/LogIn";
-import EditMovie from "./components/editmovie/EditMovie";
+import EditMovie from "./components/adminpage/editmovie/EditMovie";
 import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
 import AdminOrders from "./components/adminpage/orders/AdminOrders";
@@ -16,6 +16,7 @@ import Success from "./components/success/Success";
 import ComingSoon from "./components/comingSoon/ComingSoon";
 import ResetPassword from "./components/restorepassword/restorePassword";
 import AdminFeedbacks from "./components/adminpage/feedbacks/AdminFeedbacks";
+import DetailedBooking from "./components/userprofile/DetailedBooking";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route path="/feedbacks" component={AdminFeedbacks} />
       <Route path="/success/:id" component={Success} />
       <Route path="/restorepassword" component={ResetPassword} />
+      <Route path="/bookings/:id" component={DetailedBooking} />
     </div>
   );
 }
