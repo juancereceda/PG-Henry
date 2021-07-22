@@ -165,7 +165,11 @@ const getBookingById = async (req, res) => {
       userFound && userFound.bookings.find((el) => el.id === id);
     if (foundByUser) {
       return foundByUser.status === "approved"
-        ? res.send(foundByUser)
+        ? res.send({
+            ...foundByUser,
+            email: userFound.email,
+            username: userFound.username,
+          })
         : res
             .status(400)
             .send({ message: "This payment has not been approved" });
@@ -177,7 +181,11 @@ const getBookingById = async (req, res) => {
       const bookingFound =
         foundByAdmin && foundByAdmin.bookings.find((el) => el.id === id);
       return bookingFound.status === "approved"
-        ? res.send(bookingFound)
+        ? res.send({
+            ...bookingFound,
+            email: foundByAdmin.email,
+            username: foundByAdmin.username,
+          })
         : res
             .status(400)
             .send({ message: "This payment has not been approved" });
