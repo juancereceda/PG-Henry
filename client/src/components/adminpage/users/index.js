@@ -201,7 +201,12 @@ const Users = () => {
                         ).length
                     }       
                   </span>
-                  <span>page {page} of {Math.ceil(ultimateUsers/ 10)}</span>
+                  {
+                    ultimateUsers ?
+                      <span>page {page} of {Math.ceil(ultimateUsers/ 10)}</span>
+                    :
+                      <span>No match</span>
+                  }
                   {
                   ultimateUsers > 10 &&
                     <div>
