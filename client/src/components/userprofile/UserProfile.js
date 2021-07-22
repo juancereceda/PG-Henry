@@ -24,7 +24,7 @@ function UserProfile() {
     .then(async (value)=>{
       if(value){
         let msg = await deleteAccount()
-        if(msg=== 'Deleted Account'){
+        if(msg=== 'Account Deleted'){
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("userdata");
         await swal(msg, 'Success','error', {

@@ -18,6 +18,11 @@ const checkUser = async (req, res, next) => {
         message: "You have been banned due to inappropiate behaviour",
       });
     }
+    if (user.resetPassword) {
+      return res.json({
+        message: "Your Password has been reset to protect your account, you'll be redirected to restore your password",
+      });
+    }
 
     const isValidPassword = await user.validatePassword(
       password,

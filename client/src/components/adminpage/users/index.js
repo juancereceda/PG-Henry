@@ -18,6 +18,10 @@ const Users = () => {
       statusFilter === 'UserBloqued' ? user.banned
       :
       statusFilter === 'Enabled' ? !user.banned
+      :
+      statusFilter === 'done'? user.resetPassword
+      :
+      statusFilter === 'reset'? !user.resetPassword
       : 
       user
   )
@@ -61,6 +65,37 @@ const Users = () => {
       });
     }
   };
+
+  // reset a user Password from admin
+  const resetPassword = async(user, e)=>{
+    e.preventDefault()
+    const resetOption = await swal({
+      title: `Are you sure you want to ${user.resetPassword? 'reverse the reset of':'reset'} the ${user.username} password?`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    });
+    if(resetOption){
+      dispatch(getUsers());
+      dispatch(
+        updateUser(
+          {
+            ...user,
+            resetPassword: !user.resetPassword,
+          },
+          user._id
+        )
+      );
+      console.log(user.resetPassword)
+      dispatch(getUsers());
+      await swal("The Password was reseted", {
+        icon: "success",
+        buttons: false,
+        timer: 1500,
+      });
+    
+    }
+  }
 
   const handleClick = async (user, e) => {
     e.preventDefault();
@@ -134,6 +169,14 @@ const Users = () => {
                     <option>Enabled</option>
                   </select>
                 </td>
+                <td>
+                  <span>Reset Password</span>
+                  <select onChange={(e) => handleFilterStatus(e)}>
+                    <option>All</option>
+                    <option>done</option>
+                    <option>reset</option>
+                  </select>
+                </td>
               </tr>
             </thead>
             <tbody className="item">
@@ -143,30 +186,36 @@ const Users = () => {
                     name ? user.username.includes(name) : user
                   )
                   .map((user) => 
-                      <tr key={user._id} className='center'>
-                        <td>{user.username}</td>
-                        <td>{user.email}</td>
-                        <td>
-                          <label>Is {user.isAdmin ? 'Admin' : 'User'}</label>
-                          <button
-                            className='userButton'
-                            onClick={(e) => handleClick(user, e)}
-                          >
-                            {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="userButton"
-                            onClick={(e) => ChangeClick(user, e)}
-                          >
-                            {user.banned ? "UserBlocked" : "Enabled"}
-                          </button>
-                        </td>
-                      </tr>
-                    )
-                    .slice(page * 10 - 10, page * 10)
-                  :
+                    <tr key={user._id} className='center'>
+                      <td>{user.username}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        <label>Is {user.isAdmin ? 'Admin' : 'User'}</label>
+                        <button
+                          className='userButton'
+                          onClick={(e) => handleClick(user, e)}
+                        >
+                          {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="userButton"
+                          onClick={(e) => ChangeClick(user, e)}
+                        >
+                          {user.banned ? "UserBlocked" : "Enabled"}
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className='userButton'
+                          onClick={(e)=> resetPassword(user, e)}
+                        >{user.resetPassword? 'done':'reset'}</button>
+                      </td>
+                    </tr>
+                ) 
+                .slice(page * 10 - 10, page * 10)
+              :
                 <NotFound />
               } 
               <StyledPaginate className='paginate titleSearch'>
