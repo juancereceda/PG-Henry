@@ -156,7 +156,7 @@ const updateBooking = async (req, res) => {
         </ul>
         </div>
         <img src="${img}">
-        <p style="color: #000000">Show this e-mail at the entrance to access to the cinema, and the info above in the candy-bar.<br /><br />Ticket ID: <span style="font-weight: bold; text-decoration: underline;">${preference_id}</span><br /><br />All rights reserved by &copy; <a href="https://www.google.com.ar">Autocinema App</a></p>
+        <p style="color: #000000">Show this e-mail at the entrance to access to the cinema, and the info above in the candy-bar.<br /><br />Ticket ID: <span style="font-weight: bold; text-decoration: underline;">${preference_id}</span><br /><br />All rights reserved by &copy; <a href="http://localhost:3000">Autocinema App</a></p>
         `, // html body
       });
     }
