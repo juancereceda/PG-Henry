@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Booking = styled.div`
     padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
     position: absolute;
     top: 32%;
     left: 30%;
@@ -18,13 +20,14 @@ export const Booking = styled.div`
                 inset 2px 3px 5px rgba(0, 0, 0, 0.3),
                 inset -2px -3px 5px rgba(0, 0, 0, 0.5);
     .col {
+        width: 50%;
     }
     .row {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
-        border: solid 1px red;
+        width: 100%;
     }
 
     .tit {
@@ -38,6 +41,6 @@ export const Booking = styled.div`
     }
 
     .ctc {
-        font-size: 75%;
+        font-size: 100%;
     }
 `;
