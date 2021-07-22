@@ -11,7 +11,7 @@ export default function DetailedBooking() {
 
     useEffect(() => {
         dispatch(getBook(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     return (
         <div>

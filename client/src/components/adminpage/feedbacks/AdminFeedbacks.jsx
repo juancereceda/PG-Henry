@@ -45,7 +45,9 @@ function AdminFeedbacks() {
             e.target.value === 'Visible' ? f.visible 
             : 
             e.target.value === 'Not Visible' ? !f.visible 
-            : 
+            :
+            e.target.type === 'text' ? f.author.toLowerCase().includes(e.target.value.toLowerCase())
+            :
             feedbacks
         )))
     }
@@ -56,13 +58,11 @@ function AdminFeedbacks() {
                     <div className='titleSearch'>
                         <h1>Feedbacks</h1>
                         <div className="search">
-                            {/* <form onSubmit={(e) => handleSubmit(e)} className="formContainer"> */}
                             <form className="formContainer">
                                 <div className="searchBarContainer">
                                     <input
-                                        // value={name}
-                                        // onChange={(e) => setName(e.target.value)}
-                                        placeholder="Search Feedbacks"
+                                        onChange={handleFilterFeedbacks}
+                                        placeholder="Search by Author"
                                         type="text"
                                         className="input"
                                     ></input>
