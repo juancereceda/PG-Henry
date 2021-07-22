@@ -22,7 +22,7 @@ const contactAdministration = async (req, res) => {
         html: `
         <h4>This is a message sent by ${user.username}</h4>
         <h4>His/her email: ${user.email}</h4>
-        <span>${message}</span>
+        <span>Message: "${message}"</span>
         <br/><br/>All rights reserved by &copy; <a href="http://localhost:3000">Autocinema App</a></p>
         `, // html body
       });
