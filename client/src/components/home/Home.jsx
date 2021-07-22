@@ -50,6 +50,9 @@ export default function Home() {
                     <Billboard>
                         {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}
                     </Billboard>
+                    {/* Feedbacks */}
+                    
+                    {/* Fin Feedbacks */}
                     <Labels>Coming Soon</Labels>
                     <ComingSoon>
                         {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}

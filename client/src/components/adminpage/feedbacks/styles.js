@@ -41,22 +41,8 @@ const StyledDiv = styled.div`
         border: none;
         cursor: pointer;
         &:hover {
-        background-color: #d93c3c;
-        transition: 0.3s;
-        }
-    }
-    .userButtonDelete {
-        background-color: red;    
-        height: 25px;
-        margin: 10px;
-        color: #ffffff;
-        font-size: 15px;
-        border-radius: 12px;
-        border: none;
-        cursor: pointer;
-        &:hover {
-        background-color: #d93c3c;
-        transition: 0.3s;
+          background-color: #d93c3c;
+          transition: 0.3s;
         }
     }
 
@@ -97,5 +83,5 @@ const StyledDiv = styled.div`
         text-align: center;
     }
     `;
-    
+
 export default StyledDiv;
