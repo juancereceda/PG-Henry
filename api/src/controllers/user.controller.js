@@ -122,8 +122,21 @@ const putUser = async (req, res) => {
       resetPassword,
       bookings: [],
     };
-    await User.findByIdAndUpdate(req.params.id, newUser);
+    
+    let user = await User.findByIdAndUpdate(req.params.id, newUser);
     //console.log(newUser);
+    if(resetPassword){
+      transporter.sendMail({
+        from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
+        to: user.email, // list of receivers
+        subject: "Autocinema Henry has reset your password", // Subject line
+        html: `
+        <h4>Autocinema Henry has reset your password, in order to keep your account security</h4>
+        <span>Here is the link to restore your <a href="http://localhost:3000/restorepassword">password</a></span>
+        <br/><br/>All rights reserved by &copy; <a href="http://localhost:3000">Autocinema App</a></p>
+        `, // html body
+      });
+    }
     res.json({ status: "User Updated" });
   } catch (error) {
     res.status(400).send(error);
@@ -192,6 +205,7 @@ const restorePassword = async (req, res) => {
     }
     let user = await User.findByIdAndUpdate(req.userId, {
       password: await User.hashPassword(req.body.password),
+      resetPassword:false
     });
     if (user) {
       return res.send({ message: "Password restored" });
