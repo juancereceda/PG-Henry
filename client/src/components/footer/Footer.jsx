@@ -1,8 +1,9 @@
+import { FaFacebook, FaTwitter, FaInstagram, FaPinterest } from "react-icons/fa";
 import React from 'react';
 import styled from 'styled-components';
 import { BiCameraMovie as Camera } from "react-icons/bi";
 
-function Footer({ marginTop }) {
+function Footer({moviesLength}) {
     const HeaderIcon = styled(Camera)`
     height: 55px;
     width: 55px;
@@ -19,8 +20,10 @@ function Footer({ marginTop }) {
 `;  
 
     const StyledDiv = styled.div`
-    // margin-top: ${marginTop};
-    // position: absolute;
+    position: relative;
+    ${({ moviesLength }) => moviesLength === 1 ? `
+    top: 200px;
+  ` : `top: 10px;`}
     width:100%;
     .footer {
     display: flex;
@@ -71,7 +74,7 @@ function Footer({ marginTop }) {
     color: #999;
     &:hover{
     color: #F05454;
-    font-size:20px;
+    font-size: .95em;
     transition: 300ms;
     }
     }
@@ -97,22 +100,41 @@ function Footer({ marginTop }) {
     flex: 1;
     }
 
-    .features {
-    flex-grow: 2;
-    }
-
     .l-footer {
     flex: 1 0px;
     }
 
     .r-footer {
-    flex: 2 0px;
+        flex: 2 0px;
+    }
+    
+    .social {
+        display: flex; 
+        flex-direction: column;
+    }
+
+    .features { 
+        display: flex;
+        flex-direction: column;
+        margin-left: -3em;
+        align-items: center;        
+        margin-right: 1em;
+    }
+
+    .legal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 1em;
+    }
+    .box {
+        margin-left: .6em;
     }
     }
     `;
 
     return (
-        <StyledDiv>
+        <StyledDiv moviesLength={moviesLength} >
             <footer className="footer">
                 <div className="l-footer">
                     <h2><HeaderIcon className='asd'/></h2>
@@ -121,18 +143,17 @@ function Footer({ marginTop }) {
                     Application designed and developed by Henry's students from the FT-13 Cohort in the final project</p>
                 </div>
                 <ul className="r-footer">
-                    <li>
+                    <li className='social'>
                         <h2>Social</h2>
                         <ul className="box">
-                            <li><a href="www.facebook.com">Facebook</a></li>
-                            <li><a href="www.twitter.com">Twitter</a></li>
-                            <li><a href="www.instagram.com">Instagram</a></li>
-                            <li><a href="www.pinterest.com">Pinterest</a></li>
+                            <li><a href="https://www.facebook.com" target='_blank'><FaFacebook /></a></li>
+                            <li><a href="https://www.twitter.com" target='_blank'><FaTwitter /></a></li>
+                            <li><a href="https://www.instagram.com" target='_blank'><FaInstagram /></a></li>
+                            <li><a href="https://www.pinterest.com" target='_blank'><FaPinterest /></a></li>
                         </ul>
                     </li>
                     <li className="features">
-                        <h2>
-                            Information</h2>
+                        <h2>Information</h2>
                         <ul className="box h-box">
                             <li><a href="/">Blog</a></li>
                             <li><a href="/">Pricing</a></li>
@@ -142,9 +163,8 @@ function Footer({ marginTop }) {
                             <li><a href="/">Customer Service</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <h2>
-                            Legal</h2>
+                    <li className='legal'>
+                        <h2>Legal</h2>
                         <ul className="box">
                             <li><a href="/">Privacy Policy</a></li>
                             <li><a href="/">Terms of Use</a></li>

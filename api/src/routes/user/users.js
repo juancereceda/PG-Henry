@@ -6,22 +6,40 @@ const verifySignup = require("../../middlewares/verifySignup");
 const verifyLogin = require("../../middlewares/verifyLogin");
 const authentication = require("../../middlewares/authentication");
 
-router.post("/signup", [verifySignup.checkEmailAndPassword], UserCtrl.signUp);
-router.post("/login", [verifyLogin.checkUser], UserCtrl.logIn);
+//get
 router.get("/verifyadmin", [authentication.verifyToken], UserCtrl.verifyAdmin);
+router.get(
+  "/bookings/:id",
+  [authentication.verifyToken],
+  UserCtrl.getBookingById
+);
 router.get("/bookings", [authentication.verifyToken], UserCtrl.getBookings);
+router.get("/:id", [authentication.verifyToken], UserCtrl.getUserById);
 router.get(
   "/",
   [authentication.verifyToken, authentication.isAdmin],
   UserCtrl.getUsers
 );
 
-router.get(
-  "/:id",
-  [authentication.verifyToken, authentication.isAdmin],
-  UserCtrl.getUsers
+//Post
+
+router.post("/signup", [verifySignup.checkEmailAndPassword], UserCtrl.signUp);
+router.post("/login", [verifyLogin.checkUser], UserCtrl.logIn);
+router.post("/verifyuser", UserCtrl.verifyUser);
+router.post("/verifytoken", UserCtrl.verifyToken);
+router.post(
+  "/google_signup",
+  [verifySignup.verifyGoogleToken],
+  UserCtrl.signUp
 );
 
+router.post(
+  "/google_login",
+  [verifySignup.verifyGoogleToken, verifyLogin.checkUser],
+  UserCtrl.logIn
+);
+
+//Put
 router.put(
   "/bookings",
   [authentication.verifyToken],
@@ -39,7 +57,11 @@ router.put(
   UserCtrl.putUser
 );
 
-router.post("/verifyuser", UserCtrl.verifyUser);
-router.post("/verifytoken", UserCtrl.verifyToken);
+//Delete
+router.delete(
+  "/deleteAccount",
+  authentication.verifyToken,
+  UserCtrl.deleteUserAccount
+);
 
 module.exports = router;

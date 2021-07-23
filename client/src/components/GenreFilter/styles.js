@@ -1,22 +1,14 @@
 import styled from "styled-components";
 
-export const StyleFilter= styled.div`
-   box-sizing: border-box;
-   position: absolute;
-   top: 1%;
-   left: 1%;
-   width: 15%;
-   margin: 0;
-   padding: 0;
+export const StyleFilter= styled.div`   
+   width: 20%;
    & select{
       width: 100%;
-      font-size: 2.5rem;
-      border-top: 20px solid #E8E8E8;
-      border-bottom: 20px solid #E8E8E8;
-      border-image: url("https://www.clipartmax.com/png/full/1-10009_onlinelabels-clip-art-movie-tape-cinta-de-pelicula-dibujo.png") 40 round;
+      font-size: 1.5rem;
+      border-top: .8em solid #E8E8E8;
+      border-bottom: .8em solid #E8E8E8;
+      border-image: url("https://www.clipartmax.com/png/full/1-10009_onlinelabels-clip-art-movie-tape-cinta-de-pelicula-dibujo.png") 45 round;
       background-color: #E8E8E8;
-      margin: 0;
-      padding: 0;
       cursor: pointer;
       :hover{
          background-color: transparent;
