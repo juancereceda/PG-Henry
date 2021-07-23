@@ -20,14 +20,16 @@ export default function Reviews () {
         }));
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        axios.post('http://localhost:3001/feedbacks', {
+        await axios.post('http://localhost:3001/feedbacks', {
             author: user.username,
             text: review.review
         });
 
-        setReview({review: null})
+        setReview({review: null});
+
+        alert(`${user.username} thank you very much for your feedback!`);
     }
 
     return (
