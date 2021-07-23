@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import { Revs } from './ReviewsStyles';
-import { useSelector } from 'react-redux';
 
 export default function Reviews () {
     const [review, setReview] = useState({review: null});
 
-    let flag = useSelector(state => state.showRevs);
 
     function handleChange(e) {
         e.preventDefault();

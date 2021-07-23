@@ -27,6 +27,7 @@ import {
   ALL_REV,
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
+import { GET_VISIBLES_FEEDBACKS } from "../actions/feedbacks";
 
 const initialState = {
   products: [],
@@ -275,6 +276,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         payments: action.payload,
       };
+    }
+    case GET_VISIBLES_FEEDBACKS: {
+      return {
+        ...state,
+        visiblesFeedbacks: action.payload
+      }
     }
     default: {
       return state;

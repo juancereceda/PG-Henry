@@ -14,12 +14,13 @@ import {
     StyledFirstAside,
     StyledAsidePublicity,
   } from "../billboard/Aside-styles";
-import { Link } from 'react-router-dom';
+import { getVisiblesFeedbacks } from '../../actions/feedbacks';
 
 
 export default function Home() {
     const dispatch = useDispatch();
     const movieList = useSelector(state => state.movieList);
+    const visiblesFeedbacks = useSelector(state => state.visiblesFeedbacks);
     const releaseList = useSelector(state => state.movieList);
     let [admin, setAdmin] = useState(null);
     let arr = [];
@@ -28,7 +29,9 @@ export default function Home() {
   }
 
     useEffect(() => {
-        dispatch(getMovieList())
+        dispatch(getMovieList());
+        dispatch(getVisiblesFeedbacks());
+
     }, [dispatch]);
 
     // Efecto para saber si el user es admin al montar el componente
@@ -54,7 +57,12 @@ export default function Home() {
                         {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}
                     </Billboard>
                     {/* Feedbacks */}
-                    
+                    {visiblesFeedbacks?.map(f => (
+                        <div className="feedback">
+                            <span>{f.text}</span>
+                            <h4>{f.author}</h4>
+                        </div>
+                    ))}
                     {/* Fin Feedbacks */}
                     <Linked to='/comingsoon'>
                         <Labels>Coming Soon</Labels>                        
