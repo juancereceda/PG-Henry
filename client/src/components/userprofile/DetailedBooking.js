@@ -35,7 +35,7 @@ export default function DetailedBooking() {
                 <div className="col">
                         <h3 className="tit">Extras</h3>
                         <ul>
-                            {typeof selectedBook.extras === "array" ? selectedBook.extras.map(ele => <li>{ele}</li>) : <li>No extras</li>}
+                            {selectedBook.extras.length > 0 ? selectedBook.extras.map(ele => <li>{ele}</li>) : <li>No extras</li>}
                         </ul>
                 </div>
             </div>

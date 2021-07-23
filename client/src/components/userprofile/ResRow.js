@@ -51,7 +51,7 @@ export default function ResRow({
 
   return (
     <tr>
-      <td><Li to={`/bookings/${id}`}>{title}</Li></td>
+      {status === "approved" ? <td><Li to={`/bookings/${id}`}>{title}</Li></td> : <td>{title}</td>}
       <td>{date}</td>
       <Stat>{status}</Stat>
       {status === "processing" ? (
