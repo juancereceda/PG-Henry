@@ -24,14 +24,16 @@ export const StyledQuestion = styled.div`
     border: 1px solid #293949;
     background: #293949;
     line-height: .7;
-    border-radius: 50px 100px 50px 100px / 25px 50px 25px 50px;
+    border-radius: 25px 100px 25px 100px / 25px 100px 25px 100px;
     h2{
+        position: relative;
         margin-bottom: 25px;
     }
 `;
 
 export const StyledAnswer = styled.div`
     margin-bottom: 20px;
-    padding: 0 15px;
+    padding: 0 25px;
+    line-height: 1.3;
     /* display: none; */
 `;
