@@ -22,13 +22,9 @@ export default function Reviews () {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        await axios.post('http://localhost:3001/feedbacks', {
-            author: user.username,
-            text: review.review
-        });
+        const feedback = {author: user.username, text: review.review};
 
-        setReview({review: null});
-
+        await axios.post('http://localhost:3001/feedbacks', feedback);
         alert(`${user.username} thank you very much for your feedback!`);
     }
 
