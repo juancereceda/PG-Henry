@@ -132,8 +132,13 @@ export const Icon = styled.img`
 `;
 
 export const Linked = styled(Link)`
-  height: 95%;
-  width: 95%;
+  text-decoration: none;
+  padding: .5em;
+  &:hover {
+    border-radius: .8em;
+    background-color: #d93c3c;
+    transition: 0.3s;
+  }
 `;
 
 export const DiscountOffer = styled.div`
