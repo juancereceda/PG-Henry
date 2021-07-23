@@ -3,7 +3,7 @@ import StyledContainer from './styles';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-import { updateMovie } from '../../actions/movies';
+import { updateMovie } from '../../../actions/movies';
 
 function EditMovie() {
     const params = useParams();
@@ -145,6 +145,17 @@ function EditMovie() {
                             value={movieDetail.rated}
                         />
                     </div>
+                    <div>
+                        <h4>Rating IMDb</h4>
+                        <input
+                            placeholder="Rating"
+                            type="text"
+                            name="IMDb"
+                            value={movieDetail.IMDb}
+                        />
+                    </div>
+                </div>
+                <div className="formInputContainer">
                     <div>
                         <h4>Description</h4>
                         <textarea

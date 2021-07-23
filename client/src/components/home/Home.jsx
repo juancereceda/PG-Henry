@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, MerchCard, PubliCard, Icon, Linked } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, DiscountOffer, Linked } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
 import Footer from '../footer/Footer'
 import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
+import Skeleton from './HomeSkeletons'
+import {
+    StyledAside,
+  } from "../billboard/Billboard-styles";
+  import {
+    StyledFirstAside,
+    StyledAsidePublicity,
+  } from "../billboard/Aside-styles";
+import { Link } from 'react-router-dom';
+
 
 export default function Home() {
     const dispatch = useDispatch();
     const movieList = useSelector(state => state.movieList);
     const releaseList = useSelector(state => state.movieList);
     let [admin, setAdmin] = useState(null);
+    let arr = [];
+  for (let i = 0; i < 6; i++) {
+    arr.push(i);
+  }
 
     useEffect(() => {
         dispatch(getMovieList())
@@ -28,26 +42,35 @@ export default function Home() {
 
     return (
         <HomeCont>
+            <DiscountOffer>
+                <h1>Martes y Miercoles: ¡Oferta especial! 30% OFF en tickets para peliculas.</h1>
+            </DiscountOffer>
             <ContMovies>
                 <Movies>
-                    <Labels>Billboard</Labels>
+                    <Linked to='/billboard'>
+                        <Labels>Billboard</Labels>
+                    </Linked>
                     <Billboard>
-                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <h2>Loading movies...</h2>}
+                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}
                     </Billboard>
-                    <Labels>Coming Soon</Labels>
+                    {/* Feedbacks */}
+                    
+                    {/* Fin Feedbacks */}
+                    <Linked to='/comingsoon'>
+                        <Labels>Coming Soon</Labels>                        
+                    </Linked>
                     <ComingSoon>
-                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : <h2>Loading movies...</h2>}
+                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el =>  <Skeleton/>)}
                     </ComingSoon>
                 </Movies>
-                <Stores>
-                    <MerchCard><Slider /></MerchCard>
-                    <MerchCard><Linked to='/products'><Icon src="https://image.flaticon.com/icons/png/512/86/86511.png" /></Linked></MerchCard>
-                    <PubliCard>
+                <StyledAside>
+                    <StyledFirstAside><Slider /></StyledFirstAside>
+                    <StyledAsidePublicity>
                         Publicity
-                    </PubliCard>
-                </Stores>
+                    </StyledAsidePublicity>
+                </StyledAside>
             </ContMovies>
-            <Footer />
+            <Footer moviesLength={1}/>
         </HomeCont>
     )
 }
