@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const StyledTitle = styled.h1`
   color: #e8e8e8;
-  font-size: 5rem;
-  line-height: 0;
+  font-size: 3rem;
+  letter-spacing: .3em;
+  padding-left: 1em;;
 `;
 
 export const StyledBillboard = styled.div`
@@ -20,12 +21,11 @@ export const StyledBillboard = styled.div`
   font-family: "Questrial", sans-serif;
 `;
 
-export const StyledHeader = styled.div`
-  position: relative;
+export const StyledHeader = styled.div`  
   width: 80%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 export const StyledAside = styled.aside`
@@ -44,38 +44,34 @@ export const StyledAside = styled.aside`
 `;
 
 export const StyledPagination = styled.div`
-  position: relative;
-  margin: 0;
-  padding: 5px;
-  border: 2px solid #30475e88;
-  display: grid;
-  grid-template-columns: 25% 50% 25%;
-  width: 10%;
+  height: 3em;
+  margin-left: 3em;
+  margin-top: auto;
+  border: .2em solid #30475e88;
+  display: flex;
+  justify-content: space-between;
+  width: 15%;
   background-color: #f05454;
-  border-radius: 15px;
-  & p {
-    grid-column: 2/3;
+  border-radius: .7em;
+  span {
+    text-align: center;
+    align-self: center;
+  }
+  & p {    
     text-align: center;
     font-size: 2.1rem;
     line-height: 0;
     color: #222831;
+    align-self: center;
   }
 `;
 
-export const StyledIndexChanger = styled.input`
-  color: #222831;
-  margin: 0;
-  padding: 0;
-  font-size: 1.7rem;
-  text-align: center;
-  vertical-align: middle;
-  border: 2px solid #222831;
-  border-radius: 15px;
+export const StyledIndexChanger = styled.button`
+  color: #222831;     
+  border: none;
+  border-radius: .8em;
   background-color: #e8e8e8;
-  &.plus {
-    grid-column: 1/2;
-  }
-  &.minus {
-    grid-column: 3/4;
+  &:hover {
+    border: .1em solid #30475E;
   }
 `;

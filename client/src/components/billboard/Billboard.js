@@ -15,6 +15,7 @@ import Footer from "../footer/Footer";
 import GenreFilter from "../GenreFilter/GenreFilter";
 import Slider from "../comboSlider/slider";
 import BillboardSkeleton from "./BillboardSkeletons";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 export default function Billboard() {
   const dispatch = useDispatch();
@@ -30,7 +31,8 @@ export default function Billboard() {
   }
 
   const [index, setIndex] = useState(0);
-
+  const numMoviesOnBill = filtredMovies.filter((movie) => movie.onBillboard).length
+  
   useEffect(() => {
     dispatch(getMovieList());
     dispatch(getGenres());
@@ -38,49 +40,20 @@ export default function Billboard() {
 
   function HandleIndex(caller) {
     const option = caller.target.value;
-    switch (option) {
-      case "→":
-        if (
-          index <
-          Math.ceil(
-            filtredMovies.filter((movie) => movie.onBillboard).length /
-              moviesPerPage
-          ) -
-            1
-        ) {
-          setIndex(index + 1);
-        }
-        break;
-      case "←":
-        if (index > 0) {
-          setIndex(index - 1);
-        }
-        break;
-      default:
-        return null;
-    }
+    option ===  "→" ?
+      index < Math.ceil(numMoviesOnBill / moviesPerPage) - 1 && 
+        setIndex(index + 1)      
+    :
+    option === "←" &&
+        index > 0 &&
+          setIndex(index - 1) 
   }
 
   return (
     <StyledBillboard>
       <StyledHeader>
         <GenreFilter setIndex={setIndex} />
-        <StyledTitle>Billboard Movies</StyledTitle>
-        <StyledPagination>
-          <StyledIndexChanger
-            type="button"
-            value="←"
-            onClick={HandleIndex}
-            className="plus"
-          />
-          <p>{index + 1}</p>
-          <StyledIndexChanger
-            type="button"
-            value="→"
-            onClick={HandleIndex}
-            className="minus"
-          />
-        </StyledPagination>
+        <StyledTitle>Billboard Movies</StyledTitle>        
       </StyledHeader>
       <StyledAside>
         <StyledFirstAside>
@@ -94,6 +67,26 @@ export default function Billboard() {
             .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
             .map((movie) => <BillboardCard props={movie} key={movie._id} />)
         : skeletons.map((el) => <BillboardSkeleton />)}
+        <StyledPagination>
+          {/* <StyledIndexChanger
+            type="button"
+            onClick={HandleIndex}
+            className="plus"
+          /> */}
+          <StyledIndexChanger onClick={HandleIndex} className="plus" value="←">
+            <FaAngleLeft />
+          </StyledIndexChanger>
+          <p>{index + 1}</p>
+          {/* <StyledIndexChanger
+            type="StyledIndexChanger"
+            onClick={HandleIndex}
+            className="minus"
+          /> */}
+          <StyledIndexChanger onClick={HandleIndex} className="minus" value="→">
+            <FaAngleRight />
+          </StyledIndexChanger>
+          <span> Page {index + 1} / {Math.ceil(numMoviesOnBill / moviesPerPage)}</span>
+        </StyledPagination>
       <Footer
         moviesLength={filtredMovies.filter((movie) => movie.onBillboard).length}
       />
