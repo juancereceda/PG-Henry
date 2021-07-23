@@ -116,16 +116,16 @@ function Footer({moviesLength}) {
     .features { 
         display: flex;
         flex-direction: column;
-        flex-grow: 2;        
-        h2{
-            margin-left: 2em;
-            padding-left: 1.5em;  
-        }
+        margin-left: -3em;
+        align-items: center;        
+        margin-right: 1em;
     }
+
     .legal {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-left: 1em;
     }
     .box {
         margin-left: .6em;
