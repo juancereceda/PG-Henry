@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getProducts, postPayment } from "../../actions/products";
 import Product from "./Product";
 import swal from "sweetalert";
 import Car from "./Car";
-import { isAdmin } from '../../actions/users';
 import {
   ProductsBox,
   Container,
@@ -19,51 +18,27 @@ import {
   StoredProducts,
   Screen,
   Reference,
-  AddProduct
 } from "./ProductsStyles";
 import {
   getPurchaseLocalStorage,
   getTokenLocalStorage,
 } from "../../reducer/reducer";
 import Footer from "../footer/Footer";
-import axios from 'axios'
 
 const Products = (props) => {
   const { getProducts } = props;
   const purchaseStore = getPurchaseLocalStorage();
   const token = getTokenLocalStorage();
-  const [admin, setAdmin] = useState(null);
-  const [showForm, setShowForm] = useState({
-    extra: false,
-    combo:false
-  })
-  const [state, setState] = useState({
-    name: '', 
-    category: '',
-    price: '',
-    stock:1000,
-    imgUrl: '',
-    combo: false
-  })
-  const config = {
-    headers: {
-      "Access-Control-Allow-Headers": "x-access-token",
-      "x-access-token": getTokenLocalStorage(),
-    },
-  };
   useEffect(() => {
     getProducts();
   }, [getProducts]);
 
-  useEffect(() => {
-    async function verify () {
-        const autho = await isAdmin();
-        setAdmin(autho);
-    };
-
-    verify();
-}, [admin]);
-
+  // const config = {
+  //   headers: {
+  //     "Access-Control-Allow-Headers": "x-access-token",
+  //     "x-access-token": getTokenLocalStorage(),
+  //   },
+  // };
   const handleBuy = async (e) => {
     e.preventDefault();
     getProducts();
@@ -80,7 +55,7 @@ const Products = (props) => {
           for a total of $${purchaseStore.total}.
           `,
         buttons: true
-      })    
+      })
       const data = {
         description: `${Object.keys(purchaseStore.extras).map((e) =>
           e.concat(" x").concat(purchaseStore.extras[e])
@@ -113,63 +88,7 @@ const Products = (props) => {
       })      
     }
   };
-  const handleChange = function(e){
-    e.preventDefault();
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    })
-  }
-  const handleSubmitExtra = async function(e){
-    e.preventDefault();
-    await axios.post('http://localhost:3001/products', state, config);
-    setState({
-      name: '', 
-      category: '',
-      price: 0,
-      stock:1000,
-      imgUrl: '',
-      combo: false
-    });
-    getProducts();
-  }
-  const handleSubmitCombo = async function(e){
-    e.preventDefault();
-    await axios.post('http://localhost:3001/products', state, config);
-    setState({
-      name: '', 
-      category: '',
-      price: 0,
-      stock:1000,
-      imgUrl: '',
-      combo: false
-    });
-    getProducts();
-  }
-  const handleShowAddExtra = function(e){
-    e.preventDefault();
-    setShowForm({
-      extra:true,
-      combo:false
-    })
-    setState({
-      ...state,
-      combo:false,
-    })
-    getProducts();
-  }
-  const handleShowAddCombo= function(e){
-    e.preventDefault();
-    setShowForm({
-      extra:false,
-      combo:true
-    })
-    setState({
-      ...state,
-      combo:true,
-    })
-    getProducts();
-  }
+
   return (
     <div>
       {purchaseStore ? (
@@ -177,13 +96,14 @@ const Products = (props) => {
           <MovieData>
             <MovieDetails>
               <h3>{purchaseStore.title || "Title"}</h3>
+              {/*                     <p>field</p> */}
               <p>
                 Schedule:{" "}
                 {purchaseStore.day.concat(", ").concat(purchaseStore.date?.slice(5, 10)).concat(", ").concat(purchaseStore.time) ||
                   "Day and time"}
               </p>
 
-              <p>Price: ${(purchaseStore.day === "Twesday" || purchaseStore.day === "Wednesday") ? purchaseStore.price + ' - 30% Off!!': purchaseStore.price }</p>
+              <p>Price:${purchaseStore.price || "Price"}</p>
             </MovieDetails>
             <div>
               <RedText>Select your parking lot</RedText>
@@ -251,33 +171,6 @@ const Products = (props) => {
                       imgUrl={e.imgUrl}
                     />
                   ))}
-                  {admin ? 
-                  <AddProduct> 
-                  {!showForm.extra && <button className="addButton" name="extra" onClick={e => handleShowAddExtra(e)}>+</button>}                  
-                  {showForm.extra && 
-                  <form onSubmit={(e) =>handleSubmitExtra(e)}> 
-                    <div>
-                      <div>
-                       <input type="text" className="input" onChange={(e) => handleChange(e)} value={state.imgUrl} name='imgUrl' placeholder='Product Image' required />
-                      </div>
-                      <div>
-                        <input type="text" className="input" onChange={(e) => handleChange(e)} value={state.name} name='name' placeholder='Product Name' required />
-                      </div>
-                      <div>
-                        <input type="text" className="input" onChange={(e) => handleChange(e)} value={state.category} name='category' placeholder='Product Category' required />
-                      </div>
-                      <div>
-                        <input type="number" className="input" min="0" onChange={(e) => handleChange(e)} value={state.price} name='price' placeholder='Product Price' required />
-                      </div>
-                      <div className="submit">
-                        <input type="submit" className="submitBtn" value="Add Product"/>
-                      </div>
-                    </div>
-                  </form>}
-                  
-                </AddProduct>
-                : null}
-                  
             </ProductsBox>
           </div>
 
@@ -298,30 +191,6 @@ const Products = (props) => {
                         imgUrl={e.imgUrl}
                       />
                     ))}
-                    {admin ? 
-                    <AddProduct> 
-                    {!showForm.combo && <button className="addButton" name="combo" onClick={e => handleShowAddCombo(e)}>+</button>}        
-                    {showForm.combo && <form  onSubmit={(e) =>handleSubmitCombo(e)}> 
-                      <div>
-                        <div>
-                          <input type="text" className="input" onChange={(e) => handleChange(e)} value={state.imgUrl} name='imgUrl' placeholder='Combo Image' required />
-                        </div>
-                        <div>
-                          <input type="text" className="input" onChange={(e) => handleChange(e)} value={state.name} name='name' placeholder='Combo Name' required />
-                        </div>
-                        <div>
-                          <input type="text" className="input" onChange={(e) => handleChange(e)} value={state.category} name='category' placeholder='Combo Category' required />
-                        </div>
-                        <div>
-                          <input type="number" className="input" min="0" onChange={(e) => handleChange(e)} value={state.price} name='price' placeholder='Combo Price' required />
-                        </div>
-                        <div className="submit">
-                          <input type="submit" className="submitBtn" value="Add Combo"/>
-                        </div>
-                      </div>
-                    </form>}
-                  </AddProduct>
-                : null}
               </ProductsBox>
             </div>
           </div>
