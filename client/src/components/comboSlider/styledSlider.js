@@ -1,37 +1,34 @@
 import styled from "styled-components";
 
-export const StyledSlider = styled.div`
+export const StyledDiv = styled.div`
     position: relative;
     height: 100%;
     width: 100%;
-    z-index: 50;
-    display: flex;
-    & > div{
-        min-height: 100%;
-        min-width: 100%;
-        margin-right: 50px;
+    overflow: hidden;
+    .slider{
+
     }
-    transition: .3s ease all;
-    z-index: 100;
+    @keyframes slide_animation{
+        0% {left: 0}
+        25% { left:100%; }
+        50% { left:200%; }
+        75% { left:100%; }
+        100% { left:0; }
+    }
+    .img-container{
+        height: 100%;
+        width: 300%;
+        margin: 0 0 0 -200%;
+        position: relative;
+        animation-name: slide_animation;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-play-state: running;
+    }
 `;
 
-export const SliderImg = styled.img`
-    position: relative;
-    margin: 5%;
-    height: 90%;
-    width: 90%;
-`;
-
-export const SliderText = styled.div`
-    position: absolute;
-    z-index: 500;
-    bottom: 0;
-    transform: translateY(25%) translateX(-17.5%);
-    width: 150%;
-    & > p{
-        text-align: center;
-        color: #F05454;
-        background-color: #222831;
-    }
-    transition: .3s ease all;
+export const StyledImg = styled.img`
+    height: 100%;
+    width: 33.3%;
 `;

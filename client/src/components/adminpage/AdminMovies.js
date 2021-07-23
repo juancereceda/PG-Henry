@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getMovieList,
-  postMovie,
-  updateMovie,
-  deleteMovie,
-} from "../../actions/movies";
+import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
-import { Link } from "react-router-dom";
+import {Link} from 'react-router-dom';
 import swal from "sweetalert";
 import AdminContainer from "./AdminStyles";
 import NotFound from "../404/NotFound";
@@ -34,7 +29,6 @@ function AdminMovies() {
     days: [],
     times: [],
     price: 0,
-    IMDb: "",
   });
 
   useEffect(() => {
@@ -73,8 +67,6 @@ function AdminMovies() {
       functionDays: movie.days,
       times: movie.times,
       price: movie.price,
-      onBillboard: false,
-      IMDb: movie.IMDb,
     };
 
     // Validaciones
@@ -118,8 +110,6 @@ function AdminMovies() {
       buttons: false,
       timer: 3000,
     });
-
-    dispatch(getMovieList());
     setMovie({
       title: "",
       date: "",
@@ -136,7 +126,6 @@ function AdminMovies() {
       days: [],
       times: [],
       price: 0,
-      IMDb: "",
     });
   };
 
@@ -201,7 +190,7 @@ function AdminMovies() {
             }) */
     }
   }
-  async function handleDelete(id) {
+  async function handleDelete(movie) {
     const willDelete = await swal({
       title: "Are you sure you want to remove movie?",
       icon: "warning",
@@ -209,31 +198,34 @@ function AdminMovies() {
       dangerMode: true,
     });
     if (willDelete) {
-      const message = await deleteMovie(id);
-      dispatch(getMovieList());
-      await swal(message, {
+      await swal("Movie've been removed!", {
         icon: "success",
         buttons: false,
         timer: 1500,
       });
+    } else {
+      swal({ title: "Welcome back!", buttons: false, timer: 1000 });
     }
   }
-  // async function handleEdit(movie) {
-  //   const willEdit = await swal({
-  //     title: "Are you sure you want to edit movie?",
-  //     icon: "warning",
-  //     buttons: true,
-  //     dangerMode: true,
-  //   });
-  //   if (willEdit) {
-  //     await swal("Go to edit movie!", {
-  //       icon: "success",
-  //       buttons: false,
-  //       timer: 1000,
-  //     });
+  async function handleEdit(movie) {
+    const willEdit = await swal({
+      title: "Are you sure you want to edit movie?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    });
+    if (willEdit) {
+      await swal("Go to edit movie!", {
+        icon: "success",
+        buttons: false,
+        timer: 1000,
+      });
+      
+    } else {
+      swal({ title: "Welcome back!", buttons: false, timer: 1000 });
 
-  //   }
-  // }
+    }
+  }
   return (
     <AdminContainer>
       {admin ? (
@@ -261,18 +253,16 @@ function AdminMovies() {
                           <div className="removeEdit">
                             <button
                               className="remove"
-                              onClick={() => handleDelete(movie._id)}
+                              onClick={() => handleDelete(movie)}
                             >
                               X
                             </button>
-                            <Link to={`/movies/${movie._id}`}>
-                              <img
-                                className="edit"
-                                // onClick={() => handleEdit(movie)}
-                                alt=""
-                                src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                              />
-                            </Link>
+                            <Link  to={`/movies/${movie._id}`}><img
+                              className="edit"
+                              onClick={() => handleEdit(movie)}
+                              alt=""
+                              src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
+                            /></Link>
                           </div>
                         </div>
                       );
@@ -307,18 +297,16 @@ function AdminMovies() {
                           <div className="removeEdit">
                             <button
                               className="remove"
-                              onClick={() => handleDelete(movie._id)}
+                              onClick={() => handleDelete(movie)}
                             >
                               X
                             </button>
-                            <Link to={`/movies/${movie._id}`}>
-                              <img
-                                className="edit"
-                                // onClick={() => handleEdit(movie)}
-                                alt=""
-                                src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                              />
-                            </Link>
+                            <Link to={`/movies/${movie._id}`}><img
+                              className="edit"
+                              onClick={() => handleEdit(movie)}
+                              alt=""
+                              src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
+                            /></Link>
                           </div>
                         </div>
                       );
@@ -433,18 +421,6 @@ function AdminMovies() {
                   />
                 </div>
                 <div>
-                  <h4>IMDb Rating</h4>
-                  <input
-                    placeholder="Rating IMDb"
-                    type="text"
-                    name="IMDb"
-                    value={movie.IMDb}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="formInputContainer">
-                <div>
                   <h4>Description</h4>
                   <input
                     placeholder="Description"
@@ -551,21 +527,21 @@ function AdminMovies() {
                 <div>
                   <h4>Times</h4>
                   <div>
-                    <label for="18hs">18hs</label>
+                    <label for="18hs">19hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="18hs"
-                      value="18hs"
+                      name="19hs"
+                      value="19hs"
                     />
                   </div>
                   <div>
-                    <label for="20hs">20hs</label>
+                    <label for="20hs">22hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="20hs"
-                      value="20hs"
+                      name="22hs"
+                      value="22hs"
                     />
                   </div>
                   <div>

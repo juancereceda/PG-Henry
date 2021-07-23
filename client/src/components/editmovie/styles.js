@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 const StyledContainer = styled.div`
     display: flex;
-    margin-top: 50px;
-    width: 100%;
+    margin-top: 30px;
+    width: 98%;
     justify-content: space-evenly;
     align-items: center;
 
     .postMovieForm {
     background-color: #2d4059;
-    height: 800px;
+    height: 600px;
     width: 850px;
     display: flex;
     flex-direction: column;

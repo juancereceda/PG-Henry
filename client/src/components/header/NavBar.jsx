@@ -58,6 +58,7 @@ async function handleLogOut() {
             <div><Linked to='/billboard'>Billboard</Linked></div>
             <div><Linked to='/comingsoon'>Coming Soon</Linked></div>
             <div><Linked to='/contact'>Contact</Linked></div>
+            <div><Linked to='/merch'>Merchandaising</Linked></div>
             <Linked to='/products'><Cart size="25" /></Linked>
           { 
                 admin ? 

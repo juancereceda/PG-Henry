@@ -4,9 +4,11 @@ import { getMovieList } from "../../actions/movies";
 import { StyledBillboard, StyledAside } from "../billboard/Billboard-styles";
 import {
   StyledFirstAside,
+  StyledSecondAside,
   StyledAsidePublicity,
 } from "../billboard/Aside-styles";
 import ComingSoonCard from "./comingSoonCard/ComingSoonCard";
+import { Link } from "react-router-dom";
 import Footer from "../footer/Footer";
 import Slider from '../comboSlider/slider'
 
@@ -26,6 +28,15 @@ export default function ComingSoon() {
         <StyledFirstAside>
           <Slider />
         </StyledFirstAside>
+        <StyledSecondAside>
+          <Link>
+            <p>Memories</p>
+            <img
+              src="https://image.flaticon.com/icons/png/512/86/86511.png"
+              alt=""
+              />
+          </Link>
+        </StyledSecondAside>
         <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
       </StyledAside>
         {movieList 

@@ -14,7 +14,6 @@ const MovieSchema = new Schema(
     rated: String,
     runtime: String,
     director: String,
-    IMDb: Number, 
   },
   {
     timestamps: true,
