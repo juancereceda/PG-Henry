@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { StyledFAQs, StyledQuestion ,  StyledAnswer, Styledform, Btn, BtnLarge, InputForm, TextForm } from './styles';
 import { QuestionsAndAnswers as QaAs } from "./Q&A"
+import { NavLink } from 'react-router-dom';
 import { adminContact } from "../../actions/FAQs";
 import swal from "sweetalert";
 
@@ -44,14 +45,24 @@ export function FAQs () {
             timer: 2000,
           });
         }
+
+
+    function auxiliar (el) {
+        console.log(el)
+        const asdf = <a href={el}>asdf</a>
+        console.log(asdf)
+        return (asdf);
+
     }
 
     return (
         <StyledFAQs>
             <h1>Frequently Asked Questions</h1>
             {QaAs.map( QandA => <StyledQuestion key={QaAs.indexOf(QandA)}>
-                <h2>{QandA.Q} <FaAngleDown style={styledButton}/> </h2>
-                <StyledAnswer key={QaAs.indexOf(QandA.A)}>{QandA.A.split(' ').map(el => el.includes('http') ? <a href={el}>here</a> : el).join(' ')}</StyledAnswer>
+                <h2>{QandA.Q}<FaAngleDown style={styledButton}/></h2>
+                <StyledAnswer key={QaAs.indexOf(QandA.A)}>
+                    <p>{QandA.A.split(' ').map(el => el.includes('http') ? auxiliar(el) : el)}</p>
+                </StyledAnswer>
             </StyledQuestion>)}
             <BtnLarge onClick={handleClick}>didn't find what you were looking for? take it easy, just mail us</BtnLarge>
             {click? 
