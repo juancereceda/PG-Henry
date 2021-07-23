@@ -17,6 +17,7 @@ import ComingSoon from "./components/comingSoon/ComingSoon";
 import ResetPassword from "./components/restorepassword/restorePassword";
 import AdminFeedbacks from "./components/adminpage/feedbacks/AdminFeedbacks";
 import DetailedBooking from "./components/userprofile/DetailedBooking";
+import { FAQs } from "./components/FAQ's";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path="/success/:id" component={Success} />
       <Route path="/restorepassword" component={ResetPassword} />
       <Route path="/bookings/:id" component={DetailedBooking} />
+      <Route path="/faqs" component={FAQs} />
     </div>
   );
 }
