@@ -20,12 +20,12 @@ export const Booking = styled.div`
                 inset 2px 3px 5px rgba(0, 0, 0, 0.3),
                 inset -2px -3px 5px rgba(0, 0, 0, 0.5);
     .col {
-        width: 50%;
+        width: 47.5%;
     }
     .row {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
     }
