@@ -31,7 +31,7 @@ function UserProfile() {
           window.location.assign("http://localhost:3000/");
         }
       } else {
-        return swal("we could not delete your acount", "Error", "error", {
+        return swal("we couldn't delete your acount", "Error", "error", {
           buttons: false,
           timer: 3000,
         });
