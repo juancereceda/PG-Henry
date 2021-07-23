@@ -5,8 +5,8 @@ export const StyledFAQs = styled.div`
     margin: 50px auto;
     padding: 10px 20px;
     border: 1px solid black;
-    background-color: #e8e8e8;
-    color: #222831;
+    background-color: #30475e;
+    color: #e8e8e8;
     display: flex;
     flex-direction: column;
     & > h1 {
@@ -21,13 +21,17 @@ export const StyledQuestion = styled.div`
     position: relative;
     margin: 5px 0;
     padding: 2px 25px;
-    border: 1px solid blue;
+    border: 1px solid #293949;
+    background: #293949;
     line-height: .7;
     border-radius: 50px 100px 50px 100px / 25px 50px 25px 50px;
+    h2{
+        margin-bottom: 25px;
+    }
 `;
 
 export const StyledAnswer = styled.div`
-    margin: 0;
-    padding: 0;
-    display: none;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    /* display: none; */
 `;
