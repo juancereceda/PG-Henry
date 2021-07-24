@@ -22,6 +22,13 @@ const div = styled.div`
       transition: .1s;
     }
   }
+
+  .row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 `;
 
 export default div;

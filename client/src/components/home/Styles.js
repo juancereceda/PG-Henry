@@ -154,8 +154,7 @@ export const DiscountOffer = styled.div`
   z-index: 200;
   background-color: #30475e;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
-              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
   border-radius: 0.7em;
   color: antiquewhite;
 `;
