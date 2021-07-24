@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 // ESTILOS HOME
 
 export const HomeCont = styled.div`
-  position: absolute;
-  top: 30%;
-  height: auto;
-  width: 100%;
+  position: relative;  
+  height: auto;  
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -15,8 +14,11 @@ export const HomeCont = styled.div`
 `;
 
 export const ContMovies = styled.div`
+  position: relative;
   height: 100%;
   width: 100%;
+  padding-top: .5em;
+  margin-top: 3.5em;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -24,9 +26,7 @@ export const ContMovies = styled.div`
 `;
 
 export const Movies = styled.div`
-  margin: 1.25%;
-  height: auto;
-  width: 85%;
+  margin: 1.25%;  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,21 +34,20 @@ export const Movies = styled.div`
 `;
 
 export const Billboard = styled.div`
-  height: 250px;
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   overflow-x: scroll;
+  font-size: medium;
   &::-webkit-scrollbar {
     display: block;
   }
 `;
 
 export const ComingSoon = styled.div`
-  height: 250px;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -90,8 +89,8 @@ export const Stores = styled.div`
 // ESTILOS MOVIE CARDS
 
 export const Movie = styled.img`
-  height: 220px;
-  width: 160px;
+  height: 18em;
+  width: 12em;
   object-fit: cover;
   margin-left: 10px;
   margin-right: 10px;
@@ -143,7 +142,7 @@ export const Linked = styled(Link)`
 
 export const DiscountOffer = styled.div`
   position: absolute;
-  top: -10%;
+  top: .5em;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
