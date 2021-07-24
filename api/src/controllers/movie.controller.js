@@ -30,7 +30,7 @@ const getMovies = async (req, res) => {
 
 const postMovie = async (req, res) => {
   try {
-    const { start, finish, functionDays, times, price, date, title, poster, description, genre, onBillboard, cast, trailer, rated, runtime, director } = req.body;
+    const { start, finish, functionDays, times, price, date, title, poster, description, genre, onBillboard, cast, trailer, rated, runtime, director, IMDb } = req.body;
     console.log('ruta back')
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     const shows = [];
@@ -86,7 +86,7 @@ const postMovie = async (req, res) => {
       poster,
       description,
       genre,
-      onBillboard,
+      onBillboard: false,
       shows,
       cast,
       trailer,

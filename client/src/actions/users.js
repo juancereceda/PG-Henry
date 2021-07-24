@@ -8,7 +8,6 @@ export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_BOOKINGS = "GET_BOOKINGS";
-export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 
@@ -168,14 +167,6 @@ export function userBookings() {
   };
 }
 
-export function searchUsers(name) {
-  return (dispatch) => {
-    axios.get(`http://localhost:3001/users?name=${name}`).then((res) => {
-      dispatch({ type: SEARCH_USERS, payload: res.data });
-    });
-  };
-}
-
 export async function verifyUser(email) {
   try {
     let result = await axios.post("http://localhost:3001/users/verifyuser", {
@@ -186,6 +177,7 @@ export async function verifyUser(email) {
     console.log(error);
   }
 }
+
 export async function verifyToken(token) {
   try {
     let result = await axios.post("http://localhost:3001/users/verifytoken", {

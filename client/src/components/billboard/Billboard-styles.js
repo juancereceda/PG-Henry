@@ -77,3 +77,24 @@ export const StyledIndexChanger = styled.input`
         grid-column: 3/4;
     }
 `;
+
+export const Btn = styled.button`
+    background-color: #f05454; 
+    width: 100px;
+    height: 40px;
+    margin-left: 50px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    justify-content: center;
+    color: #222831;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #30475E;
+    cursor: pointer;
+    &:hover{
+        background-color:#E8E8E8;
+        color:#222831;
+        border: 3px solid #F05454;
+        } 
+    }
+`;

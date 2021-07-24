@@ -21,7 +21,6 @@ import {
   LOGIN,
   LOG_OUT,
   GET_BOOKINGS,
-  SEARCH_USERS,
   USER_INFO,
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
@@ -48,8 +47,6 @@ const initialState = {
   token: getTokenLocalStorage(),
   bookings: [],
   payments: [],
-  searchUserByName: [],
-  searchUserById: [],
   userData: {},
 };
 
@@ -198,12 +195,7 @@ export default function reducer(state = initialState, action) {
         searchUserById: action.payload,
       };
     }
-    case SEARCH_USERS: {
-      return {
-        ...state,
-        searchUserByName: action.payload,
-      };
-    }
+    
     // Ordenar usuarios por cantidad de puntos asc/desc
     case ORDER_USERS_BY_POINTS: {
       //Si no hay payload, order desc

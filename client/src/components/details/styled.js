@@ -10,7 +10,7 @@ export const Box = styled.label`
   
   display:block;
   text-align: justify;
-  width:48em;
+  width:50em;
   color: #E8E8E8;
   padding-left: 1rem;
   ${mobile}{
@@ -19,8 +19,7 @@ export const Box = styled.label`
 `;
 
 export const Container =styled.div`
-      background-color: #222831;
-    
+  background-color: #222831;
 `;
 
 export const Btn = styled.button`
@@ -40,7 +39,6 @@ export const Btn = styled.button`
    width: 250px;
    height: 55px;
    font-size: 30px; 
-
    &:hover{
    background-color:#E8E8E8;
    color:#222831;
@@ -112,14 +110,12 @@ export const Show = styled.div`
 
 export const Inp = styled.input`
     background-color: #E8E8E8;
-    
     box-sizing: border-box;
     border-radius: 8px;
     &:focus{
       color:#E8E8E8;
       background: #30475E00;
       border: 2px solid #30475E;
-  
     }
 `;
 
@@ -144,4 +140,21 @@ export const Confirm = styled.button`
      background-color: #222831;
      color:#E8E8E8;
    }
+`;
+
+export const Edit = styled.div`
+  margin-left: 20px;
+  .edit {
+    color: white;
+    height: 18px;
+    width: 18px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+      transition: 0.2s;
+    }
 `;

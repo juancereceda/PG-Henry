@@ -24,6 +24,7 @@ function AdminMovies() {
     rated: "",
     runtime: "",
     director: "",
+    IMDb: "",
     start: "",
     finish: "",
     days: [],
@@ -62,6 +63,7 @@ function AdminMovies() {
       rated: movie.rated,
       runtime: movie.runtime,
       director: movie.director,
+      IMDb: movie.IMDb,
       start: movie.start,
       finish: movie.finish,
       functionDays: movie.days,
@@ -123,6 +125,7 @@ function AdminMovies() {
       rated: "",
       runtime: "",
       director: "",
+      IMDb: "",
       start: "",
       finish: "",
       days: [],
@@ -434,6 +437,26 @@ function AdminMovies() {
               </div>
               <div className="formInputContainer">
                 <div>
+                  <h4>Price</h4>
+                  <input
+                    placeholder="Price"
+                    type="number"
+                    name="price"
+                    value={movie.price}
+                  />
+                </div>
+                <div>
+                  <h4>Rating IMDb</h4>
+                  <input
+                    placeholder="Rating"
+                    type="text"
+                    name="IMDb"
+                    value={movie.IMDb}
+                  />
+                </div>
+              </div>
+              <div className="formInputContainer">
+                <div>
                   <h4>Start of shows</h4>
                   <input
                     type="date"
@@ -554,17 +577,6 @@ function AdminMovies() {
                       value="23hs"
                     />
                   </div>
-                </div>
-              </div>
-              <div className="formInputContainer">
-                <div>
-                  <h4>Price</h4>
-                  <input
-                    placeholder="Price"
-                    type="number"
-                    name="price"
-                    value={movie.price}
-                  />
                 </div>
               </div>
               <div className="formInputContainer">

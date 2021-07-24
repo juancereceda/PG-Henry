@@ -7,6 +7,7 @@ export const UPDATE_MOVIE = 'UPDATE_MOVIE';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
 export const GET_GENRES = 'GET_GENRES';
 
+
 const config = {
   headers: {
     "Access-Control-Allow-Headers": "x-access-token",

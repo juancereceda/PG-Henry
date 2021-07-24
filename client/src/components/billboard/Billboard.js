@@ -7,6 +7,7 @@ import {
   StyledAside,
   StyledPagination,
   StyledIndexChanger,
+  Btn,
 } from "./Billboard-styles";
 import {
   StyledFirstAside,
@@ -17,10 +18,12 @@ import Footer from "../footer/Footer";
 import GenreFilter from "../GenreFilter/GenreFilter";
 import Slider from "../comboSlider/slider";
 import BillboardSkeleton from "./BillboardSkeletons";
+import { BiSortDown, BiSortUp } from "react-icons/bi";
+//import Order from "../order/Order";
 
 export default function Billboard() {
   const dispatch = useDispatch();
-  const movieList = useSelector((state) => state.movieList);
+  let movieList = useSelector((state) => state.movieList);
   const genre = useSelector((state) => state.genre);
   const filtredMovies = movieList.filter((movie) =>
     movie.genre.includes(genre)
@@ -38,6 +41,18 @@ export default function Billboard() {
     dispatch(getGenres());
   }, [dispatch]);
 
+  const [order, setOrder] = useState(null);
+
+  movieList = movieList.sort(function (a, b) {
+    if (a.IMDb > b.IMDb) {
+      return order === "Ascending" ? 1 : order === "Descending" ? -1 : 0;
+    }
+    if (a.IMDb < b.IMDb) {
+      return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
+    }
+    return 0;
+  })
+  
   function HandleIndex(caller) {
     const option = caller.target.value;
     switch (option) {
@@ -64,37 +79,58 @@ export default function Billboard() {
   }
 
   return (
-    <StyledBillboard>
-      <GenreFilter />
-      <StyledTitle>Billboard Movies</StyledTitle>
-      <StyledPagination>
-        <StyledIndexChanger
-          type="button"
-          value="←"
-          onClick={HandleIndex}
-          className="plus"
-        />
-        <p>{index + 1}</p>
-        <StyledIndexChanger
-          type="button"
-          value="→"
-          onClick={HandleIndex}
-          className="minus"
-        />
-      </StyledPagination>
-      <StyledAside>
-        <StyledFirstAside>
-          <Slider />
-        </StyledFirstAside>
-        <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
-      </StyledAside>
-      {filtredMovies.length > 0
-        ? filtredMovies
-            .filter((movie) => movie.onBillboard)
-            .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
-            .map((movie) => <BillboardCard props={movie} key={movie._id} />)
-        : skeletons.map((el) => <BillboardSkeleton />)}
-      <Footer marginTop="120%" />
-    </StyledBillboard>
+    <div>
+      <Btn
+        className="sorting"
+        onClick={() => {
+          setOrder(order !== "Descending" ? "Descending" : null);
+        }}
+      >
+      <BiSortDown size="30" />
+        Rating 
+      </Btn>
+      <Btn
+        className="sorting"
+        onClick={() => {
+          setOrder(order !== "Ascending" ? "Ascending" : null);
+        }}
+      >
+        Rating
+      <BiSortUp size="30" />
+      </Btn>
+      <StyledBillboard>
+        <GenreFilter />
+        <StyledTitle>Billboard Movies</StyledTitle>
+        <StyledPagination>
+          <StyledIndexChanger
+            type="button"
+            value="←"
+            onClick={HandleIndex}
+            className="plus"
+          />
+          <p>{index + 1}</p>
+          <StyledIndexChanger
+            type="button"
+            value="→"
+            onClick={HandleIndex}
+            className="minus"
+          />
+        </StyledPagination>
+        <StyledAside>
+          <StyledFirstAside>
+            <Slider />
+          </StyledFirstAside>
+          <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
+          {/* <Order /> */}
+        </StyledAside>
+        {filtredMovies.length > 0
+          ? filtredMovies
+              .filter((movie) => movie.onBillboard)
+              .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
+              .map((movie) => <BillboardCard props={movie} key={movie._id} />)
+          : skeletons.map((el) => <BillboardSkeleton />)}
+        <Footer marginTop="120%" />
+      </StyledBillboard>
+    </div>
   );
 }

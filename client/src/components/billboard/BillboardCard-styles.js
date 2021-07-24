@@ -49,6 +49,7 @@ export const StyledCard = styled.div`
         margin-left: 1vw;
         grid-column: 2/5;
         grid-row: 4/5;
+        
     }
     span{
         color: #F05454;
