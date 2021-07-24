@@ -108,8 +108,8 @@ const Products = (props) => {
       swal({
         title: "You must select a parking slot",
         icon: "warning",
-        timer: 1500,
-        dangerMode: true,
+        timer: 2000,
+        buttons: false
       })      
     }
   };
