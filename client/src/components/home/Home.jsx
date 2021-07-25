@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, DiscountOffer, Linked } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
@@ -9,12 +9,11 @@ import { isAdmin } from '../../actions/users';
 import Skeleton from './HomeSkeletons'
 import {
     StyledAside,
-  } from "../billboard/Billboard-styles";
-  import {
+} from "../billboard/Billboard-styles";
+import {
     StyledFirstAside,
     StyledAsidePublicity,
-  } from "../billboard/Aside-styles";
-import { Link } from 'react-router-dom';
+} from "../billboard/Aside-styles";
 
 
 export default function Home() {
@@ -42,9 +41,6 @@ export default function Home() {
 
     return (
         <HomeCont>
-            <DiscountOffer>
-                <h1>Martes y Miercoles: ¡Oferta especial! 30% OFF en tickets para peliculas.</h1>
-            </DiscountOffer>
             <ContMovies>
                 <Movies>
                     <Linked to='/billboard'>
