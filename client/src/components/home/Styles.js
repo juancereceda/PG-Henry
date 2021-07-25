@@ -142,20 +142,15 @@ export const Linked = styled(Link)`
 `;
 
 export const DiscountOffer = styled.div`
-  position: absolute;
-  top: -10%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   text-align: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  line-height: 0;
-  width: 98%;
-  height: 5%;
-  z-index: 200;
+  line-height: 1.7;
+  max-width: 98%;
   background-color: #30475e;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
     inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
   border-radius: 0.7em;
-  color: antiquewhite;
+  color: #e8e8e8;
 `;

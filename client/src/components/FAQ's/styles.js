@@ -14,26 +14,51 @@ export const StyledFAQs = styled.div`
         margin: 50px;
         align-self: center;
     }
-    border-radius: 2.5%;
+    border-radius: 50px;
 `;
 
 export const StyledQuestion = styled.div`
     position: relative;
-    margin: 5px 0;
-    padding: 2px 25px;
-    border: 1px solid #293949;
+    margin: 10px 5px;
     background: #293949;
-    line-height: .7;
     border-radius: 25px 100px 25px 100px / 25px 100px 25px 100px;
-    h2{
+    z-index: 10;
+    & >div{
         position: relative;
-        margin-bottom: 25px;
+        padding: 15px 0;
+        background-color: transparent;
+    }
+    div:hover{
+        cursor: pointer;
+    }
+    div h2{
+        margin: 10px 25px;
+        line-height: .5;
+        position: relative;
+        margin-bottom: 15px;
+        z-index: -1;
     }
 `;
 
 export const StyledAnswer = styled.div`
-    margin-bottom: 20px;
+    margin: 20px 50px 10px 50px;
     padding: 0 25px;
-    line-height: 1.3;
-    /* display: none; */
+    text-align: justify;
+    z-index: -1;
+    a{
+        color: #F05454;
+    }
+    transition: all 350ms ease-in-out;
+    ${({answerhidden}) =>  answerhidden ?
+    `
+        margin: 0;
+        padding: 0;
+        line-heigth: 0rem;
+        font-size: 0rem;
+        & > p, a{
+            color: #293949;
+        }
+    ` : `
+        color: #e8e8e8;
+    `}
 `;

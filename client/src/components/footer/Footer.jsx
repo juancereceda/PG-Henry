@@ -146,10 +146,10 @@ function Footer({moviesLength}) {
                     <li className='social'>
                         <h2>Social</h2>
                         <ul className="box">
-                            <li><a href="https://www.facebook.com" target='_blank'><FaFacebook /></a></li>
-                            <li><a href="https://www.twitter.com" target='_blank'><FaTwitter /></a></li>
-                            <li><a href="https://www.instagram.com" target='_blank'><FaInstagram /></a></li>
-                            <li><a href="https://www.pinterest.com" target='_blank'><FaPinterest /></a></li>
+                            <li><a href="https://www.facebook.com" target='_blank' rel="noreferrer"><FaFacebook /></a></li>
+                            <li><a href="https://www.twitter.com" target='_blank' rel="noreferrer"><FaTwitter /></a></li>
+                            <li><a href="https://www.instagram.com" target='_blank' rel="noreferrer"><FaInstagram /></a></li>
+                            <li><a href="https://www.pinterest.com" target='_blank' rel="noreferrer"><FaPinterest /></a></li>
                         </ul>
                     </li>
                     <li className="features">

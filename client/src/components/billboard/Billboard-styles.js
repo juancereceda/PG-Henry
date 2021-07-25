@@ -56,6 +56,7 @@ export const StyledPagination = styled.div`
   span {
     text-align: center;
     align-self: center;
+    margin-right: 15px;
   }
   & p {    
     text-align: center;
