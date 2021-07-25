@@ -11,8 +11,8 @@ export function FAQs () {
     const styledButton = { color: "#F05454", position: "absolute", right: "1%", top: "5%"}
 
     function auxiliar (el) {
-        const linkedText = <NavLink to={el}>here</NavLink>
-        return (linkedText);
+      const linkedText = <NavLink to={el}>here</NavLink>
+      return (linkedText);
     }
 
     function HanldeVisibility (element) {}
@@ -52,7 +52,7 @@ export function FAQs () {
             timer: 2000,
           });
         }
-
+      }
     return (
         <StyledFAQs>
             <h1>Frequently Asked Questions</h1>
