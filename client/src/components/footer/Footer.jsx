@@ -22,9 +22,9 @@ function Footer({moviesLength}) {
     const StyledDiv = styled.div`
     position: relative;
     ${({ moviesLength }) => moviesLength === 1 ? `
-    top: 200px;
+    top: 1em;
   ` : `top: 10px;`}
-    width:100%;
+    width:97%;
     .footer {
     display: flex;
     flex-flow: row wrap;
@@ -95,6 +95,18 @@ function Footer({moviesLength}) {
     color: #999;
     }   
 
+    .ulSocial {
+        display: flex;
+        width: 10%;
+        justify-content: space-around;
+        margin-right: 5em;
+        align-items: center;
+    }
+
+    .box { 
+        width:15%;
+    }
+
     @media screen and (min-width: 600px) {
     .r-footer > * {
     flex: 1;
@@ -106,11 +118,6 @@ function Footer({moviesLength}) {
 
     .r-footer {
         flex: 2 0px;
-    }
-    
-    .social {
-        display: flex; 
-        flex-direction: column;
     }
 
     .features { 
@@ -127,10 +134,23 @@ function Footer({moviesLength}) {
         align-items: center;
         margin-left: 1em;
     }
+
+    .social {
+        display: flex; 
+        flex-direction: column;
+        h2 {
+            align-self: center;
+            margin-right: 5em;
+        }
+    }
     .box {
         margin-left: .6em;
     }
+    .ulSocial {       
+        width: 80%;        
     }
+    
+    }   
     `;
 
     return (
@@ -145,11 +165,11 @@ function Footer({moviesLength}) {
                 <ul className="r-footer">
                     <li className='social'>
                         <h2>Social</h2>
-                        <ul className="box">
-                            <li><a href="https://www.facebook.com" target='_blank' rel="noreferrer"><FaFacebook /></a></li>
-                            <li><a href="https://www.twitter.com" target='_blank' rel="noreferrer"><FaTwitter /></a></li>
-                            <li><a href="https://www.instagram.com" target='_blank' rel="noreferrer"><FaInstagram /></a></li>
-                            <li><a href="https://www.pinterest.com" target='_blank' rel="noreferrer"><FaPinterest /></a></li>
+                        <ul className="box ulSocial">
+                            <li><a href="https://www.facebook.com" target='_blank' rel="noopener noreferrer"><FaFacebook /></a></li>
+                            <li><a href="https://www.twitter.com" target='_blank' rel="noopener noreferrer"><FaTwitter /></a></li>
+                            <li><a href="https://www.instagram.com" target='_blank' rel="noopener noreferrer"><FaInstagram /></a></li>
+                            <li><a href="https://www.pinterest.com" target='_blank' rel="noopener noreferrer"><FaPinterest /></a></li>
                         </ul>
                     </li>
                     <li className="features">

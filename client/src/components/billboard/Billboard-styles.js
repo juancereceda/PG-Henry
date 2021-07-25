@@ -30,17 +30,18 @@ export const StyledHeader = styled.div`
 
 export const StyledAside = styled.aside`
   position: absolute;
-  top: 1%;
-  right: 1%;
-  height: 700px;
-  width: 16%;
+  top: 2.5em;
+  right: 2em;
+  height: 37em;
+  width: 15em;
   background-color: #30475e88;
   border: 5px solid #30475e;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  font-size: large;
   align-items: center;
-  justify-content: space-evenly;
+  text-align: center;  
 `;
 
 export const StyledPagination = styled.div`
