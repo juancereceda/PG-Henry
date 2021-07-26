@@ -43,26 +43,25 @@ export const StyledQuestion = styled.div`
 
 
 export const StyledAnswer = styled.div`
-    margin: 20px 50px 10px 50px;
-    padding: 0 25px;
-    text-align: justify;
-    z-index: -1;
-    a{
-        color: #F05454;
-    }
-    transition: all 350ms ease-in-out;
-    ${({answerhidden}) =>  answerhidden ?
-    `
+    &.answerHidden{
         margin: 0;
         padding: 0;
-        line-heigth: 0rem;
+        line-height: 0rem;
         font-size: 0rem;
         & > p, a{
             color: #293949;
         }
-    ` : `
-        color: #e8e8e8;
-    `}
+    }
+    &.answerShow{
+        margin: 20px 50px 10px 50px;
+        padding: 0 25px;
+        text-align: justify;
+        z-index: -1;
+        a{
+            color: #F05454;
+        }
+    }
+    transition: all 350ms ease-in-out;
 `;
 
 export const BtnLarge = styled.button`

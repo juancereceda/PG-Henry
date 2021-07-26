@@ -5,7 +5,6 @@ import {
   AiFillFacebook as Fb,
   AiFillInstagram as Instagram,
 } from "react-icons/ai";
-import { BiCameraMovie as Camera } from "react-icons/bi";
 import { TiShoppingCart as ShoppingCart } from "react-icons/ti";
 
 // ESTILOS DEL HEADER
@@ -44,12 +43,15 @@ export const HeadInsider = styled.div`
   align-items: center;
 `;
 
-export const HeaderIcon = styled(Camera)`
-  padding: 1em;
+export const HeaderIcon = styled.img`
+  background-image: url("https://i.ibb.co/TWXjH1D/Nuevo-proyecto-1.png");
+  padding: 2.5rem;
   background-color: #222831;
   border-radius: 50%;
   margin: 0.8em 0.8em 0.8em 2em;
   color: #e8e8e8;
+  background-size: 170%;
+  background-position: center;
 `;
 
 export const Socials = styled.a`
