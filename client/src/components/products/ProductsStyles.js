@@ -71,6 +71,47 @@ export const BuyBox = styled.div`
   align-items: center;
   margin-right: 50px;
   margin-bottom: 10px;
+  .totalRow {
+    display: flex;
+  }
+  .totalCnt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .couponCnt {
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      background-color: #30475e;
+      width: 300px;
+      height: 200px;
+      input {
+        font-family: Questrial;
+        height: 30%;
+        width: 90%;
+        background-color: #e8e8e8;
+        color: #000000;
+        padding-left: 10%;
+        font-size: 20px;
+      }
+      button {
+        font-family: Questrial;
+        height: 30%;
+        width: 90%;
+        background-color: #f05353;
+        border: none;
+        color: #e8e8e8;
+        border-radius: 20px;
+        font-size: 22px;
+        &:hover {
+          background-color: #d93c3c;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
   .notLogged {
     display: flex;
     flex-direction: column;
@@ -123,45 +164,45 @@ export const StoredProducts = styled.p`
   margin-right: 7px;
 `;
 export const AddProduct = styled.div`
-    display:flex;
-    justify-content:center;
-    height:fit-content;
-    height: 352px;
-    margin:10px;
-    min-width:200px;
-    padding: 15px;
-    font-size: 1.4em;    
-    background-color: rgb(48, 71, 94);
-    .addButton{
-      width: 100%;
-      height: 100%;
-      border:none;
-      outline:0;
-      background-color:transparent;
-      font-size: 100px;
-      border:none;
-      color: rgba(255, 255, 255, 0.5);
-      &:hover{
-        color: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  height: 352px;
+  margin: 10px;
+  min-width: 200px;
+  padding: 15px;
+  font-size: 1.4em;
+  background-color: rgb(48, 71, 94);
+  .addButton {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: 0;
+    background-color: transparent;
+    font-size: 100px;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  .submit {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    .submitBtn {
+      background-color: rgba(34, 40, 49, 1);
+      border: none;
+      outline: 0;
+      color: rgba(255, 255, 255, 1);
+      height: 25px;
+      &:hover {
+        background-color: rgba(34, 40, 49, 0.7);
+        color: rgba(255, 255, 255, 0.7);
       }
     }
-    .submit{
-      margin-top: 70px;
-      display:flex;
-      flex-direction: column;
-      .submitBtn{
-        background-color: rgba(34, 40, 49, 1);
-        border:none;
-        outline:0;
-        color:rgba(255, 255, 255, 1);
-        height:25px;
-        &:hover{
-          background-color: rgba(34, 40, 49, 0.7);
-          color:rgba(255, 255, 255, 0.7);
-        }
-      }
-    }
-    .input{
-      margin-top: 30px;
-    }
+  }
+  .input {
+    margin-top: 30px;
+  }
 `;
