@@ -82,7 +82,6 @@ export default function Billboard() {
         Rating
         <BiSortUp size="30" />
       </Btn>
-
       <StyledBillboard>
         <StyledHeader>
           <GenreFilter setIndex={setIndex} />

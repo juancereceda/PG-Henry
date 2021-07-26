@@ -106,14 +106,15 @@ export const Show = styled.div`
    grid-template-columns:30% 30% 30%;
    margin-left: 170px;
    padding-left: 20px; */
-  margin-left: 175px;
+  margin-top: 50px;
+  margin-left: 160px;
   width: 615px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height:fit-content;
   .showDiv{
-    margin-top: 20px;;
+    margin-top: 20px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -189,11 +190,11 @@ export const Confirm = styled.button`
 `;
 
 export const Edit = styled.div`
-  margin-left: 20px;
+  margin-left: 10px;
   .edit {
     color: white;
-    height: 18px;
-    width: 18px;
+    height: 15px;
+    width: 15px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
