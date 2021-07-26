@@ -9,6 +9,19 @@ export const ProductBox = styled.div`
     padding: 15px;
     font-size: 1.4em;    
     background-color: rgb(48, 71, 94);
+    .deleteBtn{
+        border:none;
+        height: 20px;
+        width:20px;
+        right:0px;
+        top:0px;
+        background-color: rgb(234, 84, 85);
+        color:rgb(232, 232, 232);
+        &:hover{
+            color:rgb(232, 232, 232);
+            background-color: rgba(234, 84, 85, 0.7);
+        };
+    }
 `;
 
 export const InfoBox = styled.div`
@@ -22,16 +35,7 @@ export const InfoBox = styled.div`
         justify-content: center;
         align-items: center;
     }
-    .deleteBtn{
-        border:none;
-        right:0px;
-        top:0px;
-        background-color: rgb(234, 84, 85);
-        &:hover{
-            color:rgb(232, 232, 232);
-            background-color: rgba(234, 84, 85, 0.7);
-        };
-    }
+    
 `;
 export const TextBox = styled.div`
     display:flex;

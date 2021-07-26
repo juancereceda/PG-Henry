@@ -103,10 +103,9 @@ const Product = (props) => {
     }
 
     return(
-        <ProductBox>
+        <ProductBox>            
             <div>
-            <InfoBox>
-                {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X</button> : null}
+            <InfoBox>                
                 <div id="ctn">
                 <ImgBox>
                     <img src={props.imgUrl} height='150px' width='160px' alt=''/>
@@ -126,6 +125,7 @@ const Product = (props) => {
                     </ButtonBox>
                 </Center>
             </div>
+            {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X</button> : null}
         </ProductBox>
     )
 }
