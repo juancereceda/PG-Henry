@@ -7,7 +7,7 @@ export default function Header() {
         <HeaderAlpha>
             <Head>
                 <HeadInsider>
-                    <HeaderIcon size="65" />
+                    <HeaderIcon/>
                     <Title>Henry Autocinema</Title>
                 </HeadInsider>
                 <HeadInsider>

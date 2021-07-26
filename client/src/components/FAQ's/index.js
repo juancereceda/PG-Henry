@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { StyledFAQs, StyledQuestion ,  StyledAnswer, Styledform, Btn, BtnLarge, InputForm, TextForm } from './styles';
 import { QuestionsAndAnswers as QaAs } from "./Q&A"
-import { NavLink } from 'react-router-dom';
 import { adminContact } from "../../actions/FAQs";
 import swal from "sweetalert";
 
@@ -11,11 +10,18 @@ export function FAQs () {
     const styledButton = { color: "#F05454", position: "absolute", right: "1%", top: "5%"}
 
     function auxiliar (el) {
-      const linkedText = <NavLink to={el}>here</NavLink>
+      const linkedText = <a href={el} target="_blank" rel="noreferrer">here</a>
       return (linkedText);
     }
 
-    function HanldeVisibility (element) {}
+    function HanldeVisibility (element) {
+      let classModifier = element.target.children[1].classList
+      if(classModifier.contains('answerHidden')){
+        classModifier.replace('answerHidden', 'answerShow');
+      }else{
+        classModifier.replace('answerShow', 'answerHidden');
+      }
+    }
     const [click, setClick]= useState(false)
     const [info, setInfo]= useState({
          subject:'',
@@ -56,10 +62,10 @@ export function FAQs () {
     return (
         <StyledFAQs>
             <h1>Frequently Asked Questions</h1>
-            {QaAs.map( QandA => <StyledQuestion key={QaAs.indexOf(QandA)}>
-                <div  onClick={HanldeVisibility}>
-                    <h2>{QandA.Q}<FaAngleDown style={styledButton}/></h2>
-                    <StyledAnswer key={QaAs.indexOf(QandA.A)} answerhidden={false}>
+            {QaAs.map( QandA => <StyledQuestion key={QandA.Q}>
+                <div  onClick={HanldeVisibility} key={QaAs.indexOf(QandA)}>
+                    <h2 key={QandA}>{QandA.Q}<FaAngleDown style={styledButton}/></h2>
+                    <StyledAnswer key={QandA.A} className="answerHidden">
                         <p>{QandA.A.split(' ').map(el => el.includes('http') ? auxiliar(el) : ` ${el} `)}</p>
                     </StyledAnswer>
                 </div>
