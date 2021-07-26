@@ -22,9 +22,9 @@ function Footer({moviesLength}) {
     const StyledDiv = styled.div`
     position: relative;
     ${({ moviesLength }) => moviesLength === 1 ? `
-    top: 1em;
-  ` : `top: 10px;`}
-    width:97%;
+    top: 200px;
+  ` : `top: 50px;`}
+    width:100%;
     .footer {
     display: flex;
     flex-flow: row wrap;
