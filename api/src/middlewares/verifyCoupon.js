@@ -9,10 +9,15 @@ const validateCoupon = async (req, res, next) => {
     if (!couponCode || !couponFound) {
       return res.status(404).send({ message: "Coupon not found" });
     }
-    if (couponCode === "FIRST-BOOKING-2021" && !userFound.firstBooking) {
-      return res
-        .status(400)
-        .send({ message: "You have already made your first booking!" });
+    if (couponCode === "FIRST-BOOKING-2021") {
+      if (userFound.bookings.length < 1) {
+        return res
+          .status(400)
+          .send({ message: "You have already made your first booking!" });
+      } else {
+        req.couponDiscount = couponFound.discount;
+        next();
+      }
     }
     if (!couponFound.dates.includes(date)) {
       return res

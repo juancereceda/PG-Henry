@@ -68,7 +68,6 @@ const processPayment = async (req, res) => {
 
     const updatedUser = await User.findByIdAndUpdate(req.userId, {
       bookings: [...bookings, newBooking],
-      firstBooking: false,
     });
 
     res.status(201).send(result.body.init_point);
