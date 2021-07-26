@@ -18,6 +18,7 @@ import ResetPassword from "./components/restorepassword/restorePassword";
 import AdminFeedbacks from "./components/adminpage/feedbacks/AdminFeedbacks";
 import DetailedBooking from "./components/userprofile/DetailedBooking";
 import { FAQs } from "./components/FAQ's";
+import { DiscountBanner } from "./components/home/DiscountBanner"
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
       <Route path="/restorepassword" component={ResetPassword} />
       <Route path="/bookings/:id" component={DetailedBooking} />
       <Route path="/faqs" component={FAQs} />
+      <Route path="/" exact component={DiscountBanner} />
     </div>
   );
 }

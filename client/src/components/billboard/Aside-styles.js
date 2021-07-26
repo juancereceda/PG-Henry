@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledFirstAside = styled.div`
   position: relative;
   width: 90%;
-  height: 300px;
+  height: 50%;
   background-color: #f05454;
   border-radius: 0.5rem;
   display: flex;
@@ -13,12 +13,13 @@ export const StyledFirstAside = styled.div`
   overflow: hidden;
   flex-wrap: nowrap;
   transition: 0.3s ease all;
+  
 `;
 
 export const StyledAsidePublicity = styled.div`
   width: 90%;
-  height: 300px;
+  height: 50%;
   background-color: red;
   text-align: center;
-  font-size: 2rem;
+  font-size: large;
 `;

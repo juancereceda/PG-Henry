@@ -21,7 +21,6 @@ import {
   LOGIN,
   LOG_OUT,
   GET_BOOKINGS,
-  SEARCH_USERS,
   USER_INFO,
   GET_BOOK,
   ALL_REV,
@@ -30,16 +29,6 @@ import { GET_PAYMENTS } from "../actions/orders";
 
 const initialState = {
   products: [],
-  /*   purchase:{
-    parking:'',
-    price:0,
-    day:'',
-    time:'',
-    title:'',
-    slot:'',
-    extras:{},
-    total:0
-  }, */
   slot: "",
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
@@ -51,8 +40,6 @@ const initialState = {
   bookings: [],
   selBook: {},
   payments: [],
-  searchUserByName: [],
-  searchUserById: [],
   userData: {},
   showRevs: false,
 };
@@ -202,12 +189,7 @@ export default function reducer(state = initialState, action) {
         searchUserById: action.payload,
       };
     }
-    case SEARCH_USERS: {
-      return {
-        ...state,
-        searchUserByName: action.payload,
-      };
-    }
+    
     // Ordenar usuarios por cantidad de puntos asc/desc
     case ORDER_USERS_BY_POINTS: {
       //Si no hay payload, order desc

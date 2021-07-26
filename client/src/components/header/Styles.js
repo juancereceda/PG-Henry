@@ -12,7 +12,7 @@ import { TiShoppingCart as ShoppingCart } from "react-icons/ti";
 
 export const HeaderAlpha = styled.div`
   height: 25%;
-  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

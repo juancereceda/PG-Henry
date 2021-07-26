@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import { Revs } from './ReviewsStyles';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 export default function Reviews () {
     const [review, setReview] = useState({review: null});
 
     let bookings = useSelector(state => state.bookings);
+    const user = useSelector(state => state.userData);
 
     const flag = bookings.filter(booking => booking.status === "approved");
 
@@ -18,10 +20,12 @@ export default function Reviews () {
         }));
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        alert(`Your review: ${review.review} was sent.`);
-        setReview({review: null})
+        const feedback = {author: user.username, text: review.review};
+
+        await axios.post('http://localhost:3001/feedbacks', feedback);
+        alert(`${user.username} thank you very much for your feedback!`);
     }
 
     return (

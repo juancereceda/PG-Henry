@@ -19,6 +19,7 @@ function EditMovie() {
         rated: "",
         runtime: "",
         director: "",
+        IMDb: "",
     });
     const ChangeInput = (e) => {
         setMovieDetail({

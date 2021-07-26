@@ -30,17 +30,18 @@ export const StyledHeader = styled.div`
 
 export const StyledAside = styled.aside`
   position: absolute;
-  top: 1%;
-  right: 1%;
-  height: 700px;
-  width: 16%;
+  top: 2.5em;
+  right: 2em;
+  height: 37em;
+  width: 15em;
   background-color: #30475e88;
   border: 5px solid #30475e;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  font-size: large;
   align-items: center;
-  justify-content: space-evenly;
+  text-align: center;  
 `;
 
 export const StyledPagination = styled.div`
@@ -56,6 +57,7 @@ export const StyledPagination = styled.div`
   span {
     text-align: center;
     align-self: center;
+    margin-right: 15px;
   }
   & p {    
     text-align: center;
@@ -66,6 +68,27 @@ export const StyledPagination = styled.div`
   }
 `;
 
+export const Btn = styled.button`
+    background-color: #f05454; 
+    width: 100px;
+    height: 40px;
+    margin-left: 50px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    justify-content: center;
+    color: #222831;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #30475E;
+    cursor: pointer;
+    &:hover{
+        background-color:#E8E8E8;
+        color:#222831;
+        border: 3px solid #F05454;
+        } 
+    }
+  `;
+
 export const StyledIndexChanger = styled.button`
   color: #222831;     
   border: none;
@@ -74,4 +97,5 @@ export const StyledIndexChanger = styled.button`
   &:hover {
     border: .1em solid #30475E;
   }
+
 `;
