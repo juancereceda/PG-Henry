@@ -29,6 +29,7 @@ const getMovies = async (req, res) => {
 
 const postMovie = async (req, res) => {
   try {
+
     const {
       start,
       finish,
@@ -57,6 +58,7 @@ const postMovie = async (req, res) => {
       "Saturday",
       "Sunday",
     ];
+
     const shows = [];
     const startArr = start.split("-");
     const finishArr = finish.split("-");
@@ -114,7 +116,7 @@ const postMovie = async (req, res) => {
       poster,
       description,
       genre,
-      onBillboard,
+      onBillboard: false,
       shows,
       cast,
       trailer,
