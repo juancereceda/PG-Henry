@@ -86,46 +86,47 @@ export default function Billboard() {
       <BiSortUp size="30" />
       </Btn>
    
-    <StyledBillboard>
-      <StyledHeader>
-        <GenreFilter setIndex={setIndex} />
-        <StyledTitle>Billboard Movies</StyledTitle>        
-      </StyledHeader>
-      <StyledAside>
-        <StyledFirstAside>
-          <Slider />
-        </StyledFirstAside>
-        <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
-      </StyledAside>
-      {filtredMovies.length > 0
-        ? filtredMovies
-            .filter((movie) => movie.onBillboard)
-            .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
-            .map((movie) => <BillboardCard props={movie} key={movie._id} />)
-        : skeletons.map((el) => <BillboardSkeleton />)}
-        <StyledPagination>
-          {/* <StyledIndexChanger
-            type="button"
-            onClick={HandleIndex}
-            className="plus"
-          /> */}
-          <StyledIndexChanger onClick={HandleIndex} className="plus" value="←">
-            <FaAngleLeft />
-          </StyledIndexChanger>
-          <p>{index + 1}</p>
-          {/* <StyledIndexChanger
-            type="StyledIndexChanger"
-            onClick={HandleIndex}
-            className="minus"
-          /> */}
-          <StyledIndexChanger onClick={HandleIndex} className="minus" value="→">
-            <FaAngleRight />
-          </StyledIndexChanger>
-          <span> Page {index + 1} / {Math.ceil(numMoviesOnBill / moviesPerPage)}</span>
-        </StyledPagination>
-      <Footer
-        moviesLength={filtredMovies.filter((movie) => movie.onBillboard).length}
-      />
-    </StyledBillboard>
+      <StyledBillboard>
+        <StyledHeader>
+          <GenreFilter setIndex={setIndex} />
+          <StyledTitle>Billboard Movies</StyledTitle>        
+        </StyledHeader>
+        <StyledAside>
+          <StyledFirstAside>
+            <Slider />
+          </StyledFirstAside>
+          <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
+        </StyledAside>
+        {filtredMovies.length > 0
+          ? filtredMovies
+              .filter((movie) => movie.onBillboard)
+              .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
+              .map((movie) => <BillboardCard props={movie} key={movie._id} />)
+          : skeletons.map((el) => <BillboardSkeleton />)}
+          <StyledPagination>
+            {/* <StyledIndexChanger
+              type="button"
+              onClick={HandleIndex}
+              className="plus"
+            /> */}
+            <StyledIndexChanger onClick={HandleIndex} className="plus" value="←">
+              <FaAngleLeft />
+            </StyledIndexChanger>
+            <p>{index + 1}</p>
+            {/* <StyledIndexChanger
+              type="StyledIndexChanger"
+              onClick={HandleIndex}
+              className="minus"
+            /> */}
+            <StyledIndexChanger onClick={HandleIndex} className="minus" value="→">
+              <FaAngleRight />
+            </StyledIndexChanger>
+            <span> Page {index + 1} / {Math.ceil(numMoviesOnBill / moviesPerPage)}</span>
+          </StyledPagination>
+        <Footer
+          moviesLength={filtredMovies.filter((movie) => movie.onBillboard).length}
+        />
+      </StyledBillboard>
+    </div>
   );
 }
