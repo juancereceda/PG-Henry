@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const StyledTitle = styled.h1`
   color: #e8e8e8;
   font-size: 3rem;
-  letter-spacing: .3em;
-  padding-left: 1em;;
+  letter-spacing: 0.3em;
+  padding-left: 1em; ;
 `;
 
 export const StyledBillboard = styled.div`
@@ -21,7 +21,7 @@ export const StyledBillboard = styled.div`
   font-family: "Questrial", sans-serif;
 `;
 
-export const StyledHeader = styled.div`  
+export const StyledHeader = styled.div`
   width: 80%;
   display: flex;
   align-items: center;
@@ -41,61 +41,76 @@ export const StyledAside = styled.aside`
   flex-direction: column;
   font-size: large;
   align-items: center;
-  text-align: center;  
+  text-align: center;
 `;
 
 export const StyledPagination = styled.div`
   height: 3em;
-  margin-left: 3em;
-  margin-top: auto;
-  border: .2em solid #30475e88;
+  position: absolute;
+  left: 35%;
+  bottom: 315px;
+  border: 0.2em solid #30475e88;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 15%;
-  background-color: #f05454;
-  border-radius: .7em;
+  background-color: #293949;
+  border-radius: 0.5em;
   span {
     text-align: center;
     align-self: center;
     margin-right: 15px;
   }
-  & p {    
+  & p {
     text-align: center;
     font-size: 2.1rem;
     line-height: 0;
-    color: #222831;
+    color: #e8e8e8;
     align-self: center;
+  }
+  .plusminus {
+    color: #222831;
+    border: none;
+    border-radius: 0.5em;
+    height: 70%;
+    cursor: pointer;
+    &:hover {
+      transform: scale(0.95);
+      filter: opacity(50%);
+      transition: 200ms ease-in-out;
+    }
   }
 `;
 
 export const Btn = styled.button`
-    background-color: #f05454; 
-    width: 100px;
-    height: 40px;
-    margin-left: 50px;
-    margin-top: 15px;
-    padding-bottom: 10px;
-    justify-content: center;
+  background-color: #f05454;
+  width: 100px;
+  height: 40px;
+  margin-left: 50px;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  justify-content: center;
+  color: #222831;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid #30475e;
+  cursor: pointer;
+  &:hover {
+    background-color: #e8e8e8;
     color: #222831;
-    font-size: 15px;
-    border-radius: 10px;
-    border: 1px solid #30475E;
-    cursor: pointer;
-    &:hover{
-        background-color:#E8E8E8;
-        color:#222831;
-        border: 3px solid #F05454;
-        } 
-    }
-  `;
+    border: 3px solid #f05454;
+  }
+`;
 
 export const StyledIndexChanger = styled.button`
-  color: #222831;     
+  color: #222831;
   border: none;
-  border-radius: .8em;
-  background-color: #e8e8e8;
+  border-radius: 0.5em;
+  height: 99%;
+  cursor: pointer;
   &:hover {
-    border: .1em solid #30475E;
+    transform: scale(0.95);
+    filter: opacity(50%);
+    transition: 200ms ease-in-out;
   }
-
 `;

@@ -18,8 +18,7 @@ import Slider from "../comboSlider/slider";
 import BillboardSkeleton from "./BillboardSkeletons";
 import { BiSortDown, BiSortUp } from "react-icons/bi";
 //import Order from "../order/Order";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 export default function Billboard() {
   const dispatch = useDispatch();
@@ -35,8 +34,10 @@ export default function Billboard() {
   }
 
   const [index, setIndex] = useState(0);
-  const numMoviesOnBill = filtredMovies.filter((movie) => movie.onBillboard).length
-  
+  const numMoviesOnBill = filtredMovies.filter(
+    (movie) => movie.onBillboard
+  ).length;
+
   useEffect(() => {
     dispatch(getMovieList());
     dispatch(getGenres());
@@ -52,19 +53,15 @@ export default function Billboard() {
       return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
     }
     return 0;
-  })
-  
-  function HandleIndex(caller) {
-    const option = caller.target.value;
-    option ===  "→" ?
-      index < Math.ceil(numMoviesOnBill / moviesPerPage) - 1 && 
-        setIndex(index + 1)      
-    :
-    option === "←" &&
-        index > 0 &&
-          setIndex(index - 1) 
-  }
+  });
 
+  function HandlePrevIndex() {
+    index > 0 && setIndex(index - 1);
+  }
+  function HandleNextIndex() {
+    index < Math.ceil(numMoviesOnBill / moviesPerPage) - 1 &&
+      setIndex(index + 1);
+  }
   return (
     <div>
       <Btn
@@ -73,8 +70,8 @@ export default function Billboard() {
           setOrder(order !== "Descending" ? "Descending" : null);
         }}
       >
-      <BiSortDown size="30" />
-        Rating 
+        <BiSortDown size="30" />
+        Rating
       </Btn>
       <Btn
         className="sorting"
@@ -83,49 +80,50 @@ export default function Billboard() {
         }}
       >
         Rating
-      <BiSortUp size="30" />
+        <BiSortUp size="30" />
       </Btn>
-   
-    <StyledBillboard>
-      <StyledHeader>
-        <GenreFilter setIndex={setIndex} />
-        <StyledTitle>Billboard Movies</StyledTitle>        
-      </StyledHeader>
-      <StyledAside>
-        <StyledFirstAside>
-          <Slider />
-        </StyledFirstAside>
-        <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
-      </StyledAside>
-      {filtredMovies.length > 0
-        ? filtredMovies
-            .filter((movie) => movie.onBillboard)
-            .slice(index * moviesPerPage, index * moviesPerPage + moviesPerPage)
-            .map((movie) => <BillboardCard props={movie} key={movie._id} />)
-        : skeletons.map((el) => <BillboardSkeleton />)}
+
+      <StyledBillboard>
+        <StyledHeader>
+          <GenreFilter setIndex={setIndex} />
+          <StyledTitle>Billboard Movies</StyledTitle>
+        </StyledHeader>
+        <StyledAside>
+          <StyledFirstAside>
+            <Slider />
+          </StyledFirstAside>
+          <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
+        </StyledAside>
+        {filtredMovies.length > 0
+          ? filtredMovies
+              .filter((movie) => movie.onBillboard)
+              .slice(
+                index * moviesPerPage,
+                index * moviesPerPage + moviesPerPage
+              )
+              .map((movie) => <BillboardCard props={movie} key={movie._id} />)
+          : skeletons.map((el) => <BillboardSkeleton />)}
         <StyledPagination>
-          {/* <StyledIndexChanger
-            type="button"
-            onClick={HandleIndex}
-            className="plus"
-          /> */}
-          <StyledIndexChanger onClick={HandleIndex} className="plus" value="←">
-            <FaAngleLeft />
-          </StyledIndexChanger>
+          <img
+            src="https://res.cloudinary.com/juancereceda/image/upload/v1627326026/left-arrow_2_j8ulxt.png"
+            alt="prev"
+            onClick={HandlePrevIndex}
+            className="plusminus"
+          />
           <p>{index + 1}</p>
-          {/* <StyledIndexChanger
-            type="StyledIndexChanger"
-            onClick={HandleIndex}
-            className="minus"
-          /> */}
-          <StyledIndexChanger onClick={HandleIndex} className="minus" value="→">
-            <FaAngleRight />
-          </StyledIndexChanger>
-          <span> Page {index + 1} / {Math.ceil(numMoviesOnBill / moviesPerPage)}</span>
+          <img
+            src="https://res.cloudinary.com/juancereceda/image/upload/v1627325985/right-arrow_2_euvjym.png"
+            alt="next"
+            onClick={HandleNextIndex}
+            className="plusminus"
+          />
         </StyledPagination>
-      <Footer
-        moviesLength={filtredMovies.filter((movie) => movie.onBillboard).length}
-      />
-    </StyledBillboard>
+        <Footer
+          moviesLength={
+            filtredMovies.filter((movie) => movie.onBillboard).length
+          }
+        />
+      </StyledBillboard>
+    </div>
   );
 }
