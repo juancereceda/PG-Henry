@@ -9,8 +9,16 @@ import { validateCoupon } from "../../actions/coupons";
 function Coupons() {
   const purchaseStore = getPurchaseLocalStorage();
   const [coupon, setCoupon] = useState("");
+  const couponLocalSorage = window.localStorage.getItem("coupon");
 
   const handleValidate = async () => {
+    if (couponLocalSorage) {
+      return swal({
+        title: "You have already used a coupon",
+        icon: "warning",
+        dangerMode: true,
+      });
+    }
     if (!coupon) {
       return swal({
         title: "You must insert a coupon to validate",
@@ -25,6 +33,7 @@ function Coupons() {
         buttons: false,
         timer: 1500,
       });
+      window.localStorage.setItem("coupon", coupon);
       setPurchaseLocalStorage({
         ...purchaseStore,
         price: purchaseStore.price * result,

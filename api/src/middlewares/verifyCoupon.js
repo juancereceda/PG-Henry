@@ -10,7 +10,7 @@ const validateCoupon = async (req, res, next) => {
       return res.status(404).send({ message: "Coupon not found" });
     }
     if (couponCode === "FIRST-BOOKING-2021") {
-      if (userFound.bookings.length < 1) {
+      if (userFound.bookings.length > 0) {
         return res
           .status(400)
           .send({ message: "You have already made your first booking!" });
