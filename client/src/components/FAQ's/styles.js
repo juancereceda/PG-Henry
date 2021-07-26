@@ -23,7 +23,7 @@ export const StyledQuestion = styled.div`
     background: #293949;
     border-radius: 25px 100px 25px 100px / 25px 100px 25px 100px;
     z-index: 10;
-    & >div{
+    & > div{
         position: relative;
         padding: 15px 0;
         background-color: transparent;
@@ -48,6 +48,8 @@ export const StyledAnswer = styled.div`
         padding: 0;
         line-height: 0rem;
         font-size: 0rem;
+        position: relative;
+        z-index: -1;
         & > p, a{
             color: #293949;
         }
@@ -56,7 +58,6 @@ export const StyledAnswer = styled.div`
         margin: 20px 50px 10px 50px;
         padding: 0 25px;
         text-align: justify;
-        z-index: -1;
         a{
             color: #F05454;
         }
