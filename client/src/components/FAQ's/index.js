@@ -15,11 +15,13 @@ export function FAQs () {
     }
 
     function HanldeVisibility (element) {
-      let classModifier = element.target.children[1].classList
-      if(classModifier.contains('answerHidden')){
-        classModifier.replace('answerHidden', 'answerShow');
-      }else{
-        classModifier.replace('answerShow', 'answerHidden');
+      if(element.target.tagName === "DIV"){
+        let classModifier = element.target.children[1].classList
+        if(classModifier.contains('answerHidden')){
+          classModifier.replace('answerHidden', 'answerShow');
+        }else{
+          classModifier.replace('answerShow', 'answerHidden');
+        }
       }
     }
     const [click, setClick]= useState(false)
