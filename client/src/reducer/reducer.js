@@ -80,7 +80,7 @@ export function getPurchaseLocalStorage() {
   return purchase ? JSON.parse(purchase) : "";
 }
 
-function setPurchaseLocalStorage(purchase) {
+export function setPurchaseLocalStorage(purchase) {
   window.localStorage.setItem("purchase", JSON.stringify(purchase));
 }
 
@@ -262,13 +262,13 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         selBook: action.payload,
-      }
+      };
     }
     case ALL_REV: {
       return {
         ...state,
         showRevs: action.payload,
-      }
+      };
     }
     case GET_PAYMENTS: {
       return {

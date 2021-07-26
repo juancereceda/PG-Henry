@@ -18,6 +18,7 @@ const UserSchema = new Schema(
     bookings: Array,
     banned: Boolean,
     resetPassword: Boolean,
+    firstBooking: Boolean,
   },
   {
     timestamps: true,
