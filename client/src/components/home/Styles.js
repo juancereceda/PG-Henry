@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 // ESTILOS HOME
 
 export const HomeCont = styled.div`
-  position: absolute;
-  top: 30%;
-  height: auto;
-  width: 100%;
+  position: relative;  
+  height: auto;  
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -15,8 +14,11 @@ export const HomeCont = styled.div`
 `;
 
 export const ContMovies = styled.div`
+  position: relative;
   height: 100%;
   width: 100%;
+  padding-top: .5em;
+  margin-top: 3.5em;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -24,9 +26,7 @@ export const ContMovies = styled.div`
 `;
 
 export const Movies = styled.div`
-  margin: 1.25%;
-  height: auto;
-  width: 85%;
+  margin: 1.25%;  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,21 +34,20 @@ export const Movies = styled.div`
 `;
 
 export const Billboard = styled.div`
-  height: 250px;
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   overflow-x: scroll;
+  font-size: medium;
   &::-webkit-scrollbar {
     display: block;
   }
 `;
 
 export const ComingSoon = styled.div`
-  height: 250px;
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -87,11 +86,33 @@ export const Stores = styled.div`
   padding: 5px 10px;
 `;
 
+export const Btn = styled.button`
+  background-color: #f05454; 
+  width: 100px;
+  height: 40px;
+  margin-left: 50px;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  justify-content: center;
+  color: #222831;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid #30475E;
+  cursor: pointer;
+  &:hover{
+    background-color:#E8E8E8;
+    color:#222831;
+    border: 3px solid #F05454;
+    } 
+}
+
+`;
+
 // ESTILOS MOVIE CARDS
 
 export const Movie = styled.img`
-  height: 220px;
-  width: 160px;
+  height: 18em;
+  width: 12em;
   object-fit: cover;
   margin-left: 10px;
   margin-right: 10px;
@@ -143,19 +164,17 @@ export const Linked = styled(Link)`
 
 export const DiscountOffer = styled.div`
   position: absolute;
-  top: -10%;
+  top: .5em;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  line-height: 0;
-  width: 98%;
-  height: 5%;
-  z-index: 200;
+  line-height: 1.7;
+  max-width: 98%;
   background-color: #30475e;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
     inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
   border-radius: 0.7em;
-  color: antiquewhite;
+  color: #e8e8e8;
 `;

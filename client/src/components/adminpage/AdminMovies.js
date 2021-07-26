@@ -29,6 +29,7 @@ function AdminMovies() {
     rated: "",
     runtime: "",
     director: "",
+    IMDb: "",
     start: "",
     finish: "",
     days: [],
@@ -68,6 +69,7 @@ function AdminMovies() {
       rated: movie.rated,
       runtime: movie.runtime,
       director: movie.director,
+      IMDb: movie.IMDb,
       start: movie.start,
       finish: movie.finish,
       functionDays: movie.days,
@@ -131,6 +133,7 @@ function AdminMovies() {
       rated: "",
       runtime: "",
       director: "",
+      IMDb: "",
       start: "",
       finish: "",
       days: [],
@@ -163,44 +166,20 @@ function AdminMovies() {
     setMovieToSwap(null);
   }
   function addDay(e) {
-    //console.log(movie.start)
     if (!movie.days.includes(e.target.value)) {
       movie.days.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                days: [...movie.days, e.target.value]
-            }) */
     } else {
-      // console.log('else')
       movie.days = movie.days.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                days: movie.days.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
   function addTime(e) {
     if (!movie.times.includes(e.target.value)) {
       movie.times.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                times: [...movie.times, e.target.value]
-            }) */
     } else {
-      //console.log('else')
       movie.times = movie.times.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                times: movie.times.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
+  
   async function handleDelete(id) {
     const willDelete = await swal({
       title: "Are you sure you want to remove movie?",
@@ -457,6 +436,26 @@ function AdminMovies() {
               </div>
               <div className="formInputContainer">
                 <div>
+                  <h4>Price</h4>
+                  <input
+                    placeholder="Price"
+                    type="number"
+                    name="price"
+                    value={movie.price}
+                  />
+                </div>
+                <div>
+                  <h4>Rating IMDb</h4>
+                  <input
+                    placeholder="Rating"
+                    type="text"
+                    name="IMDb"
+                    value={movie.IMDb}
+                  />
+                </div>
+              </div>
+              <div className="formInputContainer">
+                <div>
                   <h4>Start of shows</h4>
                   <input
                     type="date"
@@ -577,17 +576,6 @@ function AdminMovies() {
                       value="23hs"
                     />
                   </div>
-                </div>
-              </div>
-              <div className="formInputContainer">
-                <div>
-                  <h4>Price</h4>
-                  <input
-                    placeholder="Price"
-                    type="number"
-                    name="price"
-                    value={movie.price}
-                  />
                 </div>
               </div>
               <div className="formInputContainer">

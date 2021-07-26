@@ -7,6 +7,7 @@ import {
   StyledAside,
   StyledPagination,
   StyledIndexChanger,
+  Btn,
   StyledHeader,
 } from "./Billboard-styles";
 import { StyledFirstAside, StyledAsidePublicity } from "./Aside-styles";
@@ -15,11 +16,14 @@ import Footer from "../footer/Footer";
 import GenreFilter from "../GenreFilter/GenreFilter";
 import Slider from "../comboSlider/slider";
 import BillboardSkeleton from "./BillboardSkeletons";
+import { BiSortDown, BiSortUp } from "react-icons/bi";
+//import Order from "../order/Order";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+
 
 export default function Billboard() {
   const dispatch = useDispatch();
-  const movieList = useSelector((state) => state.movieList);
+  let movieList = useSelector((state) => state.movieList);
   const genre = useSelector((state) => state.genre);
   const filtredMovies = movieList.filter((movie) =>
     movie.genre.includes(genre)
@@ -38,6 +42,18 @@ export default function Billboard() {
     dispatch(getGenres());
   }, [dispatch]);
 
+  const [order, setOrder] = useState(null);
+
+  movieList = movieList.sort(function (a, b) {
+    if (a.IMDb > b.IMDb) {
+      return order === "Ascending" ? 1 : order === "Descending" ? -1 : 0;
+    }
+    if (a.IMDb < b.IMDb) {
+      return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
+    }
+    return 0;
+  })
+  
   function HandleIndex(caller) {
     const option = caller.target.value;
     option ===  "→" ?
@@ -50,6 +66,26 @@ export default function Billboard() {
   }
 
   return (
+    <div>
+      <Btn
+        className="sorting"
+        onClick={() => {
+          setOrder(order !== "Descending" ? "Descending" : null);
+        }}
+      >
+      <BiSortDown size="30" />
+        Rating 
+      </Btn>
+      <Btn
+        className="sorting"
+        onClick={() => {
+          setOrder(order !== "Ascending" ? "Ascending" : null);
+        }}
+      >
+        Rating
+      <BiSortUp size="30" />
+      </Btn>
+   
     <StyledBillboard>
       <StyledHeader>
         <GenreFilter setIndex={setIndex} />

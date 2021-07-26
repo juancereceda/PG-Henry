@@ -1,7 +1,7 @@
 export const QuestionsAndAnswers = [
     {
         Q: `Do I have interest-free fess with any credit card?`,
-        A: `We use MercadoPago to charge, you can check this info related with your credit card here: https://www.mercadopago.com.ar/ayuda/medios-de-pago-cuotas-promociones_264`
+        A: `We use MercadoPago to charge, you can check this info related with your credit card https://www.mercadopago.com.ar/ayuda/medios-de-pago-cuotas-promociones_264`
     },
     {
         Q: `How do I apply discount coupons?`,
@@ -21,7 +21,7 @@ export const QuestionsAndAnswers = [
     },
     {
         Q: `Where can I see the billboard and coming soon movies?`,
-        A: `We’ve specific routes for each of this. You can see the billboard’s movie list here: http://localhost:3000/billboard and the Coming soon movies here: http://localhost:3000/comingsoon`
+        A: `We’ve specific routes for each of this. You can see the billboard’s movie list http://localhost:3000/billboard and the Coming soon movies http://localhost:3000/comingsoon`
     },
     {
         Q: `Can I get a refund if I can’t assist to the movie?`,
@@ -29,7 +29,7 @@ export const QuestionsAndAnswers = [
     },
     {
         Q: `What promotions are available?`,
-        A: `You can know the available promotions here: http://localhost:3000/promotions`
+        A: `You can know the available promotions http://localhost:3000/promotions`
     },
     {
         Q: `Do children or retirees pay entrance?`,

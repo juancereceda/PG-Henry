@@ -111,9 +111,10 @@ const Products = (props) => {
       swal({
         title: "You must select a parking slot",
         icon: "warning",
-        timer: 1500,
-        dangerMode: true,
-      });
+        timer: 2000,
+        buttons: false
+      })      
+
     }
   };
   const handleChange = function (e) {
@@ -188,14 +189,8 @@ const Products = (props) => {
                   .concat(", ")
                   .concat(purchaseStore.time) || "Day and time"}
               </p>
+              <p>Price: ${(purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") ? purchaseStore.price + ' - 30% Off!!': purchaseStore.price }</p>
 
-              <p>
-                Price: $
-                {purchaseStore.day === "Twesday" ||
-                purchaseStore.day === "Wednesday"
-                  ? purchaseStore.price + " - 30% Off!!"
-                  : purchaseStore.price}
-              </p>
             </MovieDetails>
             <div>
               <RedText>Select your parking lot</RedText>

@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, DiscountOffer, Linked } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, MerchCard, PubliCard, Btn, Linked } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
 import Footer from '../footer/Footer'
 import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
+import { BiSortDown, BiSortUp } from "react-icons/bi";
 import Skeleton from './HomeSkeletons'
 import {
     StyledAside,
-  } from "../billboard/Billboard-styles";
-  import {
+} from "../billboard/Billboard-styles";
+import {
     StyledFirstAside,
     StyledAsidePublicity,
-  } from "../billboard/Aside-styles";
-import { Link } from 'react-router-dom';
+} from "../billboard/Aside-styles";
 
 
 export default function Home() {
     const dispatch = useDispatch();
-    const movieList = useSelector(state => state.movieList);
+    let movieList = useSelector(state => state.movieList);
     const releaseList = useSelector(state => state.movieList);
     let [admin, setAdmin] = useState(null);
     let arr = [];
@@ -40,11 +40,41 @@ export default function Home() {
         verifyAdmin();
     }, [])
 
+    //order Rating
+    const [order, setOrder] = useState(null);
+
+    movieList = movieList.sort(function (a, b) {
+        if (a.IMDb > b.IMDb) {
+        return order === "Ascending" ? 1 : order === "Descending" ? -1 : 0;
+        }
+        if (a.IMDb < b.IMDb) {
+        return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
+        }
+        return 0;
+    })
+
     return (
+      <div>
+            <Btn
+            className="sorting"
+            onClick={() => {
+            setOrder(order !== "Descending" ? "Descending" : null);
+            }}
+            >   
+            <BiSortDown size="30" />
+                Rating 
+            </Btn>
+            <Btn
+                className="sorting"
+                onClick={() => {
+                setOrder(order !== "Ascending" ? "Ascending" : null);
+                }}
+            >
+                Rating
+            <BiSortUp size="30" />
+            </Btn>
+
         <HomeCont>
-            <DiscountOffer>
-                <h1>Martes y Miercoles: ¡Oferta especial! 30% OFF en tickets para peliculas.</h1>
-            </DiscountOffer>
             <ContMovies>
                 <Movies>
                     <Linked to='/billboard'>
@@ -72,5 +102,6 @@ export default function Home() {
             </ContMovies>
             <Footer moviesLength={1}/>
         </HomeCont>
+      </div>
     )
 }
