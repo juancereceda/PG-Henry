@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from "react-redux";
-import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts } from '../../actions/products'
+import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts, eraseProduct } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center, AdminButton } from './ProductStyles'
 import {getPurchaseLocalStorage, getTokenLocalStorage} from '../../reducer/reducer'
 import { isAdmin } from '../../actions/users';
 import axios from 'axios';
+import swal from "sweetalert";
 
 const Product = (props) => {
     const dispatch = useDispatch();
@@ -84,10 +85,28 @@ const Product = (props) => {
         setPricing({...pricing, show: false});
     }
 
+    async function handleErase (e) {
+        e.preventDefault();
+        const option = await swal({
+            text: "Are you sure you want to delete this product?",
+            buttons: true
+          })
+          if (option) {
+            props.eraseProduct(props.name)
+            await swal("Deleting product...", {
+              icon: "success",
+              buttons: false,
+              timer: 1500,
+            });
+            dispatch(getProducts());
+          }
+    }
+
     return(
         <ProductBox>
             <div>
             <InfoBox>
+                {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X</button> : null}
                 <div id="ctn">
                 <ImgBox>
                     <img src={props.imgUrl} height='150px' width='160px' alt=''/>
@@ -121,6 +140,7 @@ function mapStateToProps(state) {
   
 function mapDispatchToProps(dispatch) {
     return {
+        eraseProduct: name => eraseProduct(name),
         getProducts: () => dispatch(getProducts()),
         addToTotal: price => dispatch(addToTotal(price)),
         substractToTotal: price => dispatch(substractToTotal(price)),

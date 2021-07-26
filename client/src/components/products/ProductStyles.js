@@ -12,7 +12,7 @@ export const ProductBox = styled.div`
 `;
 
 export const InfoBox = styled.div`
-    display:flex;   
+    display:block;   
     justify-content: center;
     align-items: center;
 
@@ -21,6 +21,16 @@ export const InfoBox = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .deleteBtn{
+        border:none;
+        right:0px;
+        top:0px;
+        background-color: rgb(234, 84, 85);
+        &:hover{
+            color:rgb(232, 232, 232);
+            background-color: rgba(234, 84, 85, 0.7);
+        };
     }
 `;
 export const TextBox = styled.div`
