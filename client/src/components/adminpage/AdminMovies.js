@@ -163,44 +163,20 @@ function AdminMovies() {
     setMovieToSwap(null);
   }
   function addDay(e) {
-    //console.log(movie.start)
     if (!movie.days.includes(e.target.value)) {
       movie.days.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                days: [...movie.days, e.target.value]
-            }) */
     } else {
-      // console.log('else')
       movie.days = movie.days.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                days: movie.days.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
   function addTime(e) {
     if (!movie.times.includes(e.target.value)) {
       movie.times.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                times: [...movie.times, e.target.value]
-            }) */
     } else {
-      //console.log('else')
       movie.times = movie.times.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                times: movie.times.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
+  
   async function handleDelete(id) {
     const willDelete = await swal({
       title: "Are you sure you want to remove movie?",

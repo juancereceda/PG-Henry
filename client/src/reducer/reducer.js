@@ -30,16 +30,6 @@ import { GET_PAYMENTS } from "../actions/orders";
 
 const initialState = {
   products: [],
-  /*   purchase:{
-    parking:'',
-    price:0,
-    day:'',
-    time:'',
-    title:'',
-    slot:'',
-    extras:{},
-    total:0
-  }, */
   slot: "",
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},

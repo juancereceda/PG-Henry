@@ -55,7 +55,7 @@ const[state, setState]=React.useState({
      })
     
     const elemento = movieDetail.shows.filter(el => el.date.slice(5, 10) === day[0])[0]
-    if(elemento.day === "Twesday" || elemento.day === "Wednesday") elemento.price = elemento.price*0.7
+    if(elemento.day === "Tuesday" || elemento.day === "Wednesday") elemento.price = elemento.price*0.7
     const info ={
         title: movieDetail.title,
         price: parseInt(elemento.price),

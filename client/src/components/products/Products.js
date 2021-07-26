@@ -183,7 +183,7 @@ const Products = (props) => {
                   "Day and time"}
               </p>
 
-              <p>Price: ${(purchaseStore.day === "Twesday" || purchaseStore.day === "Wednesday") ? purchaseStore.price + ' - 30% Off!!': purchaseStore.price }</p>
+              <p>Price: ${(purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") ? purchaseStore.price + ' - 30% Off!!': purchaseStore.price }</p>
             </MovieDetails>
             <div>
               <RedText>Select your parking lot</RedText>
