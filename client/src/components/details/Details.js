@@ -111,6 +111,14 @@ const[state, setState]=React.useState({
   const openModalRated = () =>{
     setShowModalRated(prev => !prev)
   }
+  const [showModalRelease, setShowModalRelease] = useState(false);
+  const openModalRelease = () =>{
+    setShowModalRelease(prev => !prev)
+  }
+  const [showModalIMDb, setShowModalIMDb] = useState(false);
+  const openModalIMDb = () =>{
+    setShowModalIMDb(prev => !prev)
+  }
   const [showModalDirector, setShowModalDirector] = useState(false);
   const openModalDirector = () =>{
     setShowModalDirector(prev => !prev)
@@ -122,14 +130,6 @@ const[state, setState]=React.useState({
   const [showModalGenre, setShowModalGenre] = useState(false);
   const openModalGenre = () =>{
     setShowModalGenre(prev => !prev)
-  }
-  const [showModalRelease, setShowModalRelease] = useState(false);
-  const openModalRelease = () =>{
-    setShowModalRelease(prev => !prev)
-  }
-  const [showModalIMDb, setShowModalIMDb] = useState(false);
-  const openModalIMDb = () =>{
-    setShowModalIMDb(prev => !prev)
   }
   
   async function handleShowCancel(e){
@@ -171,7 +171,6 @@ const[state, setState]=React.useState({
           </Title><br></br>
 
           <div>
-          <Poster src={movieDetail.poster}/><br></br>
           {(admin? 
             (<Edit>
               <img
@@ -182,6 +181,7 @@ const[state, setState]=React.useState({
               />
             </Edit>):null)}
             <ModalPoster showModalPoster={showModalPoster} setShowModalPoster={setShowModalPoster} />
+          <Poster src={movieDetail.poster}/><br></br>
           </div>
       </div>
 
@@ -220,8 +220,7 @@ const[state, setState]=React.useState({
           <Box>{movieDetail.description}</Box><br></br>
           
           <Rated> 
-            <H4>Runtime</H4><br></br> 
-            <Label>{movieDetail.runtime}</Label>
+            <H4>Runtime 
             {(admin? 
             (<Edit>
               <img
@@ -232,11 +231,10 @@ const[state, setState]=React.useState({
               />
             </Edit>):null)}
             <ModalRuntime showModalRuntime={showModalRuntime} setShowModalRuntime={setShowModalRuntime} />
-        
-            <H4>
-              <label>Rated</label><br></br>
             </H4>
-            <Label>{movieDetail.rated}</Label><br></br>
+            <Label>{movieDetail.runtime}</Label><br></br>
+        
+            <H4>Rated
             {(admin? 
             (<Edit>
               <img
@@ -247,10 +245,12 @@ const[state, setState]=React.useState({
               />
             </Edit>):null)}
             <ModalRated showModalRated={showModalRated} setShowModalRated={setShowModalRated} />
+            </H4>
+            <Label>{movieDetail.rated}</Label><br></br>
           </Rated> 
+
           <Rated> 
-            <H4>Release date</H4><br></br> 
-            <Label>{movieDetail.date}</Label>
+            <H4>Release date
             {(admin? 
             (<Edit>
               <img
@@ -261,21 +261,22 @@ const[state, setState]=React.useState({
               />
             </Edit>):null)}
             <ModalRelease showModalRelease={showModalRelease} setShowModalRelease={setShowModalRelease} />
-        
-            <H4>
-              <label>Rating IMDb</label><br></br>
+            </H4>
+            <Label>{movieDetail.date}</Label><br></br>
+
+            <H4>Rating IMDb
+              {(admin? 
+              (<Edit>
+                <img
+                  className="edit"
+                  onClick={openModalIMDb}
+                  alt=""
+                  src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
+                />
+              </Edit>):null)}
+              <ModalIMDb showModalIMDb={showModalIMDb} setShowModalIMDb={setShowModalIMDb} />
             </H4>
             <Label>{movieDetail.IMDb}</Label><br></br>
-            {(admin? 
-            (<Edit>
-              <img
-                className="edit"
-                onClick={openModalIMDb}
-                alt=""
-                src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-              />
-            </Edit>):null)}
-            <ModalIMDb showModalIMDb={showModalIMDb} setShowModalIMDb={setShowModalIMDb} />
           </Rated> 
         </div>
 
@@ -316,7 +317,7 @@ const[state, setState]=React.useState({
         {state.confirm ? (<Link to ='/products'><Confirm>Confirm</Confirm></Link>):null}
          </Show>
 
-        <SubH2>Director</SubH2><br></br> 
+        <SubH2>Director
         {(admin? 
           (<Edit>
             <img
@@ -327,9 +328,12 @@ const[state, setState]=React.useState({
             />
           </Edit>):null)}
           <ModalDirector showModalDirector={showModalDirector} setShowModalDirector={setShowModalDirector} />
-        <Box>{movieDetail.director}</Box><br></br>
+          </SubH2><br></br> 
+        <Box>
+          {movieDetail.director}
+        </Box><br></br>
 
-        <SubH2>Cast</SubH2><br></br> 
+        <SubH2>Cast
         {(admin? 
           (<Edit>
             <img
@@ -340,9 +344,12 @@ const[state, setState]=React.useState({
             />
           </Edit>):null)}
           <ModalCast showModalCast={showModalCast} setShowModalCast={setShowModalCast} />
-        <Box>{movieDetail.cast}</Box><br></br>
+          </SubH2><br></br> 
+        <Box>
+          {movieDetail.cast}
+        </Box><br></br>
 
-        <SubH2>Genre</SubH2><br></br>
+        <SubH2>Genre
         {(admin? 
           (<Edit>
             <img
@@ -353,7 +360,10 @@ const[state, setState]=React.useState({
             />
           </Edit>):null)}
           <ModalGenre showModalGenre={showModalGenre} setShowModalGenre={setShowModalGenre} />
-        <Box>{movieDetail.genre}</Box><br></br>
+          </SubH2><br></br>
+        <Box>
+          {movieDetail.genre}
+        </Box><br></br>
     </Grid>)}
     <br/>
     <br/>
