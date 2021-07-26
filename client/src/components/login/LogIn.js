@@ -31,6 +31,24 @@ function LogIn() {
           buttons: true,
         }
       );
+    }else if (
+      message ===
+      "Your Password has been reset to protect your account, you'll be redirected to restore your password"
+    ) {
+      let resetPassword = await swal({
+        title: message,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      });
+      if (resetPassword) {
+        await swal("Redirecting", {
+          icon: "success",
+          buttons: false,
+          timer: 1500,
+        });
+        window.location.assign("http://localhost:3000/restorepassword");
+      }
     } else {
       swal(message, "No Logged!", "error", {
         buttons: false,
@@ -56,6 +74,22 @@ function LogIn() {
           timer: 2000,
         });
         window.location.assign("http://localhost:3000/");
+      }else if(message === "Your Password has been reset to protect your account, you'll be redirected to restore your password"){
+        let resetPassword =  await swal({
+          title: message,
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+            });
+          if(resetPassword) {
+            await swal("Redirecting", {
+              icon: "success",
+              buttons: false,
+              timer: 1500
+            });
+            window.location.assign("http://localhost:3000/restorepassword")
+          }
+
       } else {
         swal(message, "No Logged!", "error", {
           buttons: false,

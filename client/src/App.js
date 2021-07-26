@@ -15,6 +15,10 @@ import AdminOrders from "./components/adminpage/orders/AdminOrders";
 import Success from "./components/success/Success";
 import ComingSoon from "./components/comingSoon/ComingSoon";
 import ResetPassword from "./components/restorepassword/restorePassword";
+import AdminFeedbacks from "./components/adminpage/feedbacks/AdminFeedbacks";
+import DetailedBooking from "./components/userprofile/DetailedBooking";
+import { FAQs } from "./components/FAQ's";
+import { DiscountBanner } from "./components/home/DiscountBanner"
 
 function App() {
   return (
@@ -33,8 +37,12 @@ function App() {
       <Route path="/users" component={Users} />
       <Route path="/AdminMovies" component={AdminMovies} />
       <Route path="/adminorders" component={AdminOrders} />
+      <Route path="/feedbacks" component={AdminFeedbacks} />
       <Route path="/success/:id" component={Success} />
       <Route path="/restorepassword" component={ResetPassword} />
+      <Route path="/bookings/:id" component={DetailedBooking} />
+      <Route path="/faqs" component={FAQs} />
+      <Route path="/" exact component={DiscountBanner} />
     </div>
   );
 }

@@ -22,21 +22,13 @@ import {
   LOG_OUT,
   GET_BOOKINGS,
   USER_INFO,
+  GET_BOOK,
+  ALL_REV,
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
 
 const initialState = {
   products: [],
-  /*   purchase:{
-    parking:'',
-    price:0,
-    day:'',
-    time:'',
-    title:'',
-    slot:'',
-    extras:{},
-    total:0
-  }, */
   slot: "",
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
@@ -46,8 +38,10 @@ const initialState = {
   movieList: [],
   token: getTokenLocalStorage(),
   bookings: [],
+  selBook: {},
   payments: [],
   userData: {},
+  showRevs: false,
 };
 
 export function getTokenLocalStorage() {
@@ -245,6 +239,18 @@ export default function reducer(state = initialState, action) {
         ...state,
         bookings: action.payload,
       };
+    }
+    case GET_BOOK: {
+      return {
+        ...state,
+        selBook: action.payload,
+      }
+    }
+    case ALL_REV: {
+      return {
+        ...state,
+        showRevs: action.payload,
+      }
     }
     case GET_PAYMENTS: {
       return {

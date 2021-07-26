@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieList, postMovie, updateMovie, deleteMovie } from "../../actions/movies";
+import {
+  getMovieList,
+  postMovie,
+  updateMovie,
+  deleteMovie,
+} from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import AdminContainer from "./AdminStyles";
 import NotFound from "../404/NotFound";
@@ -30,6 +35,7 @@ function AdminMovies() {
     days: [],
     times: [],
     price: 0,
+    IMDb: "",
   });
 
   useEffect(() => {
@@ -69,8 +75,10 @@ function AdminMovies() {
       functionDays: movie.days,
       times: movie.times,
       price: movie.price,
+      onBillboard: false,
+      IMDb: movie.IMDb,
     };
-    
+
     // Validaciones
 
     if (!obj.functionDays.length) {
@@ -131,6 +139,7 @@ function AdminMovies() {
       days: [],
       times: [],
       price: 0,
+      IMDb: "",
     });
   };
 
@@ -157,44 +166,20 @@ function AdminMovies() {
     setMovieToSwap(null);
   }
   function addDay(e) {
-    //console.log(movie.start)
     if (!movie.days.includes(e.target.value)) {
       movie.days.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                days: [...movie.days, e.target.value]
-            }) */
     } else {
-      // console.log('else')
       movie.days = movie.days.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                days: movie.days.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
   function addTime(e) {
     if (!movie.times.includes(e.target.value)) {
       movie.times.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                times: [...movie.times, e.target.value]
-            }) */
     } else {
-      //console.log('else')
       movie.times = movie.times.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                times: movie.times.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
+  
   async function handleDelete(id) {
     const willDelete = await swal({
       title: "Are you sure you want to remove movie?",
@@ -202,8 +187,8 @@ function AdminMovies() {
       buttons: true,
       dangerMode: true,
     });
-    if (willDelete) {      
-      const message = await deleteMovie(id)      
+    if (willDelete) {
+      const message = await deleteMovie(id);
       dispatch(getMovieList());
       await swal(message, {
         icon: "success",
@@ -225,8 +210,8 @@ function AdminMovies() {
   //       buttons: false,
   //       timer: 1000,
   //     });
-      
-  //   } 
+
+  //   }
   // }
   return (
     <AdminContainer>
@@ -259,7 +244,7 @@ function AdminMovies() {
                             >
                               X
                             </button>
-                            <Link  to={`/movies/${movie._id}`}>
+                            <Link to={`/movies/${movie._id}`}>
                               <img
                                 className="edit"
                                 // onClick={() => handleEdit(movie)}
@@ -305,12 +290,14 @@ function AdminMovies() {
                             >
                               X
                             </button>
-                            <Link to={`/movies/${movie._id}`}><img
-                              className="edit"
-                              // onClick={() => handleEdit(movie)}
-                              alt=""
-                              src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            /></Link>
+                            <Link to={`/movies/${movie._id}`}>
+                              <img
+                                className="edit"
+                                // onClick={() => handleEdit(movie)}
+                                alt=""
+                                src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
+                              />
+                            </Link>
                           </div>
                         </div>
                       );
@@ -424,6 +411,18 @@ function AdminMovies() {
                     required
                   />
                 </div>
+                <div>
+                  <h4>IMDb Rating</h4>
+                  <input
+                    placeholder="Rating IMDb"
+                    type="text"
+                    name="IMDb"
+                    value={movie.IMDb}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="formInputContainer">
                 <div>
                   <h4>Description</h4>
                   <input
@@ -551,21 +550,21 @@ function AdminMovies() {
                 <div>
                   <h4>Times</h4>
                   <div>
-                    <label for="18hs">19hs</label>
+                    <label for="18hs">18hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="19hs"
-                      value="19hs"
+                      name="18hs"
+                      value="18hs"
                     />
                   </div>
                   <div>
-                    <label for="20hs">22hs</label>
+                    <label for="20hs">20hs</label>
                     <input
                       onChange={(e) => addTime(e)}
                       type="checkbox"
-                      name="22hs"
-                      value="22hs"
+                      name="20hs"
+                      value="20hs"
                     />
                   </div>
                   <div>
