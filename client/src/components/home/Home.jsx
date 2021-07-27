@@ -13,7 +13,6 @@ import {
 } from "../billboard/Billboard-styles";
 import {
     StyledFirstAside,
-    StyledAsidePublicity,
 } from "../billboard/Aside-styles";
 import TestimonialCard from 'material-testimonial-card';
 
@@ -56,7 +55,7 @@ export default function Home() {
     }, [])
 
     //order Rating
-    const [order, setOrder] = useState(null);
+    const [order] = useState(null);
 
     movieList = movieList.sort(function (a, b) {
         if (a.IMDb > b.IMDb) {

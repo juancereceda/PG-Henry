@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import {
   StyledSlider,
   SliderImg,
-  SliderText,
 } from "../comboSlider/styledSlider";
 import axios from "axios";
 
