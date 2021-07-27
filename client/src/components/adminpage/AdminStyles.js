@@ -145,6 +145,28 @@ const AdminContainer = styled.div`
       color: #222831;
     }
   }
+  .formInputContainerCheck {
+    display: flex;
+    color: #ffffff;
+    input {
+      margin-left: 100px;
+      height: 35px;
+      width: 35px;
+      font-family: Questrial;
+      background-color: #c4c4c4;
+      color: #222831;
+    }
+    label{
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    h4{
+      margin-left: 100px;
+    }
+    .time{
+      margin-left: 230px;
+    }
+  }
 
   .postMovieButton {
     background-color: #f05454;

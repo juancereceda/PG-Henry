@@ -474,107 +474,101 @@ function AdminMovies() {
                   />
                 </div>
               </div>
-              <div className="formInputContainer">
+              <div className="formInputContainerCheck">
                 <div>
                   <h4>Days</h4>
                   <div>
-                    <label for="Monday">Monday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Monday"
                       value="Monday"
                     />
+                    <label for="Monday">Monday</label>
                   </div>
                   <div>
-                    <label for="Tuesday">Tuesday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Tuesday"
                       value="Tuesday"
                     />
+                    <label for="Tuesday">Tuesday</label>
                   </div>
                   <div>
-                    <label for="Wednesday">Wednesday</label>
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Wednesday"
                       value="Wednesday"
                     />
+                    <label for="Wednesday">Wednesday</label>
                   </div>
                   <div>
-                    <label for="Thursday">Thursday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Thursday"
                       value="Thursday"
                     />
+                    <label for="Thursday">Thursday</label>
                   </div>
                   <div>
-                    <label for="Friday">Friday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Friday"
                       value="Friday"
                     />
+                    <label for="Friday">Friday</label>
                   </div>
                   <div>
-                    <label for="Saturday">Saturday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Saturday"
                       value="Saturday"
                     />
+                    <label for="Saturday">Saturday</label>
                   </div>
                   <div>
-                    <label for="Sunday">Sunday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Sunday"
                       value="Sunday"
                     />
+                    <label for="Sunday">Sunday</label>
                   </div>
                 </div>
                 <div>
-                  <h4>Times</h4>
+                  <h4 className="time">Times</h4>
                   <div>
-                    <label for="18hs">18hs</label>
-                    <input
+                    <input className="time"
                       onChange={(e) => addTime(e)}
                       type="checkbox"
                       name="18hs"
                       value="18hs"
                     />
+                    <label for="18hs">18hs</label>
                   </div>
                   <div>
-                    <label for="20hs">20hs</label>
-                    <input
+                    <input className="time"
                       onChange={(e) => addTime(e)}
                       type="checkbox"
                       name="20hs"
                       value="20hs"
                     />
+                    <label for="20hs">20hs</label>
                   </div>
                   <div>
-                    <label for="23hs">23hs</label>
-                    <input
+                    <input className="time"
                       onChange={(e) => addTime(e)}
                       type="checkbox"
                       name="23hs"
                       value="23hs"
                     />
+                    <label for="23hs">23hs</label>
                   </div>
                 </div>
               </div>
