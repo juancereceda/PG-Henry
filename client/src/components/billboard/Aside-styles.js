@@ -4,7 +4,7 @@ export const StyledFirstAside = styled.div`
   position: relative;
   width: 90%;
   height: 50%;
-  background-color: #f05454;
+  background-color: #293949;
   margin-top: 10px;
   border-radius: 0.5rem;
   display: flex;

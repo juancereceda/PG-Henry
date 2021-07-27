@@ -6,20 +6,18 @@ import {
   StyledBillboard,
   StyledAside,
   StyledPagination,
-  StyledIndexChanger,
   Btn,
   StyledHeader,
   BillboardContainer,
 } from "./Billboard-styles";
-import { StyledFirstAside, StyledAsidePublicity } from "./Aside-styles";
+import { StyledFirstAside } from "./Aside-styles";
 import BillboardCard from "./BillboardCard";
 import Footer from "../footer/Footer";
 import GenreFilter from "../GenreFilter/GenreFilter";
 import Slider from "../comboSlider/slider";
 import BillboardSkeleton from "./BillboardSkeletons";
 import { BiSortDown, BiSortUp } from "react-icons/bi";
-//import Order from "../order/Order";
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import CouponSlider from "../promotionSlider/Slider";
 
 export default function Billboard() {
   const dispatch = useDispatch();
@@ -96,7 +94,9 @@ export default function Billboard() {
           <StyledFirstAside>
             <Slider />
           </StyledFirstAside>
-          <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
+          <StyledFirstAside>
+            <CouponSlider />
+          </StyledFirstAside>
         </StyledAside>
         {filtredMovies.length > 0
           ? filtredMovies
@@ -107,21 +107,39 @@ export default function Billboard() {
               )
               .map((movie) => <BillboardCard props={movie} key={movie._id} />)
           : skeletons.map((el) => <BillboardSkeleton />)}
-        <StyledPagination>
-          <img
-            src="https://res.cloudinary.com/juancereceda/image/upload/v1627326026/left-arrow_2_j8ulxt.png"
-            alt="prev"
-            onClick={HandlePrevIndex}
-            className="plusminus"
-          />
-          <p>{index + 1}</p>
-          <img
-            src="https://res.cloudinary.com/juancereceda/image/upload/v1627325985/right-arrow_2_euvjym.png"
-            alt="next"
-            onClick={HandleNextIndex}
-            className="plusminus"
-          />
-        </StyledPagination>
+        {numMoviesOnBill > 3 ? (
+          <StyledPagination>
+            {index > 0 ? (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627326026/left-arrow_2_j8ulxt.png"
+                alt="prev"
+                onClick={HandlePrevIndex}
+                className="plusminus enabledIndex"
+              />
+            ) : (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627408215/left-arrow_3_iyjdb6.png"
+                alt="prev"
+                className="plusminus"
+              />
+            )}
+            <p>{index + 1}</p>
+            {index < Math.ceil(numMoviesOnBill / moviesPerPage) - 1 ? (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627325985/right-arrow_2_euvjym.png"
+                alt="next"
+                onClick={HandleNextIndex}
+                className="plusminus enabledIndex"
+              />
+            ) : (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627408523/right-arrow_3_xwzmj1.png"
+                alt="next"
+                className="plusminus"
+              />
+            )}
+          </StyledPagination>
+        ) : null}
         <Footer
           moviesLength={
             filtredMovies.filter((movie) => movie.onBillboard).length
