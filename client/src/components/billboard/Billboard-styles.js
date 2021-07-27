@@ -73,6 +73,9 @@ export const StyledPagination = styled.div`
     border: none;
     border-radius: 0.5em;
     height: 70%;
+  }
+
+  .enabledIndex {
     cursor: pointer;
     &:hover {
       transform: scale(0.95);

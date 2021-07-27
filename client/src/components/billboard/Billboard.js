@@ -107,21 +107,39 @@ export default function Billboard() {
               )
               .map((movie) => <BillboardCard props={movie} key={movie._id} />)
           : skeletons.map((el) => <BillboardSkeleton />)}
-        <StyledPagination>
-          <img
-            src="https://res.cloudinary.com/juancereceda/image/upload/v1627326026/left-arrow_2_j8ulxt.png"
-            alt="prev"
-            onClick={HandlePrevIndex}
-            className="plusminus"
-          />
-          <p>{index + 1}</p>
-          <img
-            src="https://res.cloudinary.com/juancereceda/image/upload/v1627325985/right-arrow_2_euvjym.png"
-            alt="next"
-            onClick={HandleNextIndex}
-            className="plusminus"
-          />
-        </StyledPagination>
+        {numMoviesOnBill > 3 ? (
+          <StyledPagination>
+            {index > 0 ? (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627326026/left-arrow_2_j8ulxt.png"
+                alt="prev"
+                onClick={HandlePrevIndex}
+                className="plusminus enabledIndex"
+              />
+            ) : (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627408215/left-arrow_3_iyjdb6.png"
+                alt="prev"
+                className="plusminus"
+              />
+            )}
+            <p>{index + 1}</p>
+            {index < Math.ceil(numMoviesOnBill / moviesPerPage) - 1 ? (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627325985/right-arrow_2_euvjym.png"
+                alt="next"
+                onClick={HandleNextIndex}
+                className="plusminus enabledIndex"
+              />
+            ) : (
+              <img
+                src="https://res.cloudinary.com/juancereceda/image/upload/v1627408523/right-arrow_3_xwzmj1.png"
+                alt="next"
+                className="plusminus"
+              />
+            )}
+          </StyledPagination>
+        ) : null}
         <Footer
           moviesLength={
             filtredMovies.filter((movie) => movie.onBillboard).length
