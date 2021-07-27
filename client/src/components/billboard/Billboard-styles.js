@@ -34,14 +34,15 @@ export const StyledAside = styled.aside`
   right: 2em;
   height: 37em;
   width: 15em;
-  background-color: #30475e88;
-  border: 5px solid #30475e;
+  background-color: #30475e;
+  border: 5px solid #293949;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-size: large;
   align-items: center;
   text-align: center;
+  padding-bottom: 10px;
 `;
 
 export const StyledPagination = styled.div`

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, MerchCard, PubliCard, Btn, Linked } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
 import Footer from '../footer/Footer'
 import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
-import { BiSortDown, BiSortUp } from "react-icons/bi";
 import Skeleton from './HomeSkeletons'
 import {
     StyledAside,
@@ -15,7 +14,7 @@ import {
     StyledFirstAside,
     StyledAsidePublicity,
 } from "../billboard/Aside-styles";
-import {DiscountBanner} from './DiscountBanner'
+import CouponSlider from '../promotionSlider/Slider'
 
 
 export default function Home() {
@@ -76,9 +75,9 @@ export default function Home() {
                 </Movies>
                 <StyledAside>
                     <StyledFirstAside><Slider /></StyledFirstAside>
-                    <StyledAsidePublicity>
-                        Publicity
-                    </StyledAsidePublicity>
+                    <StyledFirstAside>
+                        <CouponSlider/>
+                    </StyledFirstAside>
                 </StyledAside>
             </ContMovies>
             <Footer moviesLength={1}/>
