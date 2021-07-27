@@ -27,7 +27,6 @@ export const ProductBox = styled.div`
             color:rgb(232, 232, 232);
             background-color: rgba(234, 84, 85, 0.7);
             .delete{
-            color: rgb(234, 84, 85);
             font-size: 13px;
         }
         };
