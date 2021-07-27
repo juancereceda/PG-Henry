@@ -2,24 +2,34 @@ import styled from 'styled-components';
 
 export const ProductBox = styled.div`
     display:flex;
+    flex-direction: column;
     justify-content:center;
     height:fit-content;
     margin:10px;
     min-width:200px;
+    min-height:352px;
     padding: 15px;
     font-size: 1.4em;    
     background-color: rgb(48, 71, 94);
     .deleteBtn{
+        border-radius: 5px;
         border:none;
         height: 20px;
         width:20px;
-        right:0px;
-        top:0px;
+        font-size: 13px;
         background-color: rgb(234, 84, 85);
         color:rgb(232, 232, 232);
+        .delete{
+            color: rgb(234, 84, 85);
+            font-size: 0;
+        }
         &:hover{
             color:rgb(232, 232, 232);
             background-color: rgba(234, 84, 85, 0.7);
+            .delete{
+            color: rgb(234, 84, 85);
+            font-size: 13px;
+        }
         };
     }
 `;

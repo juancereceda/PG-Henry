@@ -8,9 +8,10 @@ import axios from 'axios';
 import swal from "sweetalert";
 
 const Product = (props) => {
+    const purchaseStorage = getPurchaseLocalStorage();
     const dispatch = useDispatch();
     const[state, setState] = useState({
-        counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
+        counter: purchaseStorage && purchaseStorage.extras.hasOwnProperty(props.name) ? purchaseStorage.extras[props.name] : 0,
     })
 
     const [admin, setAdmin] = useState(null);
@@ -103,7 +104,8 @@ const Product = (props) => {
     }
 
     return(
-        <ProductBox>            
+        <ProductBox>
+            {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X&nbsp;&nbsp;&nbsp;<span className='delete'>Delete</span></button> : null}          
             <div>
             <InfoBox>                
                 <div id="ctn">
@@ -117,6 +119,7 @@ const Product = (props) => {
                 </TextBox>
                 </div>
             </InfoBox>
+            {purchaseStorage? 
                 <Center>
                     <ButtonBox>
                         <Button onClick={event => handleSubtract(event)}>-</Button>
@@ -124,8 +127,9 @@ const Product = (props) => {
                         <Button onClick={event => handleAdd(event)}>+</Button>
                     </ButtonBox>
                 </Center>
-            </div>
-            {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X</button> : null}
+            : null }
+                
+            </div>            
         </ProductBox>
     )
 }

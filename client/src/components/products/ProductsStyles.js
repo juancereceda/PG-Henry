@@ -166,7 +166,6 @@ export const StoredProducts = styled.p`
 export const AddProduct = styled.div`
   display: flex;
   justify-content: center;
-  height: fit-content;
   height: 352px;
   margin: 10px;
   min-width: 200px;
@@ -205,4 +204,11 @@ export const AddProduct = styled.div`
   .input {
     margin-top: 30px;
   }
+`;
+export const Nothing = styled.h1`
+  color: rgba(255, 255, 255, 1);
+  margin-top: 60px;
+  font-family: Questrial;
+  font-size: 40px;
+  margin-left: 30%;
 `;
