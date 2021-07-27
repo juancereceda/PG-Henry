@@ -113,7 +113,7 @@ export function FAQs() {
           />
           <TextForm
             name="message"
-            placeholder="    Write your question, suggestion, concern"
+            placeholder="Write your question, suggestion, concern"
             onChange={handleMessage}
             value={info.message}
           ></TextForm>

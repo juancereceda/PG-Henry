@@ -1,24 +1,9 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaPinterest } from "react-icons/fa";
 import React from 'react';
 import styled from 'styled-components';
-import { BiCameraMovie as Camera } from "react-icons/bi";
+import {HeaderIcon} from '../header/Styles'
 
 function Footer({moviesLength}) {
-    const HeaderIcon = styled(Camera)`
-    height: 55px;
-    width: 55px;
-    padding: 12px;
-    background-color: #222831;
-    border-radius: 50%;
-    margin-right: 30px;
-    color: #e8e8e8;
-    transition: 600ms;
-    &:hover {
-    transform: rotate(-180deg);
-    transition: 600ms;
-    }
-`;  
-
     const StyledDiv = styled.div`
     position: relative;
     ${({ moviesLength }) => moviesLength === 1 ? `
@@ -31,6 +16,20 @@ function Footer({moviesLength}) {
     padding: 20px;
     color: #fff;
     background-color: #30475E;
+    .asd {
+        height: 55px;
+    width: 55px;
+    padding: 12px;
+    background-color: #222831;
+    border-radius: 50%;
+    margin-right: 30px;
+    color: #e8e8e8;
+    transition: 600ms;
+    &:hover {
+    transform: rotate(-180deg);
+    transition: 600ms;
+    }
+    }
     }
 
     .footer > * {
