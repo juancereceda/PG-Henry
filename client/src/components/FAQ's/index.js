@@ -22,13 +22,13 @@ export function FAQs() {
     top: "5%",
   };
 
-export function FAQs () {
-    const styledButton = { color: "red", position: "absolute", left: "95%"}
-    const [click, setClick]= useState(false)
+    /* const styledButton = { color: "red", position: "absolute", left: "95%"} */
+/*     const [click, setClick]= useState(false)
     const [info, setInfo]= useState({
         subject:'',
         message:''
-    })
+    }) */
+    
   function auxiliar(el) {
     const linkedText = (
       <a href={el} target="_blank" rel="noreferrer">

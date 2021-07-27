@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked, TestimonialCards } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
@@ -17,7 +17,7 @@ import {
 } from "../billboard/Aside-styles";
 import TestimonialCard from 'material-testimonial-card';
 
-export default function Home() {
+/* export default function Home() {
     const dispatch = useDispatch();
     const movieList = useSelector(state => state.movieList);
     const visiblesFeedbacks = useSelector(state => state.visiblesFeedbacks);
@@ -25,13 +25,14 @@ export default function Home() {
     let [admin, setAdmin] = useState(null);
     let arr = [];
     for (let i = 0; i < 6; i++) {
-        arr.push(i);
+        arr.push(i); */
     
 import CouponSlider from '../promotionSlider/Slider'
 
 
 export default function Home() {
     const dispatch = useDispatch();
+    const visiblesFeedbacks = useSelector(state => state.visiblesFeedbacks);
     let movieList = useSelector(state => state.movieList);
     const releaseList = useSelector(state => state.movieList);
     let [admin, setAdmin] = useState(null);
