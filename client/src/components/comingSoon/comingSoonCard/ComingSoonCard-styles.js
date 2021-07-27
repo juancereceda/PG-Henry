@@ -32,16 +32,19 @@ export const StyledCard = styled.div`
     }
     
     img{
-        width: 90%;
-        height: 300px;
+        height: 18em;
+        width: 12em;
+        object-fit: cover;
+        margin-left: 10px;
+        margin-right: 10px;
         border-radius: 5px;
-        margin-bottom: 15px;
+        cursor: pointer;
     }
     h2{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         text-align: center;
-        font-size: 1.7rem;
+        font-size: 1.8rem;
         text-shadow: .5rem .5rem .3rem #222831;
     }
     p{

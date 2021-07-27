@@ -13,11 +13,10 @@ export const StyledBillboard = styled.div`
   position: absolute;
   flex-wrap: wrap;
   top: 30%;
-  left: 1%;
+  left: 0.5%;
   right: 1%;
   align-items: center;
   z-index: -100;
-  margin: auto;
   font-family: "Questrial", sans-serif;
 `;
 
@@ -30,8 +29,8 @@ export const StyledHeader = styled.div`
 
 export const StyledAside = styled.aside`
   position: absolute;
-  top: 2.5em;
-  right: 2em;
+  top: 1em;
+  right: 1em;
   height: 37em;
   width: 15em;
   background-color: #30475e;
@@ -131,7 +130,6 @@ export const BillboardContainer = styled.div`
     .sorting-btns {
       display: flex;
     }
-  }
 `;
 
 export const ComingSoonContainer = styled.div`
