@@ -51,7 +51,7 @@ function AdminPage({ props }) {
           </div>
           <div className="userBox">
             <BiStore size="100" />
-            <Link to="/AdminProd" className="link">
+            <Link to="/products" className="link">
               Products
             </Link>
           </div>

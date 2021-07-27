@@ -1,37 +1,79 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieList } from "../../actions/movies";
-import { StyledBillboard, StyledAside } from "../billboard/Billboard-styles";
+import {
+  StyledBillboard,
+  StyledAside,
+  Btn,
+  ComingSoonContainer,
+} from "../billboard/Billboard-styles";
 import {
   StyledFirstAside,
   StyledAsidePublicity,
 } from "../billboard/Aside-styles";
 import ComingSoonCard from "./comingSoonCard/ComingSoonCard";
 import Footer from "../footer/Footer";
-import Slider from '../comboSlider/slider'
-
+import Slider from "../comboSlider/slider";
+import { BiSortDown, BiSortUp } from "react-icons/bi";
 
 export default function ComingSoon() {
   const dispatch = useDispatch();
-  const movieList = useSelector((state) => state.movieList);
+  let movieList = useSelector((state) => state.movieList);
 
   useEffect(() => {
     dispatch(getMovieList());
   }, [dispatch]);
 
+  const [order, setOrder] = useState(null);
+
+  movieList = movieList.sort(function (a, b) {
+    if (a.IMDb > b.IMDb) {
+      return order === "Ascending" ? 1 : order === "Descending" ? -1 : 0;
+    }
+    if (a.IMDb < b.IMDb) {
+      return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
+    }
+    return 0;
+  });
+
   return (
-    <StyledBillboard>
-      {/* <StyledTitle>Coming Soon</StyledTitle> */}
-      <StyledAside>
-        <StyledFirstAside>
-          <Slider />
-        </StyledFirstAside>
-        <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
-      </StyledAside>
-        {movieList 
-            .filter((movie) => !movie.onBillboard)
-            .map((movie) =><ComingSoonCard props={movie} key={movie._id} />)}
-      <Footer marginTop="120%" />
-    </StyledBillboard>
+    <ComingSoonContainer>
+      <div className="btn-container">
+        <div className="sorting-btns">
+          <Btn
+            className="sorting"
+            onClick={() => {
+              setOrder(order !== "Descending" ? "Descending" : null);
+            }}
+          >
+            <BiSortDown size="30" />
+            Rating
+          </Btn>
+          <Btn
+            className="sorting"
+            onClick={() => {
+              setOrder(order !== "Ascending" ? "Ascending" : null);
+            }}
+          >
+            Rating
+            <BiSortUp size="30" />
+          </Btn>
+        </div>
+      </div>
+      <StyledBillboard>
+        <StyledAside>
+          <StyledFirstAside>
+            <Slider />
+          </StyledFirstAside>
+          <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
+        </StyledAside>
+        {movieList
+          .filter((movie) => !movie.onBillboard)
+          .map((movie) => (
+            <ComingSoonCard props={movie} key={movie._id} />
+          ))}
+        <Footer marginTop="120%" />
+      </StyledBillboard>
+    </ComingSoonContainer>
   );
 }

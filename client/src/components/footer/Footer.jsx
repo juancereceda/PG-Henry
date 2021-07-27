@@ -1,11 +1,23 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaPinterest } from "react-icons/fa";
 import React from 'react';
 import styled from 'styled-components';
-import { BiCameraMovie as Camera } from "react-icons/bi";
+import {HeaderIcon} from '../header/Styles'
 
 function Footer({moviesLength}) {
-    const HeaderIcon = styled(Camera)`
-    height: 55px;
+    const StyledDiv = styled.div`
+    position: relative;
+    ${({ moviesLength }) => moviesLength === 1 ? `
+    top: 200px;
+  ` : `top: 50px;`}
+    width:100%;
+    .footer {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    color: #fff;
+    background-color: #30475E;
+    .asd {
+        height: 55px;
     width: 55px;
     padding: 12px;
     background-color: #222831;
@@ -17,20 +29,7 @@ function Footer({moviesLength}) {
     transform: rotate(-180deg);
     transition: 600ms;
     }
-`;  
-
-    const StyledDiv = styled.div`
-    position: relative;
-    ${({ moviesLength }) => moviesLength === 1 ? `
-    top: 200px;
-  ` : `top: 10px;`}
-    width:100%;
-    .footer {
-    display: flex;
-    flex-flow: row wrap;
-    padding: 20px;
-    color: #fff;
-    background-color: #30475E;
+    }
     }
 
     .footer > * {
@@ -95,6 +94,18 @@ function Footer({moviesLength}) {
     color: #999;
     }   
 
+    .ulSocial {
+        display: flex;
+        width: 10%;
+        justify-content: space-around;
+        margin-right: 5em;
+        align-items: center;
+    }
+
+    .box { 
+        width:15%;
+    }
+
     @media screen and (min-width: 600px) {
     .r-footer > * {
     flex: 1;
@@ -106,11 +117,6 @@ function Footer({moviesLength}) {
 
     .r-footer {
         flex: 2 0px;
-    }
-    
-    .social {
-        display: flex; 
-        flex-direction: column;
     }
 
     .features { 
@@ -127,10 +133,23 @@ function Footer({moviesLength}) {
         align-items: center;
         margin-left: 1em;
     }
+
+    .social {
+        display: flex; 
+        flex-direction: column;
+        h2 {
+            align-self: center;
+            margin-right: 5em;
+        }
+    }
     .box {
         margin-left: .6em;
     }
+    .ulSocial {       
+        width: 80%;        
     }
+    
+    }   
     `;
 
     return (
@@ -145,11 +164,11 @@ function Footer({moviesLength}) {
                 <ul className="r-footer">
                     <li className='social'>
                         <h2>Social</h2>
-                        <ul className="box">
-                            <li><a href="https://www.facebook.com"  rel='noreferrer' target='_blank'><FaFacebook /></a></li>
-                            <li><a href="https://www.twitter.com" rel='noreferrer' target='_blank'><FaTwitter /></a></li>
-                            <li><a href="https://www.instagram.com" rel='noreferrer' target='_blank'><FaInstagram /></a></li>
-                            <li><a href="https://www.pinterest.com" rel='noreferrer' target='_blank'><FaPinterest /></a></li>
+                        <ul className="box ulSocial">
+                            <li><a href="https://www.facebook.com" target='_blank' rel="noopener noreferrer"><FaFacebook /></a></li>
+                            <li><a href="https://www.twitter.com" target='_blank' rel="noopener noreferrer"><FaTwitter /></a></li>
+                            <li><a href="https://www.instagram.com" target='_blank' rel="noopener noreferrer"><FaInstagram /></a></li>
+                            <li><a href="https://www.pinterest.com" target='_blank' rel="noopener noreferrer"><FaPinterest /></a></li>
                         </ul>
                     </li>
                     <li className="features">

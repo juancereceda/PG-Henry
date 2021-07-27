@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from "react-redux";
-import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts } from '../../actions/products'
+import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts, eraseProduct } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center, AdminButton } from './ProductStyles'
 import {getPurchaseLocalStorage, getTokenLocalStorage} from '../../reducer/reducer'
 import { isAdmin } from '../../actions/users';
 import axios from 'axios';
+import swal from "sweetalert";
 
 const Product = (props) => {
+    const purchaseStorage = getPurchaseLocalStorage();
     const dispatch = useDispatch();
     const[state, setState] = useState({
-        counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
+        counter: purchaseStorage && purchaseStorage.extras.hasOwnProperty(props.name) ? purchaseStorage.extras[props.name] : 0,
     })
 
     const [admin, setAdmin] = useState(null);
@@ -84,10 +86,28 @@ const Product = (props) => {
         setPricing({...pricing, show: false});
     }
 
+    async function handleErase (e) {
+        e.preventDefault();
+        const option = await swal({
+            text: "Are you sure you want to delete this product?",
+            buttons: true
+          })
+          if (option) {
+            props.eraseProduct(props.name)
+            await swal("Deleting product...", {
+              icon: "success",
+              buttons: false,
+              timer: 1500,
+            });
+            dispatch(getProducts());
+          }
+    }
+
     return(
         <ProductBox>
+            {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X&nbsp;&nbsp;&nbsp;<span className='delete'>Delete</span></button> : null}          
             <div>
-            <InfoBox>
+            <InfoBox>                
                 <div id="ctn">
                 <ImgBox>
                     <img src={props.imgUrl} height='150px' width='160px' alt=''/>
@@ -99,6 +119,7 @@ const Product = (props) => {
                 </TextBox>
                 </div>
             </InfoBox>
+            {purchaseStorage? 
                 <Center>
                     <ButtonBox>
                         <Button onClick={event => handleSubtract(event)}>-</Button>
@@ -106,7 +127,9 @@ const Product = (props) => {
                         <Button onClick={event => handleAdd(event)}>+</Button>
                     </ButtonBox>
                 </Center>
-            </div>
+            : null }
+                
+            </div>            
         </ProductBox>
     )
 }
@@ -121,6 +144,7 @@ function mapStateToProps(state) {
   
 function mapDispatchToProps(dispatch) {
     return {
+        eraseProduct: name => eraseProduct(name),
         getProducts: () => dispatch(getProducts()),
         addToTotal: price => dispatch(addToTotal(price)),
         substractToTotal: price => dispatch(substractToTotal(price)),

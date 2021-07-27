@@ -29,6 +29,7 @@ function AdminMovies() {
     rated: "",
     runtime: "",
     director: "",
+    IMDb: "",
     start: "",
     finish: "",
     days: [],
@@ -68,6 +69,7 @@ function AdminMovies() {
       rated: movie.rated,
       runtime: movie.runtime,
       director: movie.director,
+      IMDb: movie.IMDb,
       start: movie.start,
       finish: movie.finish,
       functionDays: movie.days,
@@ -131,6 +133,7 @@ function AdminMovies() {
       rated: "",
       runtime: "",
       director: "",
+      IMDb: "",
       start: "",
       finish: "",
       days: [],
@@ -163,44 +166,20 @@ function AdminMovies() {
     setMovieToSwap(null);
   }
   function addDay(e) {
-    //console.log(movie.start)
     if (!movie.days.includes(e.target.value)) {
       movie.days.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                days: [...movie.days, e.target.value]
-            }) */
     } else {
-      // console.log('else')
       movie.days = movie.days.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                days: movie.days.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
   function addTime(e) {
     if (!movie.times.includes(e.target.value)) {
       movie.times.push(e.target.value);
-      /* setMovie({
-                ...movie,
-                times: [...movie.times, e.target.value]
-            }) */
     } else {
-      //console.log('else')
       movie.times = movie.times.filter((el) => el !== e.target.value);
-      /* setMovie({
-                ...movie,
-                times: movie.times.filter(el => {
-                    console.log(el, e.target.value)
-                    return el !== e.target.value
-                })
-            }) */
     }
   }
+  
   async function handleDelete(id) {
     const willDelete = await swal({
       title: "Are you sure you want to remove movie?",
@@ -457,6 +436,26 @@ function AdminMovies() {
               </div>
               <div className="formInputContainer">
                 <div>
+                  <h4>Price</h4>
+                  <input
+                    placeholder="Price"
+                    type="number"
+                    name="price"
+                    value={movie.price}
+                  />
+                </div>
+                <div>
+                  <h4>Rating IMDb</h4>
+                  <input
+                    placeholder="Rating"
+                    type="text"
+                    name="IMDb"
+                    value={movie.IMDb}
+                  />
+                </div>
+              </div>
+              <div className="formInputContainer">
+                <div>
                   <h4>Start of shows</h4>
                   <input
                     type="date"
@@ -475,119 +474,102 @@ function AdminMovies() {
                   />
                 </div>
               </div>
-              <div className="formInputContainer">
+              <div className="formInputContainerCheck">
                 <div>
                   <h4>Days</h4>
                   <div>
-                    <label for="Monday">Monday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Monday"
                       value="Monday"
                     />
+                    <label for="Monday">Monday</label>
                   </div>
                   <div>
-                    <label for="Tuesday">Tuesday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Tuesday"
                       value="Tuesday"
                     />
+                    <label for="Tuesday">Tuesday</label>
                   </div>
                   <div>
-                    <label for="Wednesday">Wednesday</label>
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Wednesday"
                       value="Wednesday"
                     />
+                    <label for="Wednesday">Wednesday</label>
                   </div>
                   <div>
-                    <label for="Thursday">Thursday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Thursday"
                       value="Thursday"
                     />
+                    <label for="Thursday">Thursday</label>
                   </div>
                   <div>
-                    <label for="Friday">Friday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Friday"
                       value="Friday"
                     />
+                    <label for="Friday">Friday</label>
                   </div>
                   <div>
-                    <label for="Saturday">Saturday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Saturday"
                       value="Saturday"
                     />
+                    <label for="Saturday">Saturday</label>
                   </div>
                   <div>
-                    <label for="Sunday">Sunday</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
                       onChange={(e) => addDay(e)}
                       type="checkbox"
                       name="Sunday"
                       value="Sunday"
                     />
+                    <label for="Sunday">Sunday</label>
                   </div>
                 </div>
                 <div>
-                  <h4>Times</h4>
+                  <h4 className="time">Times</h4>
                   <div>
-                    <label for="18hs">18hs</label>
-                    <input
+                    <input className="time"
                       onChange={(e) => addTime(e)}
                       type="checkbox"
                       name="18hs"
                       value="18hs"
                     />
+                    <label for="18hs">18hs</label>
                   </div>
                   <div>
-                    <label for="20hs">20hs</label>
-                    <input
+                    <input className="time"
                       onChange={(e) => addTime(e)}
                       type="checkbox"
                       name="20hs"
                       value="20hs"
                     />
+                    <label for="20hs">20hs</label>
                   </div>
                   <div>
-                    <label for="23hs">23hs</label>
-                    <input
+                    <input className="time"
                       onChange={(e) => addTime(e)}
                       type="checkbox"
                       name="23hs"
                       value="23hs"
                     />
+                    <label for="23hs">23hs</label>
                   </div>
-                </div>
-              </div>
-              <div className="formInputContainer">
-                <div>
-                  <h4>Price</h4>
-                  <input
-                    placeholder="Price"
-                    type="number"
-                    name="price"
-                    value={movie.price}
-                  />
                 </div>
               </div>
               <div className="formInputContainer">

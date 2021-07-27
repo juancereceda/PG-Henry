@@ -6,6 +6,7 @@ const MoviesRoutes = require("./Movies/movies");
 const PaymentRoutes = require("./Payment/payment");
 const FeedbacksRoutes = require("./Feedbacks/feedbacks");
 const FAQsRoutes = require("./FAQs/FAQs");
+const CouponsRoutes = require("./Coupons/coupons");
 
 router.use("/users", UserRoutes);
 router.use("/products", ProductRoutes);
@@ -13,5 +14,6 @@ router.use("/movies", MoviesRoutes);
 router.use("/payment", PaymentRoutes);
 router.use("/feedbacks", FeedbacksRoutes);
 router.use("/faqs", FAQsRoutes);
+router.use("/coupons", CouponsRoutes);
 
 module.exports = router;

@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const StyledFirstAside = styled.div`
   position: relative;
   width: 90%;
-  height: 300px;
-  background-color: #f05454;
+  height: 50%;
+  background-color: #293949;
+  margin-top: 10px;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: row;
@@ -17,8 +18,10 @@ export const StyledFirstAside = styled.div`
 
 export const StyledAsidePublicity = styled.div`
   width: 90%;
-  height: 300px;
+  height: 50%;
   background-color: red;
+  margin-top: 30px;
+  margin-bottom: 10px;
   text-align: center;
-  font-size: 2rem;
+  font-size: large;
 `;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const skeleton = styled.div`
-  width: 160px;
-  height: 220px;
+  height: 18em;
+  width: 14em;
   object-fit: cover;
   margin-left: 10px;
   margin-right: 10px;

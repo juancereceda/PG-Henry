@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, DiscountOffer, Linked, TestimonialCards } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
@@ -26,7 +26,19 @@ export default function Home() {
     let arr = [];
     for (let i = 0; i < 6; i++) {
         arr.push(i);
-    }
+    
+import CouponSlider from '../promotionSlider/Slider'
+
+
+export default function Home() {
+    const dispatch = useDispatch();
+    let movieList = useSelector(state => state.movieList);
+    const releaseList = useSelector(state => state.movieList);
+    let [admin, setAdmin] = useState(null);
+    let arr = [];
+  for (let i = 0; i < 7; i++) {
+    arr.push(i);
+  }
 
     useEffect(() => {
         dispatch(getMovieList())
@@ -42,11 +54,21 @@ export default function Home() {
         verifyAdmin();
     }, [])
 
+    //order Rating
+    const [order, setOrder] = useState(null);
+
+    movieList = movieList.sort(function (a, b) {
+        if (a.IMDb > b.IMDb) {
+        return order === "Ascending" ? 1 : order === "Descending" ? -1 : 0;
+        }
+        if (a.IMDb < b.IMDb) {
+        return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
+        }
+        return 0;
+    })
+
     return (
         <HomeCont>
-            <DiscountOffer>
-                <h1>Martes y Miercoles: ¡Oferta especial! 30% OFF en tickets para peliculas.</h1>
-            </DiscountOffer>
             <ContMovies>
                 <Movies>
                     <Linked to='/billboard'>
@@ -77,9 +99,9 @@ export default function Home() {
                 </Movies>
                 <StyledAside>
                     <StyledFirstAside><Slider /></StyledFirstAside>
-                    <StyledAsidePublicity>
-                        Publicity
-                    </StyledAsidePublicity>
+                    <StyledFirstAside>
+                        <CouponSlider/>
+                    </StyledFirstAside>
                 </StyledAside>
             </ContMovies>
             <Footer moviesLength={1} />

@@ -32,11 +32,6 @@ const processPayment = async (req, res) => {
   try {
     const { total, description, parking_lot, extras, movie_title, date, time } =
       req.body;
-
-    console.log(parking_lot);
-    console.log(movie_title);
-    console.log(date);
-    console.log(time);
     const user = await User.findById(req.userId);
     const preference = {
       items: [
@@ -119,7 +114,7 @@ const updateBooking = async (req, res) => {
 
       await Movie.findOneAndUpdate(
         { title: movie_title },
-        { shows: updatedShows }
+        { shows: updatedShow }
       );
     }
 

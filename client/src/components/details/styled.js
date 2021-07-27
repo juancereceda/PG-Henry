@@ -10,7 +10,7 @@ export const Box = styled.label`
   
   display:block;
   text-align: justify;
-  width:48em;
+  width:50em;
   color: #E8E8E8;
   padding-left: 1rem;
   ${mobile}{
@@ -19,8 +19,7 @@ export const Box = styled.label`
 `;
 
 export const Container =styled.div`
-      background-color: #222831;
-    
+  background-color: #222831;
 `;
 
 export const Btn = styled.button`
@@ -40,7 +39,6 @@ export const Btn = styled.button`
    width: 250px;
    height: 55px;
    font-size: 30px; 
-
    &:hover{
    background-color:#E8E8E8;
    color:#222831;
@@ -108,14 +106,15 @@ export const Show = styled.div`
    grid-template-columns:30% 30% 30%;
    margin-left: 170px;
    padding-left: 20px; */
-  margin-left: 175px;
+  margin-top: 50px;
+  margin-left: 160px;
   width: 615px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height:fit-content;
   .showDiv{
-    margin-top: 20px;;
+    margin-top: 20px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -188,4 +187,21 @@ export const Confirm = styled.button`
      background-color: #222831;
      color:#E8E8E8;
    }
+`;
+
+export const Edit = styled.div`
+  margin-left: 10px;
+  .edit {
+    color: white;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+      transition: 0.2s;
+    }
 `;

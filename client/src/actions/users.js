@@ -170,14 +170,6 @@ export function userBookings() {
   };
 }
 
-export function searchUsers(name) {
-  return (dispatch) => {
-    axios.get(`http://localhost:3001/users?name=${name}`).then((res) => {
-      dispatch({ type: SEARCH_USERS, payload: res.data });
-    });
-  };
-}
-
 export async function verifyUser(email) {
   try {
     let result = await axios.post("http://localhost:3001/users/verifyuser", {
@@ -188,6 +180,7 @@ export async function verifyUser(email) {
     console.log(error);
   }
 }
+
 export async function verifyToken(token) {
   try {
     let result = await axios.post("http://localhost:3001/users/verifytoken", {

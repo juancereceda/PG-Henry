@@ -10,7 +10,7 @@ export default function BillboardCard ({props}) {
             <p>{props.description}</p>
             <h4>Gender: <span>{props.genre}</span></h4>
             <h5>Cast: <span>{props.cast}</span></h5>
-            <h6>IMDb Rating: <span>{props.IMDb}</span></h6>
+            <h3>IMDb Rating: <span>{props.IMDb}</span></h3>
         </StyledCard>
     );
 }
