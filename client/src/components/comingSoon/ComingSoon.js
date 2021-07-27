@@ -7,14 +7,12 @@ import {
   Btn,
   ComingSoonContainer,
 } from "../billboard/Billboard-styles";
-import {
-  StyledFirstAside,
-  StyledAsidePublicity,
-} from "../billboard/Aside-styles";
+import { StyledFirstAside } from "../billboard/Aside-styles";
 import ComingSoonCard from "./comingSoonCard/ComingSoonCard";
 import Footer from "../footer/Footer";
 import Slider from "../comboSlider/slider";
 import { BiSortDown, BiSortUp } from "react-icons/bi";
+import CouponSlider from "../promotionSlider/Slider";
 
 export default function ComingSoon() {
   const dispatch = useDispatch();
@@ -65,7 +63,9 @@ export default function ComingSoon() {
           <StyledFirstAside>
             <Slider />
           </StyledFirstAside>
-          <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
+          <StyledFirstAside>
+            <CouponSlider />
+          </StyledFirstAside>
         </StyledAside>
         {movieList
           .filter((movie) => !movie.onBillboard)

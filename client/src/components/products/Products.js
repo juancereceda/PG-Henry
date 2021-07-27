@@ -25,7 +25,6 @@ import {
 import {
   getPurchaseLocalStorage,
   getTokenLocalStorage,
-  setPurchaseLocalStorage,
 } from "../../reducer/reducer";
 import Footer from "../footer/Footer";
 import axios from "axios";

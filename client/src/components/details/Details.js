@@ -7,7 +7,6 @@ import {sendToProducts} from'../../actions/products';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown, Show,Inp, Confirm, Label, DelBtn, ShowBox, Edit} from './styled';
 import ReactPlayer from 'react-player';
 import { Link } from "react-router-dom";
-import Footer from '../footer/Footer';
 import swal from "sweetalert";
 import ModalTitle from './modal/ModalTitle';
 import ModalPoster from './modal/ModalPoster';

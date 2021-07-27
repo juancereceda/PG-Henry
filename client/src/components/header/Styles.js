@@ -44,7 +44,7 @@ export const HeadInsider = styled.div`
 `;
 
 export const HeaderIcon = styled.img`
-  background-image: url("https://i.ibb.co/TWXjH1D/Nuevo-proyecto-1.png");
+  background-image: url("https://res.cloudinary.com/juancereceda/image/upload/v1627412573/Nuevo_proyecto_1_1_usw5y1.png");
   padding: 2.5rem;
   background-color: #222831;
   border-radius: 50%;
@@ -90,8 +90,7 @@ export const NavBarAlpha = styled.div`
   align-items: center;
   border-radius: 0.7em;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
-              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
 
   .accountLogout {
     display: flex;
@@ -113,32 +112,30 @@ export const SignButton = styled.button`
   background-color: #f05454;
   color: #e8e8e8;
   border: none;
-  box-shadow:
-                inset 2px 3px 5px rgba(0,0,0,0.3),
-                inset -2px -3px 5px rgba(0,0,0,0.5);
-  &:focus{
-    box-shadow:
-      inset -2px -3px 5px rgba(0,0,0,0.3),
-      inset 2px 3px 5px rgba(0,0,0,0.5);
+  box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+    inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+  &:focus {
+    box-shadow: inset -2px -3px 5px rgba(0, 0, 0, 0.3),
+      inset 2px 3px 5px rgba(0, 0, 0, 0.5);
   }
 `;
 
 export const Cart = styled(ShoppingCart)`
   color: #e8e8e8;
-  &:hover{
-    color: #F05454;
+  &:hover {
+    color: #f05454;
     transition: 300ms;
-    }
+  }
 `;
 
 export const Linked = styled(Link)`
   color: #e8e8e8;
   text-decoration: none;
-  &:hover{
-    color: #F05454;
-    font-size:20px;
+  &:hover {
+    color: #f05454;
+    font-size: 20px;
     transition: 300ms;
-    }
+  }
 `;
 
 // ESTILOS SIGNFORM
