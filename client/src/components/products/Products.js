@@ -20,6 +20,7 @@ import {
   Screen,
   Reference,
   AddProduct,
+  Nothing
 } from "./ProductsStyles";
 import {
   getPurchaseLocalStorage,
@@ -99,6 +100,7 @@ const Products = (props) => {
         date: purchaseStore.date?.slice(0, 10),
         time: purchaseStore.time,
       };
+      
       if (option) {
         postPayment(data);
         await swal("Going to pay...", {
@@ -176,72 +178,74 @@ const Products = (props) => {
   };
   return (
     <div>
-      {purchaseStore ? (
+      {purchaseStore || admin ? (
         <Container>
           <MovieData>
+            {purchaseStore ? 
             <MovieDetails>
-              <h3>{purchaseStore.title || "Title"}</h3>
-              <p>
-                Schedule:{" "}
-                {purchaseStore.day
-                  .concat(", ")
-                  .concat(purchaseStore.date?.slice(5, 10))
-                  .concat(", ")
-                  .concat(purchaseStore.time) || "Day and time"}
-              </p>
-              <p>Price: ${(purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") ? purchaseStore.price + ' - 30% Off!!': purchaseStore.price }</p>
+            <h3>{purchaseStore.title || "Title"}</h3>
+            <p>
+              Schedule:{" "}
+              {purchaseStore.day
+                .concat(", ")
+                .concat(purchaseStore.date?.slice(5, 10))
+                .concat(", ")
+                .concat(purchaseStore.time) || "Day and time"}
+            </p>
+            <p>Price: ${(purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") ? purchaseStore.price + ' - 30% Off!!': purchaseStore.price }</p>
 
-            </MovieDetails>
-            <div>
-              <RedText>Select your parking lot</RedText>
+          </MovieDetails>
+          : null}            
+            <div>              
               {purchaseStore.parking ? (
-                <ParkingLot className="parkingLot">
-                  <ParkingLine>
-                    {purchaseStore.parking?.slice(20, 30).map((e) => (
-                      <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />
-                    ))}
-                  </ParkingLine>
-                  <ParkingLine>
-                    {purchaseStore.parking?.slice(10, 20).map((e) => (
-                      <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />
-                    ))}
-                  </ParkingLine>
-                  <ParkingLine>
-                    {purchaseStore.parking?.slice(0, 10).map((e) => (
-                      <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />
-                    ))}
-                  </ParkingLine>
-                  <Screen>
-                    <div>Screen</div>
-                  </Screen>
-                  <Reference>
-                    <img
-                      src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png"
-                      alt=""
-                    />
-                    <div>Ocuppied</div>
-                    <img
-                      src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png"
-                      alt=""
-                    />
-                    <div>Available</div>
-                    <img
-                      src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png"
-                      alt=""
-                    />
-                    <div>Selected</div>
-                    &nbsp;&nbsp;
-                    {purchaseStore.slot !== "" ? (
-                      <div>Parking Lot:&nbsp;{purchaseStore.slot}</div>
-                    ) : null}
-                  </Reference>
-                </ParkingLot>
+                <div>
+                  <RedText>Select your parking lot</RedText>
+                  <ParkingLot className="parkingLot">
+                    <ParkingLine>
+                      {purchaseStore.parking?.slice(20, 30).map((e) => (
+                        <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />
+                      ))}
+                    </ParkingLine>
+                    <ParkingLine>
+                      {purchaseStore.parking?.slice(10, 20).map((e) => (
+                        <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />
+                      ))}
+                    </ParkingLine>
+                    <ParkingLine>
+                      {purchaseStore.parking?.slice(0, 10).map((e) => (
+                        <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />
+                      ))}
+                    </ParkingLine>
+                    <Screen>
+                      <div>Screen</div>
+                    </Screen>
+                    <Reference>
+                      <img
+                        src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png"
+                        alt=""
+                      />
+                      <div>Ocuppied</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <img
+                        src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png"
+                        alt=""
+                      />
+                      <div>Available</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <img
+                        src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png"
+                        alt=""
+                      />
+                      <div>Selected</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      {purchaseStore.slot !== "" ? (
+                        <div>Parking Lot:&nbsp;{purchaseStore.slot}</div>
+                      ) : null}
+                    </Reference>
+                  </ParkingLot>
+                </div>
               ) : (
-                <h1>ParkingLot</h1>
+                null
               )}
             </div>
           </MovieData>
-
           <div>
             <div>
               <RedText>Extras</RedText>
@@ -423,7 +427,7 @@ const Products = (props) => {
               </ProductsBox>
             </div>
           </div>
-
+          {purchaseStore ? 
           <div>
             <RedText>
               * You can choose sweet or salty popcorn once you get there!
@@ -470,9 +474,10 @@ const Products = (props) => {
               )}
             </BuyBox>
           </div>
+          : null }
         </Container>
-      ) : (
-        <h1>There is nothing in your cart!</h1>
+      ) : (        
+        <Nothing>You must select your movie first!</Nothing>
       )}
       <Footer marginTop="5px" />
     </div>

@@ -8,9 +8,10 @@ import axios from 'axios';
 import swal from "sweetalert";
 
 const Product = (props) => {
+    const purchaseStorage = getPurchaseLocalStorage();
     const dispatch = useDispatch();
     const[state, setState] = useState({
-        counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
+        counter: purchaseStorage && purchaseStorage.extras.hasOwnProperty(props.name) ? purchaseStorage.extras[props.name] : 0,
     })
 
     const [admin, setAdmin] = useState(null);
@@ -104,9 +105,9 @@ const Product = (props) => {
 
     return(
         <ProductBox>
+            {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X&nbsp;&nbsp;&nbsp;<span className='delete'>Delete</span></button> : null}          
             <div>
-            <InfoBox>
-                {admin ? <button className="deleteBtn" onClick={e => handleErase(e)}>X</button> : null}
+            <InfoBox>                
                 <div id="ctn">
                 <ImgBox>
                     <img src={props.imgUrl} height='150px' width='160px' alt=''/>
@@ -118,6 +119,7 @@ const Product = (props) => {
                 </TextBox>
                 </div>
             </InfoBox>
+            {purchaseStorage? 
                 <Center>
                     <ButtonBox>
                         <Button onClick={event => handleSubtract(event)}>-</Button>
@@ -125,7 +127,9 @@ const Product = (props) => {
                         <Button onClick={event => handleAdd(event)}>+</Button>
                     </ButtonBox>
                 </Center>
-            </div>
+            : null }
+                
+            </div>            
         </ProductBox>
     )
 }
