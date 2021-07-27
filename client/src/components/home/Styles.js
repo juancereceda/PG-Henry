@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // ESTILOS HOME
 
 export const HomeCont = styled.div`
-  position: relative;
+  position: absolute;
   height: auto;
   margin: 0 auto;
   display: flex;
@@ -67,47 +67,47 @@ export const Labels = styled.label`
   cursor: pointer;
 `;
 
-export const Stores = styled.div`
-  position: relative;
-  z-index: 100;
-  overflow: hidden;
-  margin: 1.25%;
-  background-color: #30475e;
-  height: 80%;
-  min-height: 500px;
-  width: 15%;
-  max-width: 200px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
-    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  padding: 5px 10px;
-`;
+// export const Stores = styled.div`
+//   position: relative;
+//   z-index: 100;
+//   overflow: hidden;
+//   margin: 1.25%;
+//   background-color: #30475e;
+//   height: 80%;
+//   min-height: 500px;
+//   width: 15%;
+//   max-width: 200px;
+//   border-radius: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-evenly;
+//   align-items: center;
+//   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
+//     inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+//   padding: 5px 10px;
+// `;
 
-export const Btn = styled.button`
-  background-color: #f05454;
-  width: 100px;
-  height: 40px;
-  margin-left: 50px;
-  margin-top: 15px;
-  padding-bottom: 10px;
-  justify-content: center;
-  color: #222831;
-  font-size: 15px;
-  border-radius: 10px;
-  border: 1px solid #30475e;
-  cursor: pointer;
-  &:hover {
-    background-color: #e8e8e8;
-    color: #222831;
-    border: 3px solid #f05454;
-  }
-`;
+// export const Btn = styled.button`
+//   background-color: #f05454;
+//   width: 100px;
+//   height: 40px;
+//   margin-left: 50px;
+//   margin-top: 15px;
+//   padding-bottom: 10px;
+//   justify-content: center;
+//   color: #222831;
+//   font-size: 15px;
+//   border-radius: 10px;
+//   border: 1px solid #30475e;
+//   cursor: pointer;
+//   &:hover {
+//     background-color: #e8e8e8;
+//     color: #222831;
+//     border: 3px solid #f05454;
+//   }
+// `;
 
-// ESTILOS MOVIE CARDS
+// // ESTILOS MOVIE CARDS
 
 export const Movie = styled.img`
   height: 18em;
@@ -118,38 +118,7 @@ export const Movie = styled.img`
   cursor: pointer;
 `;
 
-// ESTILOS MERCH CARDS
-
-export const MerchCard = styled.div`
-  z-index: 100;
-  height: 50%;
-  width: 100%;
-  border-radius: 5px;
-  background-color: #f05454;
-  box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-    inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const PubliCard = styled.div`
-  height: 45%;
-  padding: 50% 0;
-  width: 100%;
-  border-radius: 5px;
-  background-color: #f05454;
-  box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-    inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const Icon = styled.img`
-  height: 100%;
-  width: 100%;
-`;
+// // ESTILOS MERCH CARDS
 
 export const Linked = styled(Link)`
   text-decoration: none;
@@ -157,19 +126,50 @@ export const Linked = styled(Link)`
   margin: 15px 0px 15px 5px;
 `;
 
-export const DiscountOffer = styled.div`
-  position: absolute;
-  top: 0.5em;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  margin: 10% auto;
-  padding: 0;
-  line-height: 1.7;
-  max-width: 98%;
-  background-color: #30475e;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
-    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  border-radius: 0.7em;
-  color: #e8e8e8;
-`;
+// export const MerchCard = styled.div`
+//   z-index: 100;
+//   height: 50%;
+//   width: 100%;
+//   border-radius: 5px;
+//   background-color: #f05454;
+//   box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+//     inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// `;
+
+// export const PubliCard = styled.div`
+//   height: 45%;
+//   padding: 50% 0;
+//   width: 100%;
+//   border-radius: 5px;
+//   background-color: #f05454;
+//   box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+//     inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+//   text-align: center;
+//   vertical-align: middle;
+// `;
+
+// export const Icon = styled.img`
+//   height: 100%;
+//   width: 100%;
+// `;
+
+// export const DiscountOffer = styled.div`
+//   position: absolute;
+//   top: 0.5em;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   text-align: center;
+//   margin: 10% auto;
+//   padding: 0;
+//   line-height: 1.7;
+//   max-width: 98%;
+//   background-color: #30475e;
+//   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
+//     inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+//   border-radius: 0.7em;
+//   color: #e8e8e8;
+// `;
