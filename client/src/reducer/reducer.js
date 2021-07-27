@@ -27,6 +27,7 @@ import {
   ALL_REV,
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
+import { GET_VISIBLES_FEEDBACKS } from "../actions/feedbacks";
 
 const initialState = {
   products: [],
@@ -187,7 +188,13 @@ export default function reducer(state = initialState, action) {
       }
       return state;
     }
-
+    // Feedbacks
+    case GET_VISIBLES_FEEDBACKS: {
+      return {
+        ...state,
+        visiblesFeedbacks: action.payload
+      }
+    }
     //users
     case GET_USERS: {
       // Para que en la pantalla del admin se muestren los usuarios

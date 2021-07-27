@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { StyledFAQs, StyledQuestion ,  StyledAnswer, Styledform, Btn, BtnLarge, InputForm, TextForm } from './styles';
 import { QuestionsAndAnswers as QaAs } from "./Q&A"
-import { NavLink } from 'react-router-dom';
 import { adminContact } from "../../actions/FAQs";
 import swal from "sweetalert";
 
@@ -11,8 +10,8 @@ export function FAQs () {
     const styledButton = { color: "red", position: "absolute", left: "95%"}
     const [click, setClick]= useState(false)
     const [info, setInfo]= useState({
-         subject:'',
-         message:''
+        subject:'',
+        message:''
     })
 
     function handleSubject(e){setInfo({...info, subject: e.target.value})}
@@ -40,11 +39,12 @@ export function FAQs () {
               });
         }
         else{
-           await swal("We couldn't send your message", "Error", "error", {
+            await swal("We couldn't send your message", "Error", "error", {
             buttons: false,
             timer: 2000,
           });
         }
+      }
 
 
     function auxiliar (el) {

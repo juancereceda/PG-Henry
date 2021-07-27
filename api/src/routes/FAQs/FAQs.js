@@ -3,6 +3,6 @@ const router = Router();
 const faqCtrl = require("../../controllers/FAQs.controller");
 const authentication = require("../../middlewares/authentication");
 
-router.post("/", [authentication.verifyToken], faqCtrl.contactAdministration);
+router.post("/", faqCtrl.contactAdministration);
 
 module.exports = router;

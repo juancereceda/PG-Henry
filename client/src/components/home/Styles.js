@@ -159,3 +159,25 @@ export const DiscountOffer = styled.div`
   border-radius: 0.7em;
   color: antiquewhite;
 `;
+
+export const TestimonialCards = styled.div`
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  p {
+  font-family: 'Poppins';
+  font-size: 18px;
+  font-weight: bold;
+  }
+  .testimonialcard {
+    margin-left: 15px;
+    width:250px;
+    min-height: 220px;
+    border-radius:10%;
+    background: #30475E;
+  }
+  .testimonial-avatar-container {
+    // Borramos la foto del feedback
+    /* display:none; */
+  }
+`;
