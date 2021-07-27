@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieList } from "../../actions/movies";
-import { StyledBillboard, StyledAside, Btn } from "../billboard/Billboard-styles";
+import {
+  StyledBillboard,
+  StyledAside,
+  Btn,
+  ComingSoonContainer,
+} from "../billboard/Billboard-styles";
 import {
   StyledFirstAside,
   StyledAsidePublicity,
 } from "../billboard/Aside-styles";
 import ComingSoonCard from "./comingSoonCard/ComingSoonCard";
 import Footer from "../footer/Footer";
-import Slider from '../comboSlider/slider';
+import Slider from "../comboSlider/slider";
 import { BiSortDown, BiSortUp } from "react-icons/bi";
-
 
 export default function ComingSoon() {
   const dispatch = useDispatch();
@@ -30,28 +34,32 @@ export default function ComingSoon() {
       return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
     }
     return 0;
-  })
+  });
 
   return (
-    <div>
-      <Btn
-        className="sorting"
-        onClick={() => {
-          setOrder(order !== "Descending" ? "Descending" : null);
-        }}
-      >
-      <BiSortDown size="30" />
-        Rating 
-      </Btn>
-      <Btn
-        className="sorting"
-        onClick={() => {
-          setOrder(order !== "Ascending" ? "Ascending" : null);
-        }}
-      >
-        Rating
-      <BiSortUp size="30" />
-      </Btn>
+    <ComingSoonContainer>
+      <div className="btn-container">
+        <div className="sorting-btns">
+          <Btn
+            className="sorting"
+            onClick={() => {
+              setOrder(order !== "Descending" ? "Descending" : null);
+            }}
+          >
+            <BiSortDown size="30" />
+            Rating
+          </Btn>
+          <Btn
+            className="sorting"
+            onClick={() => {
+              setOrder(order !== "Ascending" ? "Ascending" : null);
+            }}
+          >
+            Rating
+            <BiSortUp size="30" />
+          </Btn>
+        </div>
+      </div>
       <StyledBillboard>
         <StyledAside>
           <StyledFirstAside>
@@ -59,11 +67,13 @@ export default function ComingSoon() {
           </StyledFirstAside>
           <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
         </StyledAside>
-          {movieList 
-              .filter((movie) => !movie.onBillboard)
-              .map((movie) =><ComingSoonCard props={movie} key={movie._id} />)}
+        {movieList
+          .filter((movie) => !movie.onBillboard)
+          .map((movie) => (
+            <ComingSoonCard props={movie} key={movie._id} />
+          ))}
         <Footer marginTop="120%" />
       </StyledBillboard>
-    </div>
+    </ComingSoonContainer>
   );
 }

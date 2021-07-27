@@ -15,6 +15,7 @@ import {
     StyledFirstAside,
     StyledAsidePublicity,
 } from "../billboard/Aside-styles";
+import {DiscountBanner} from './DiscountBanner'
 
 
 export default function Home() {
@@ -23,7 +24,7 @@ export default function Home() {
     const releaseList = useSelector(state => state.movieList);
     let [admin, setAdmin] = useState(null);
     let arr = [];
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 7; i++) {
     arr.push(i);
   }
 
@@ -54,26 +55,6 @@ export default function Home() {
     })
 
     return (
-      <div>
-            <Btn
-            className="sorting"
-            onClick={() => {
-            setOrder(order !== "Descending" ? "Descending" : null);
-            }}
-            >   
-            <BiSortDown size="30" />
-                Rating 
-            </Btn>
-            <Btn
-                className="sorting"
-                onClick={() => {
-                setOrder(order !== "Ascending" ? "Ascending" : null);
-                }}
-            >
-                Rating
-            <BiSortUp size="30" />
-            </Btn>
-
         <HomeCont>
             <ContMovies>
                 <Movies>
@@ -102,6 +83,5 @@ export default function Home() {
             </ContMovies>
             <Footer moviesLength={1}/>
         </HomeCont>
-      </div>
     )
 }

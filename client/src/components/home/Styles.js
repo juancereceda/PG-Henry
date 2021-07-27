@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 // ESTILOS HOME
 
 export const HomeCont = styled.div`
-  position: relative;  
-  height: auto;  
+  position: relative;
+  height: auto;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@ export const ContMovies = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
-  padding-top: .5em;
+  padding-top: 0.5em;
   margin-top: 3.5em;
   display: flex;
   flex-direction: row;
@@ -26,7 +26,7 @@ export const ContMovies = styled.div`
 `;
 
 export const Movies = styled.div`
-  margin: 1.25%;  
+  margin: 1.25%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -59,11 +59,12 @@ export const ComingSoon = styled.div`
 `;
 
 export const Labels = styled.label`
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   margin-top: 5px;
   color: #e8e8e8;
-  font-size: 15px;
+  font-size: 25px;
   letter-spacing: 5px;
+  cursor: pointer;
 `;
 
 export const Stores = styled.div`
@@ -87,7 +88,7 @@ export const Stores = styled.div`
 `;
 
 export const Btn = styled.button`
-  background-color: #f05454; 
+  background-color: #f05454;
   width: 100px;
   height: 40px;
   margin-left: 50px;
@@ -97,15 +98,13 @@ export const Btn = styled.button`
   color: #222831;
   font-size: 15px;
   border-radius: 10px;
-  border: 1px solid #30475E;
+  border: 1px solid #30475e;
   cursor: pointer;
-  &:hover{
-    background-color:#E8E8E8;
-    color:#222831;
-    border: 3px solid #F05454;
-    } 
-}
-
+  &:hover {
+    background-color: #e8e8e8;
+    color: #222831;
+    border: 3px solid #f05454;
+  }
 `;
 
 // ESTILOS MOVIE CARDS
@@ -154,21 +153,17 @@ export const Icon = styled.img`
 
 export const Linked = styled(Link)`
   text-decoration: none;
-  padding: .5em;
-  &:hover {
-    border-radius: .8em;
-    background-color: #d93c3c;
-    transition: 0.3s;
-  }
+  padding: 0.5em;
+  margin: 15px 0px 15px 5px;
 `;
 
 export const DiscountOffer = styled.div`
   position: absolute;
-  top: .5em;
+  top: 0.5em;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  margin: 0 auto;
+  margin: 10% auto;
   padding: 0;
   line-height: 1.7;
   max-width: 98%;

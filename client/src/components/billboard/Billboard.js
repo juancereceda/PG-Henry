@@ -9,6 +9,7 @@ import {
   StyledIndexChanger,
   Btn,
   StyledHeader,
+  BillboardContainer,
 } from "./Billboard-styles";
 import { StyledFirstAside, StyledAsidePublicity } from "./Aside-styles";
 import BillboardCard from "./BillboardCard";
@@ -63,28 +64,32 @@ export default function Billboard() {
       setIndex(index + 1);
   }
   return (
-    <div>
-      <Btn
-        className="sorting"
-        onClick={() => {
-          setOrder(order !== "Descending" ? "Descending" : null);
-        }}
-      >
-        <BiSortDown size="30" />
-        Rating
-      </Btn>
-      <Btn
-        className="sorting"
-        onClick={() => {
-          setOrder(order !== "Ascending" ? "Ascending" : null);
-        }}
-      >
-        Rating
-        <BiSortUp size="30" />
-      </Btn>
+    <BillboardContainer>
+      <div className="btn-container">
+        <GenreFilter setIndex={setIndex} />
+        <div className="sorting-btns">
+          <Btn
+            className="sorting"
+            onClick={() => {
+              setOrder(order !== "Descending" ? "Descending" : null);
+            }}
+          >
+            <BiSortDown size="30" />
+            Rating
+          </Btn>
+          <Btn
+            className="sorting"
+            onClick={() => {
+              setOrder(order !== "Ascending" ? "Ascending" : null);
+            }}
+          >
+            Rating
+            <BiSortUp size="30" />
+          </Btn>
+        </div>
+      </div>
       <StyledBillboard>
         <StyledHeader>
-          <GenreFilter setIndex={setIndex} />
           <StyledTitle>Billboard Movies</StyledTitle>
         </StyledHeader>
         <StyledAside>
@@ -123,6 +128,6 @@ export default function Billboard() {
           }
         />
       </StyledBillboard>
-    </div>
+    </BillboardContainer>
   );
 }

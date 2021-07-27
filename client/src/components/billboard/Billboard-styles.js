@@ -83,22 +83,25 @@ export const StyledPagination = styled.div`
 `;
 
 export const Btn = styled.button`
-  background-color: #f05454;
+  background-color: #293949;
+  display: flex;
   width: 100px;
   height: 40px;
   margin-left: 50px;
   margin-top: 15px;
-  padding-bottom: 10px;
   justify-content: center;
-  color: #222831;
+  text-align: justify;
+  align-items: center;
+  color: #e8e8e8;
   font-size: 15px;
   border-radius: 10px;
   border: 1px solid #30475e;
   cursor: pointer;
   &:hover {
     background-color: #e8e8e8;
-    color: #222831;
-    border: 3px solid #f05454;
+    color: #293949;
+    border: 1px solid #293949;
+    transition: 500ms;
   }
 `;
 
@@ -112,5 +115,29 @@ export const StyledIndexChanger = styled.button`
     transform: scale(0.95);
     filter: opacity(50%);
     transition: 200ms ease-in-out;
+  }
+`;
+
+export const BillboardContainer = styled.div`
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 0 0 2%;
+    width: 75%;
+    .sorting-btns {
+      display: flex;
+    }
+  }
+`;
+
+export const ComingSoonContainer = styled.div`
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2% 0 3% 2%;
+    width: 75%;
+    .sorting-btns {
+      display: flex;
+    }
   }
 `;
