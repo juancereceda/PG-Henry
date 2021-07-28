@@ -13,10 +13,17 @@ import Footer from "../footer/Footer";
 import Slider from "../comboSlider/slider";
 import { BiSortDown, BiSortUp } from "react-icons/bi";
 import CouponSlider from "../promotionSlider/Slider";
+import Skeleton from "./comingSoonSkeleton/ComingSoonSkeleton";
 
 export default function ComingSoon() {
   const dispatch = useDispatch();
   let movieList = useSelector((state) => state.movieList);
+  const releaseList = useSelector(state => state.movieList);
+    let [admin, setAdmin] = useState(null);
+    let arr = [];
+  for (let i = 0; i < 7; i++) {
+    arr.push(i);
+  }
 
   useEffect(() => {
     dispatch(getMovieList());
@@ -67,11 +74,12 @@ export default function ComingSoon() {
             <CouponSlider />
           </StyledFirstAside>
         </StyledAside>
-        {movieList
+        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map((movie) => (<ComingSoonCard props={movie} key={movie._id} />)) : arr.map(el => <Skeleton />)}
+        {/* {movieList
           .filter((movie) => !movie.onBillboard)
           .map((movie) => (
             <ComingSoonCard props={movie} key={movie._id} />
-          ))}
+          ))} */}
         <Footer marginTop="120%" />
       </StyledBillboard>
     </ComingSoonContainer>
