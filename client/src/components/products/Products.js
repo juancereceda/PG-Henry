@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getProducts, postPayment } from "../../actions/products";
+import { getProducts, postPayment, getPrice } from "../../actions/products";
 import Product from "./Product";
 import swal from "sweetalert";
 import Car from "./Car";
@@ -70,6 +70,7 @@ const Products = (props) => {
   const handleBuy = async (e) => {
     e.preventDefault();
     getProducts();
+    let realTotal = await getPrice(purchaseStore) + 1000
     if (purchaseStore.slot !== "") {
       const option = await swal({
         text: `
@@ -80,7 +81,7 @@ const Products = (props) => {
           Ticket for ${purchaseStore.title} on the ${
           purchaseStore.slot
         } parking lot, 
-          for a total of $${purchaseStore.total}.
+          for a total of $${realTotal}.
           `,
         buttons: true,
       });
@@ -90,7 +91,7 @@ const Products = (props) => {
         )}, Ticket for ${purchaseStore.title} on the ${
           purchaseStore.slot
         } parking lot.`,
-        total: purchaseStore.total,
+        total: realTotal,
         parking_lot: purchaseStore.slot,
         extras: Object.keys(purchaseStore.extras).map((e) =>
           e.concat(" x").concat(purchaseStore.extras[e])
@@ -433,7 +434,7 @@ const Products = (props) => {
             </RedText>
             <p id="purchase"></p>
             <BuyBox>
-              {purchaseStore.extras &&
+              {/* {purchaseStore.extras &&
                 Object.keys(purchaseStore.extras).length > 0 && (
                   <StoredProducts>Extras:</StoredProducts>
                 )}
@@ -442,7 +443,7 @@ const Products = (props) => {
                   <StoredProducts>
                     {e}&nbsp;x&nbsp;{purchaseStore.extras[e]}&nbsp;-
                   </StoredProducts>
-                ))}
+                ))} */}
 
               {token ? (
                 <div className="totalCnt">
