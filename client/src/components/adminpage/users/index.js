@@ -143,7 +143,7 @@ const Users = () => {
                 <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
                   <input
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setName(e.target.value, setPage(1))}
                     placeholder="Search Username..."
                     type="text"
                     className="input"
