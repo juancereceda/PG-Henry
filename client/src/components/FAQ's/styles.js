@@ -38,6 +38,19 @@ export const StyledQuestion = styled.div`
     margin-bottom: 15px;
     z-index: -1;
   }
+  & > div > h2 > svg{
+    color: #F05454;
+    position: absolute;
+    right: 1%;
+    top: 5%;
+    &.buttonDown{
+    }
+    &.buttonUp{
+      opacity: 75%;
+      transform: rotateZ(180deg);
+    }
+    transition: all 500ms ease-in-out;
+  }
 `;
 
 export const StyledAnswer = styled.div`
