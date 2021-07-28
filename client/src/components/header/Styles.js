@@ -84,13 +84,34 @@ export const NavBarAlpha = styled.div`
   width: 98%;
   padding: 1.2em 0;
   background-color: #30475e;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
   border-radius: 0.7em;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
     inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+
+  li {
+    list-style: none;
+  }
+
+  ul {
+    margin: 0 auto;
+  }
+  
+  .large-menu-classname ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.5em;
+    align-items: center;
+  }
+  .small-menu-classname ul li {
+    height: 1em;    
+    width: 89%;
+    padding: 1.2em 0;
+    background-color: #30475e;
+    border-radius: 0.7em;
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+  }
 
   .accountLogout {
     display: flex;

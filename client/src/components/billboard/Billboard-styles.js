@@ -130,6 +130,7 @@ export const BillboardContainer = styled.div`
     .sorting-btns {
       display: flex;
     }
+  }
 `;
 
 export const ComingSoonContainer = styled.div`
