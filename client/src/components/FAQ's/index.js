@@ -13,15 +13,16 @@ import {
 import { QuestionsAndAnswers as QaAs } from "./Q&A";
 import { adminContact } from "../../actions/FAQs";
 import swal from "sweetalert";
+import { Link } from "react-router-dom";
 
 export function FAQs() {
     /* const styledButton = { color: "red", position: "absolute", left: "95%"} */
-/*     const [click, setClick]= useState(false)
+  /*     const [click, setClick]= useState(false)
     const [info, setInfo]= useState({
         subject:'',
         message:''
     }) */
-    
+
   function auxiliar(el) {
     const linkedText = (
       <a href={el} target="_blank" rel="noreferrer">
@@ -103,10 +104,12 @@ export function FAQs() {
           </div>
         </StyledQuestion>
       ))}
-      <BtnLarge onClick={handleClick}>
-        didn't find what you were looking for? take it easy, just mail us
-      </BtnLarge>
-      {click ? (
+      <Link to="/contact">
+        <BtnLarge>
+          Didn't find what you were looking for? take it easy, just mail us
+        </BtnLarge>
+      </Link>
+      {/* {click ? (
         <Styledform onSubmit={handleSubmit}>
           <InputForm
             name="subject"
@@ -122,7 +125,7 @@ export function FAQs() {
           ></TextForm>
           <Btn type="submit">contact us</Btn>
         </Styledform>
-      ) : null}
+      ) : null} */}
     </StyledFAQs>
   );
 }

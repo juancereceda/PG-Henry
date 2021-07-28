@@ -78,10 +78,13 @@ export const StyledAnswer = styled.div`
 `;
 
 export const BtnLarge = styled.button`
+  position: relative;
   font-family: Questrial;
   font-size: 20px;
   height: 50px;
+  width: 100%;
   border: none;
+  margin-top: 10px;
   border-radius: 50px 100px 50px 100px / 25px 50px 25px 50px;
   h2 {
     margin-bottom: 25px;

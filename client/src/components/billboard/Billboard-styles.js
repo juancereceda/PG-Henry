@@ -12,7 +12,7 @@ export const StyledBillboard = styled.div`
   display: flex;
   position: absolute;
   flex-wrap: wrap;
-  top: 30%;
+  /* top: 30%; */
   left: 0.5%;
   right: 1%;
   align-items: center;
