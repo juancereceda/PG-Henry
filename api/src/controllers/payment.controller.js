@@ -114,7 +114,7 @@ const updateBooking = async (req, res) => {
 
       await Movie.findOneAndUpdate(
         { title: movie_title },
-        { shows: updatedShow }
+        { shows: updatedShows }
       );
     }
 

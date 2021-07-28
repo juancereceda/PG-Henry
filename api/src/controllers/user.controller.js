@@ -13,13 +13,13 @@ let transporter = nodemailer.createTransport({
 
 const signUp = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, profilePic } = req.body;
     let userByEmail = await User.findOne({ email });
     let token;
     if (userByEmail) {
       await User.findOneAndUpdate(
         { email },
-        { username, password: await User.hashPassword(password) }
+        { username, password: await User.hashPassword(password), profilePic }
       );
       token = await jwt.sign({ id: userByEmail._id }, "group8", {
         expiresIn: 86400,
@@ -33,6 +33,7 @@ const signUp = async (req, res) => {
         bookings: [],
         banned: false,
         resetPassword: false,
+        profilePic,
       });
       let userSaved = await newUser.save();
       token = await jwt.sign({ id: userSaved._id }, "group8", {

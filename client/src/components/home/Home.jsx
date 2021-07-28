@@ -105,7 +105,7 @@ export default function Home() {
                     {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el => <Skeleton />)}
                 </Carousel>
                 </ContCar>
-            <Footer moviesLength={3} />
+            <Footer moviesLength={1} />
         </StyledBillboard>
     </ComingSoonContainer>
     )

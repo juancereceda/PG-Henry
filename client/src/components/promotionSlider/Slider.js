@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  StyledSlider,
-  SliderImg,
-} from "../comboSlider/styledSlider";
+import { StyledSlider, SliderImg } from "../comboSlider/styledSlider";
 import axios from "axios";
 
 const Slider = () => {
@@ -25,7 +22,11 @@ const Slider = () => {
   }, [SlideImages]);
 
   function SlideAnimation() {
-    if (SlideImages.current.children.length > 1) {
+    if (
+      SlideImages &&
+      SlideImages.current &&
+      SlideImages.current.children.length > 1
+    ) {
       const elementoActual = SlideImages.current.children[0];
       SlideImages.current.style.transition = `1000ms ease-out all`;
       const tamañoSlide = SlideImages.current.children[0].offsetWidth;

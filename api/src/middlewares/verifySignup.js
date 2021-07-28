@@ -57,10 +57,12 @@ const verifyGoogleToken = async (req, res, next) => {
         .send({ message: "The token provided is not valid" });
     }
     const payload = ticket.getPayload();
+    console.log(payload);
     req.body.username = payload.name;
     req.body.email = payload.email;
     req.body.name = payload.email;
     req.body.password = `Google!!${payload.sub}&&`;
+    req.body.profilePic = payload.picture;
     next();
   } catch (error) {
     console.log(error);
