@@ -72,9 +72,10 @@ export const TestimonialCards = styled.div`
   align-items: center;
   justify-content: center;
   p {
-    font-family: "Poppins";
+    font-family: Questrial; // Poppins
     font-size: 18px;
     font-weight: bold;
+    color: #e8e8e8; //
   }
   .testimonialcard {
     margin-left: 15px;

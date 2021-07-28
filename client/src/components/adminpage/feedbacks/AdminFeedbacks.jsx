@@ -3,15 +3,22 @@ import React, { useEffect, useState } from 'react';
 import StyledDiv from '../users/userStyles';
 import swal from 'sweetalert';
 import NotFound from '../../404/NotFound'
+import {getTokenLocalStorage} from '../../../reducer/reducer'
 
 function AdminFeedbacks() {
-    const URL = 'http://localhost:3001/feedbacks';
+    const URL = 'http://localhost:3001/feedbacks/';
 
     const [feedbacks, setFeedbacks] = useState([]);
     const [filteredFeedbacks, setFilteredFeedbacks] = useState([]);
+    const config = {
+        headers: {
+            "Access-Control-Allow-Headers": "x-access-token",
+            "x-access-token": getTokenLocalStorage(),
+        },
+    };
 
     const getFeedbacks = async () => {
-        const response = await axios.get(URL);
+        const response = await axios.get(URL,config);
         setFeedbacks(response.data);
         setFilteredFeedbacks(response.data);
     }
@@ -21,7 +28,7 @@ function AdminFeedbacks() {
     }, [])
 
     const handleToggle = async (id, author, visibleBoolean) => {
-        await axios.put(URL, { id })
+        await axios.put(URL, { id },config)
         await swal(`Feedback from ${author} toggled to ${!visibleBoolean ? 'Visible' : 'Not Visible'}`, {
             icon: "success",
             buttons: false,
@@ -38,7 +45,7 @@ function AdminFeedbacks() {
             dangerMode: true,
         });
         if (deleteFeedback) {
-            await axios.delete(URL, { data: { id } })
+            await axios.delete(`${URL}/${id}`,config)
 
             await swal(`Feedback from ${author} has been deleted`, {
                 icon: "success",
