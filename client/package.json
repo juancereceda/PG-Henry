@@ -11,6 +11,7 @@
     "material-testimonial-card": "^0.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-elastic-carousel": "^0.11.5",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.2.0",
     "react-player": "^2.9.0",
