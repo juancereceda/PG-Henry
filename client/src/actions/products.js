@@ -62,6 +62,11 @@ export const eraseProduct = async name => {
   return console.log(res.data.message)
 }
 
+export const getPrice = async extras => {
+  const res = await axios.post("http://localhost:3001/products/price", extras)
+  return res.data
+}
+
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const SUBSTRACT_TOTAL = 'SUBSTRACT_TOTAL'
 export const ADD_TOTAL = 'ADD_TOTAL'

@@ -4,6 +4,8 @@ const authentication = require("../../middlewares/authentication");
 
 const router = Router();
 
+router.post("/price", productCtrl.setPrice);
+
 router.get("/", productCtrl.getProducts);
 
 router.delete(
