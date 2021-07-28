@@ -7,8 +7,8 @@ const StyledDiv = styled.div`
         width: 403%;
         display: flex;
         text-align: center;
-        justify-content: space-evenly;
-        align-items: baseline;
+        justify-content: space-between;
+        align-items: flex-end;
     }
     .paginate {
         border: solid 1px #222831;
