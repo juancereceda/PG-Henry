@@ -16,7 +16,6 @@ import {
   BuyButton,
   Total,
   ParkingLine,
-  StoredProducts,
   Screen,
   Reference,
   AddProduct,
@@ -59,7 +58,7 @@ const Products = (props) => {
   useEffect(() => {
     getProducts();
     dispatch(getMovieById(purchaseStore.id))
-  }, [getProducts]);
+  }, [getProducts, dispatch, purchaseStore.id]);
 
   useEffect(() => {
     async function verify() {
