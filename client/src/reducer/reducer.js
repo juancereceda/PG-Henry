@@ -120,10 +120,11 @@ export default function reducer(state = initialState, action) {
     //Products
     case SEND_TO_PRODUCTS: {
       let purchase = action.payload;
-      purchase.total = action.payload.price;
+      purchase.total = purchase.price;
       purchase.extras = {};
       purchase.slot = "";
       setPurchaseLocalStorage(purchase);
+      window.localStorage.removeItem("coupon");
       return state;
     }
     case GET_PRODUCTS: {
@@ -179,8 +180,8 @@ export default function reducer(state = initialState, action) {
     case GET_VISIBLES_FEEDBACKS: {
       return {
         ...state,
-        visiblesFeedbacks: action.payload
-      }
+        visiblesFeedbacks: action.payload,
+      };
     }
     //users
     case GET_USERS: {
@@ -196,7 +197,7 @@ export default function reducer(state = initialState, action) {
         searchUserById: action.payload,
       };
     }
-    
+
     // Ordenar usuarios por cantidad de puntos asc/desc
     case ORDER_USERS_BY_POINTS: {
       //Si no hay payload, order desc

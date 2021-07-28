@@ -52,6 +52,7 @@ const processPayment = async (req, res) => {
       },
     };
     let result = await mercadopago.preferences.create(preference);
+    console.log(result);
 
     let newBooking = {
       id: result.body.id,
@@ -83,7 +84,7 @@ const updateBooking = async (req, res) => {
     const bookings = user.bookings.map((el) =>
       el.id === preference_id ? { ...el, status } : el
     );
-
+    console.log(preference_id);
     let foundShow = user.bookings.find((el) => el.id === preference_id);
     let movie_title = foundShow.movie_title;
     let date = foundShow.date;
