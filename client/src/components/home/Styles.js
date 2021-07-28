@@ -12,7 +12,7 @@ export const ContCar = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   button.rec-dot {
-  box-shadow: 0 0 1px 3px  #293949;
+    box-shadow: 0 0 1px 3px #293949;
   }
   .rec.rec-arrow {
     background-color: #293949;
@@ -42,6 +42,7 @@ export const Labels = styled.label`
 export const Movie = styled.img`
   height: 20em;
   width: 13em;
+  padding: 10px;
   object-fit: cover;
   cursor: pointer;
   border-radius: 10px;
@@ -67,20 +68,20 @@ export const DiscountOffer = styled.div`
 `;
 
 export const TestimonialCards = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   p {
-  font-family: 'Poppins';
-  font-size: 18px;
-  font-weight: bold;
+    font-family: "Poppins";
+    font-size: 18px;
+    font-weight: bold;
   }
   .testimonialcard {
     margin-left: 15px;
     width: 250px;
     min-height: 200px;
-    border-radius:10%;
-    background: #30475E;
+    border-radius: 10%;
+    background: #30475e;
   }
   .testimonial-avatar-container {
     // Borramos la foto del feedback
