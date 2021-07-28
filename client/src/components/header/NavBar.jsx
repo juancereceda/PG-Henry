@@ -1,3 +1,5 @@
+import ResponsiveMenu from 'react-responsive-navbar';
+import { FaBars,FaTimes } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import { getTokenLocalStorage, getUserDataStorage } from "../../reducer/reducer";
 import { NavBarAlpha, SignButton, Cart, Linked } from './Styles';
@@ -52,30 +54,41 @@ async function handleLogOut() {
     //     setViewForm(viewForm = false);
     // }
 
-    return (
-        <NavBarAlpha>
-            <div><Linked to='/'>Home</Linked></div>
-            <div><Linked to='/billboard'>Billboard</Linked></div>
-            <div><Linked to='/comingsoon'>Coming Soon</Linked></div>
-            <div><Linked to='/contact'>Contact</Linked></div>
-            <div><Linked to='/faqs'>FAQ's</Linked></div>
-            <Linked to='/products'><Cart size="25" /></Linked>
-          { 
-                admin ? 
-                <div className='accountLogout'>
-                    <Linked to='/administration'>Admin</Linked> 
-                     <img className='logout' alt="" src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
-                </div>
-                
-                : token && admin === false
-                ? 
-                <div className='accountLogout'>
-                    <Linked to='/profile'>{user.username}</Linked>
+  return (
+    <NavBarAlpha>
+      <ResponsiveMenu
+        menuOpenButton={<FaBars size='25'/>}
+        menuCloseButton={<FaTimes size='25'/>}
+        changeMenuOn='700px'
+        largeMenuClassName='large-menu-classname'
+        smallMenuClassName='small-menu-classname'
+        menu = {
+          <ul>
+            <li><Linked to='/'>Home</Linked></li>
+            <li><Linked to='/billboard'>Billboard</Linked></li>
+            <li><Linked to='/comingsoon'>Coming Soon</Linked></li>
+            <li><Linked to='/contact'>Contact</Linked></li>
+            <li><Linked to='/faqs'>FAQ's</Linked></li>
+            <li><Linked to='/products'><Cart size="25" /></Linked></li>
+            { 
+              admin ? 
+              <li className='accountLogout'>
+                  <Linked to='/administration'>Admin</Linked> 
                     <img className='logout' alt="" src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
-                </div> 
-                : <Linked><SignButton onClick={() => history.push('/login')}>Sign In / Sign Up</SignButton></Linked>
-          }
-           {/*  {!viewForm ? true : <SignForm />} */}
-        </NavBarAlpha>
-    )
+              </li>
+              
+              : token && admin === false
+              ? 
+              <li className='accountLogout'>
+                  <Linked to='/profile'>{user.username}</Linked>
+                  <img className='logout' alt="" src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
+              </li> 
+              : <li><Linked><SignButton onClick={() => history.push('/login')}>Sign In / Sign Up</SignButton></Linked></li>
+            }
+            {/*  {!viewForm ? true : <SignForm />} */}
+          </ul>
+        }
+      />
+    </NavBarAlpha>
+  )
 }
