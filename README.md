@@ -14,10 +14,10 @@ The team assembled from **Henry** bootcamp knew *SQL* through **PostgreSQL** for
 ### Authentication
 *Authentication* process through *local-storage* data and the use of tokens with *json-web-token* was kind of a huge challenge from which the team finished succesfull. The app hashes succesfully the user's accounts passwords, holds a logged-in account token for 24 hours before asking for a new process of signing-in. And verifies authentication for users and not just for admins both in the *front-end* and the *back-end*. So routes and paths to the back-end can't either be "back-doored".
 
-### Adaptability {La buena venta de humo}
+### Adaptability 
 Even if the app it's **not** responsive at 100%, it's design shows a great adaptability for any kind of screen even cellphone's screens. However it's a *pending* upgrade developing a mobile version with ***React Native*** who fully adapts for cellphones.
 
-### Intuitive {Lo mío no son las ventas}
+### Intuitive 
 It has a great *UI/UX* design which not only ease the buying and checking out experience for customers but also ease the **adminsitration** experience making it easy to update prices, billboards and any other miscellaneous topics for the product owner.
 
 ### Flexibility
