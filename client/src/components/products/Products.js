@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { getProducts, postPayment, getPrice } from "../../actions/products";
 import Product from "./Product";
 import swal from "sweetalert";
@@ -29,13 +29,15 @@ import {
 import Footer from "../footer/Footer";
 import axios from "axios";
 import Coupons from "./Coupon";
+import { getMovieById } from '../../actions/movies';
 
 const Products = (props) => {
   const { getProducts } = props;
   const purchaseStore = getPurchaseLocalStorage();
   const token = getTokenLocalStorage();
   const [admin, setAdmin] = useState(null);
-
+  const dispatch = useDispatch();
+  const movieDetail = useSelector(state => state.movieDetail);
   const [showForm, setShowForm] = useState({
     extra: false,
     combo: false,
@@ -56,6 +58,7 @@ const Products = (props) => {
   };
   useEffect(() => {
     getProducts();
+    dispatch(getMovieById(purchaseStore.id))
   }, [getProducts]);
 
   useEffect(() => {
@@ -67,10 +70,14 @@ const Products = (props) => {
     verify();
   }, [admin]);
 
+
   const handleBuy = async (e) => {
     e.preventDefault();
     getProducts();
-    let realTotal = await getPrice(purchaseStore) + 1000
+    let ticketPrice = parseInt(movieDetail.shows[0].price);
+    if (purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") 
+      ticketPrice = ticketPrice *0.7;
+    let realTotal = await getPrice(purchaseStore) + ticketPrice
     if (purchaseStore.slot !== "") {
       const option = await swal({
         text: `
