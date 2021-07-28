@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked, TestimonialCards } from './Styles';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked, TestimonialCards, ContCar } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
@@ -9,12 +9,14 @@ import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
 import Skeleton from './HomeSkeletons'
 import {
-    StyledAside,
+    StyledAside, StyledBillboard
 } from "../billboard/Billboard-styles";
 import {
     StyledFirstAside,
 } from "../billboard/Aside-styles";
 import TestimonialCard from 'material-testimonial-card';
+import Carousel from 'react-elastic-carousel'
+import { ComingSoonContainer } from '../billboard/Billboard-styles';
 
 /* export default function Home() {
     const dispatch = useDispatch();
@@ -54,31 +56,36 @@ export default function Home() {
         verifyAdmin();
     }, [])
 
-    //order Rating
-    const [order] = useState(null);
-
-    movieList = movieList.sort(function (a, b) {
-        if (a.IMDb > b.IMDb) {
-        return order === "Ascending" ? 1 : order === "Descending" ? -1 : 0;
-        }
-        if (a.IMDb < b.IMDb) {
-        return order === "Ascending" ? -1 : order === "Descending" ? 1 : 0;
-        }
-        return 0;
-    })
+    const breakPoints = [
+        { width: 500, itemsToShow: 1},
+        { width: 500, itemsToShow: 2},
+        { width: 500, itemsToShow: 3},
+        { width: 500, itemsToShow: 4},
+        { width: 500, itemsToShow: 5},
+        { width: 500, itemsToShow: 6},
+    ]
 
     return (
-        <HomeCont>
-            <ContMovies>
-                <Movies>
-                    <Linked to='/billboard'>
-                        <Labels>Billboard</Labels>
-                    </Linked>
-                    <Billboard>
-                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el => <Skeleton />)}
-                    </Billboard>
-                    {/* Feedbacks */}
-                    <TestimonialCards>
+        <ComingSoonContainer>
+            <StyledBillboard>
+                <StyledAside>
+                    <StyledFirstAside>
+                        <Slider />
+                    </StyledFirstAside>
+                    <StyledFirstAside>
+                        <CouponSlider />
+                    </StyledFirstAside>
+                </StyledAside>
+                <ContCar>
+                <Linked to='/billboard'>
+                    <Labels>Billboard</Labels>
+                </Linked>
+                <Carousel breakPoints={breakPoints}>
+                    {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el => <Skeleton />)}
+                </Carousel>
+                </ContCar>
+                <ContCar>
+                <TestimonialCards>
                     {
                         visiblesFeedbacks?.map(f => (
                             <TestimonialCard
@@ -88,23 +95,18 @@ export default function Home() {
                             />
                         ))
                     }
-                    </TestimonialCards>
-                    {/* Fin Feedbacks */}
-                    <Linked to='/comingsoon'>
-                        <Labels>Coming Soon</Labels>
-                    </Linked>
-                    <ComingSoon>
-                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el => <Skeleton />)}
-                    </ComingSoon>
-                </Movies>
-                <StyledAside>
-                    <StyledFirstAside><Slider /></StyledFirstAside>
-                    <StyledFirstAside>
-                        <CouponSlider/>
-                    </StyledFirstAside>
-                </StyledAside>
-            </ContMovies>
+                </TestimonialCards>
+                </ContCar>
+                <ContCar>
+                <Linked to='/comingsoon'>
+                    <Labels>Coming Soon</Labels>
+                </Linked>
+                <Carousel breakPoints={breakPoints}>
+                    {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard isAdmin={admin} props={movie} id={movie._id} />) : arr.map(el => <Skeleton />)}
+                </Carousel>
+                </ContCar>
             <Footer moviesLength={1} />
-        </HomeCont>
+        </StyledBillboard>
+    </ComingSoonContainer>
     )
 }
