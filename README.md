@@ -1,4 +1,4 @@
-# Henry Autocinema {Nombre Aquí}
+# Henry Autocinema
 
 ### About
 This repository it's the final proyect of **Henry** bootcamp a requirement for completing the course and get certificated. It was developed by a team of full-stack devs driven by the *SCRUM* methodology. The team members are: <a href="https://github.com/juancereceda">Juan Martin Cereceda</a>, <a href="https://github.com/maurohaidr">Mauro Haidr</a>, <a href="https://github.com/RuthCodina">RuthCodina</a>, <a href="https://github.com/WilmarDeML">Wilmar De MelquisedeLisbec</a>, <a href="https://github.com/JotaCeR">Juan Roberts</a>, <a href="https://github.com/CelenyAndrea">CelenyAndrea</a>, <a href="https://github.com/Yiftleh">Gianfranco</a> & <a href="https://github.com/rafamossetto">Rafa Mossetto</a>.
