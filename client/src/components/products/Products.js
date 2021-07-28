@@ -16,7 +16,6 @@ import {
   BuyButton,
   Total,
   ParkingLine,
-  StoredProducts,
   Screen,
   Reference,
   AddProduct,
@@ -59,7 +58,7 @@ const Products = (props) => {
   useEffect(() => {
     getProducts();
     dispatch(getMovieById(purchaseStore.id))
-  }, [getProducts]);
+  }, [getProducts, dispatch, purchaseStore.id]);
 
   useEffect(() => {
     async function verify() {
@@ -72,8 +71,7 @@ const Products = (props) => {
 
 
   const handleBuy = async (e) => {
-    e.preventDefault();
-    getProducts();
+    e.preventDefault();    
     let ticketPrice = parseInt(movieDetail.shows[0].price);
     if (purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") 
       ticketPrice = ticketPrice *0.7;
@@ -123,8 +121,8 @@ const Products = (props) => {
         timer: 2000,
         buttons: false
       })      
-
     }
+    getProducts();
   };
   const handleChange = function (e) {
     e.preventDefault();
