@@ -7,18 +7,28 @@ export const ContCar = styled.div`
   position: relative;
   height: 100%;
   width: 80%;
+  margin: 0.5em;
   margin-top: 2em;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  button.rec-dot {
-    box-shadow: 0 0 1px 3px #293949;
-  }
   .rec.rec-arrow {
+    border-radius: 50%;
+    background-color: #30475e;
+  }
+  .rec.rec-arrow:hover {
+      border-radius: 20%;
+      background-color: #293949;
+  }
+  .rec.rec-arrow:disabled {
+      visibility: hidden;
+  }
+  button.rec-dot{
     background-color: #293949;
-    &:hover {
-      background-color: #e8e8e8;
-    }
+    box-shadow: 0 0 3px 4px #30475e;
+  }
+  button.rec-dot:hover {
+    box-shadow: 0 0 3px 3px #30475e;
   }
 `;
 

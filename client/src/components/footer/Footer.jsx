@@ -79,8 +79,8 @@ function Footer({moviesLength}) {
     }
 
     .h-box {
-    column-count: 2;
-    column-gap: 1.25em;
+    column-count: 1;
+    column-gap: 5em;
     }
 
     .b-footer {
@@ -179,7 +179,7 @@ function Footer({moviesLength}) {
                             <li><a href="/">Sales</a></li>
                             <li><a href="/">Tickets</a></li>
                             <li><a href="/">Certifications</a></li>
-                            <li><a href="/">Customer Service</a></li>
+                            <li><a href="/">CustomerService</a></li>
                         </ul>
                     </li>
                     <li className='legal'>

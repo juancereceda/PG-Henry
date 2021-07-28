@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked, TestimonialCards, ContCar } from './Styles';
+import { Labels, Linked, TestimonialCards, ContCar } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
@@ -7,16 +7,15 @@ import { getVisiblesFeedbacks } from "../../actions/feedbacks";
 import Footer from '../footer/Footer'
 import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
-import Skeleton from './HomeSkeletons'
+import Skeleton from './HomeSkeletons';
 import {
-    StyledAside, StyledBillboard
+    StyledAside, 
+    StyledBillboard,
+    ComingSoonContainer
 } from "../billboard/Billboard-styles";
-import {
-    StyledFirstAside,
-} from "../billboard/Aside-styles";
+import { StyledFirstAside } from "../billboard/Aside-styles";
 import TestimonialCard from 'material-testimonial-card';
 import Carousel from 'react-elastic-carousel'
-import { ComingSoonContainer } from '../billboard/Billboard-styles';
 
 /* export default function Home() {
     const dispatch = useDispatch();
