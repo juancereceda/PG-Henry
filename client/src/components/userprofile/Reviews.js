@@ -3,6 +3,7 @@ import { Revs } from "./ReviewsStyles";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import swal from "sweetalert";
+import { getTokenLocalStorage } from "../../reducer/reducer";
 
 export default function Reviews() {
   const [review, setReview] = useState({ review: null });
@@ -10,6 +11,12 @@ export default function Reviews() {
   let bookings = useSelector((state) => state.bookings);
   const user = JSON.parse(window.localStorage.getItem("userdata")) || "";
 
+  const config = {
+    headers: {
+      "Access-Control-Allow-Headers": "x-access-token",
+      "x-access-token": getTokenLocalStorage(),
+    },
+  };
   const flag = bookings.filter((booking) => booking.status === "approved");
 
   function handleChange(e) {
@@ -25,7 +32,7 @@ export default function Reviews() {
     e.preventDefault();
     const feedback = { author: user.username, text: review.review };
 
-    await axios.post("http://localhost:3001/feedbacks", feedback);
+    await axios.post("http://localhost:3001/feedbacks", feedback, config);
     await swal(`${user.username} thank you very much for your feedback!`, {
       icon: "success",
       buttons: false,

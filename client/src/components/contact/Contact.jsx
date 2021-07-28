@@ -22,6 +22,11 @@ function Contact() {
         });
         if (submitForm) {
             await adminContact(form);
+            await swal("Message sent! Thanks for your feedback", {
+            icon: "success",
+            buttons: false,
+            timer: 2000,
+        });
             setForm({
                 name: '',
                 email: '',

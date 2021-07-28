@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { getProducts, postPayment, getPrice } from "../../actions/products";
 import Product from "./Product";
 import swal from "sweetalert";
@@ -16,11 +16,10 @@ import {
   BuyButton,
   Total,
   ParkingLine,
-  StoredProducts,
   Screen,
   Reference,
   AddProduct,
-  Nothing
+  Nothing,
 } from "./ProductsStyles";
 import {
   getPurchaseLocalStorage,
@@ -29,13 +28,17 @@ import {
 import Footer from "../footer/Footer";
 import axios from "axios";
 import Coupons from "./Coupon";
+import { getMovieById } from "../../actions/movies";
+import { validateCoupon } from "../../actions/coupons";
 
 const Products = (props) => {
   const { getProducts } = props;
   const purchaseStore = getPurchaseLocalStorage();
   const token = getTokenLocalStorage();
   const [admin, setAdmin] = useState(null);
-
+  const dispatch = useDispatch();
+  const movieDetail = useSelector((state) => state.movieDetail);
+  const couponLocalSorage = JSON.parse(window.localStorage.getItem("coupon"));
   const [showForm, setShowForm] = useState({
     extra: false,
     combo: false,
@@ -56,7 +59,8 @@ const Products = (props) => {
   };
   useEffect(() => {
     getProducts();
-  }, [getProducts]);
+    dispatch(getMovieById(purchaseStore.id));
+  }, [getProducts, dispatch, purchaseStore.id]);
 
   useEffect(() => {
     async function verify() {
@@ -69,8 +73,18 @@ const Products = (props) => {
 
   const handleBuy = async (e) => {
     e.preventDefault();
-    getProducts();
-    let realTotal = await getPrice(purchaseStore) + 1000
+    let result = await validateCoupon(
+      couponLocalSorage ? couponLocalSorage.couponCode : "",
+      purchaseStore.date?.slice(0, 10)
+    );
+    let ticketPrice = parseInt(movieDetail.shows[0].price);
+    if (purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") {
+      ticketPrice = ticketPrice * 0.7;
+    } else if (typeof result === "number") {
+      console.log("yes");
+      ticketPrice = ticketPrice * couponLocalSorage.discount;
+    }
+    let realTotal = (await getPrice(purchaseStore)) + ticketPrice;
     if (purchaseStore.slot !== "") {
       const option = await swal({
         text: `
@@ -100,7 +114,7 @@ const Products = (props) => {
         date: purchaseStore.date?.slice(0, 10),
         time: purchaseStore.time,
       };
-      
+
       if (option) {
         postPayment(data);
         await swal("Going to pay...", {
@@ -108,16 +122,18 @@ const Products = (props) => {
           buttons: false,
           timer: 1500,
         });
+        window.localStorage.removeItem("coupon");
+        window.localStorage.removeItem("purchase");
       }
     } else {
       swal({
         title: "You must select a parking slot",
         icon: "warning",
         timer: 2000,
-        buttons: false
-      })      
-
+        buttons: false,
+      });
     }
+    getProducts();
   };
   const handleChange = function (e) {
     e.preventDefault();
@@ -181,22 +197,27 @@ const Products = (props) => {
       {purchaseStore || admin ? (
         <Container>
           <MovieData>
-            {purchaseStore ? 
-            <MovieDetails>
-            <h3>{purchaseStore.title || "Title"}</h3>
-            <p>
-              Schedule:{" "}
-              {purchaseStore.day
-                .concat(", ")
-                .concat(purchaseStore.date?.slice(5, 10))
-                .concat(", ")
-                .concat(purchaseStore.time) || "Day and time"}
-            </p>
-            <p>Price: ${(purchaseStore.day === "Tuesday" || purchaseStore.day === "Wednesday") ? purchaseStore.price + ' - 30% Off!!': purchaseStore.price }</p>
-
-          </MovieDetails>
-          : null}            
-            <div>              
+            {purchaseStore ? (
+              <MovieDetails>
+                <h3>{purchaseStore.title || "Title"}</h3>
+                <p>
+                  Schedule:{" "}
+                  {purchaseStore.day
+                    .concat(", ")
+                    .concat(purchaseStore.date?.slice(5, 10))
+                    .concat(", ")
+                    .concat(purchaseStore.time) || "Day and time"}
+                </p>
+                <p>
+                  Price: $
+                  {purchaseStore.day === "Tuesday" ||
+                  purchaseStore.day === "Wednesday"
+                    ? purchaseStore.price + " - 30% Off!!"
+                    : purchaseStore.price}
+                </p>
+              </MovieDetails>
+            ) : null}
+            <div>
               {purchaseStore.parking ? (
                 <div>
                   <RedText>Select your parking lot</RedText>
@@ -234,16 +255,15 @@ const Products = (props) => {
                         src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png"
                         alt=""
                       />
-                      <div>Selected</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <div>Selected</div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       {purchaseStore.slot !== "" ? (
                         <div>Parking Lot:&nbsp;{purchaseStore.slot}</div>
                       ) : null}
                     </Reference>
                   </ParkingLot>
                 </div>
-              ) : (
-                null
-              )}
+              ) : null}
             </div>
           </MovieData>
           <div>
@@ -427,14 +447,14 @@ const Products = (props) => {
               </ProductsBox>
             </div>
           </div>
-          {purchaseStore ? 
-          <div>
-            <RedText>
-              * You can choose sweet or salty popcorn once you get there!
-            </RedText>
-            <p id="purchase"></p>
-            <BuyBox>
-              {/* {purchaseStore.extras &&
+          {purchaseStore ? (
+            <div>
+              <RedText>
+                * You can choose sweet or salty popcorn once you get there!
+              </RedText>
+              <p id="purchase"></p>
+              <BuyBox>
+                {/* {purchaseStore.extras &&
                 Object.keys(purchaseStore.extras).length > 0 && (
                   <StoredProducts>Extras:</StoredProducts>
                 )}
@@ -445,38 +465,45 @@ const Products = (props) => {
                   </StoredProducts>
                 ))} */}
 
-              {token ? (
-                <div className="totalCnt">
-                  {purchaseStore.day !== "Tuesday" &&
-                  purchaseStore.day !== "Wednesday" ? (
-                    <Coupons />
-                  ) : null}
-                  <div className="totalRow">
-                    <Total>Total: ${purchaseStore.total}</Total>
-                    <BuyButton onClick={(event) => handleBuy(event)}>
-                      Buy
-                    </BuyButton>
+                {token ? (
+                  <div className="totalCnt">
+                    {purchaseStore.day !== "Tuesday" &&
+                    purchaseStore.day !== "Wednesday" ? (
+                      <Coupons />
+                    ) : null}
+                    <div className="totalRow">
+                      <Total>
+                        Total: $
+                        {couponLocalSorage
+                          ? purchaseStore.total -
+                            (purchaseStore.price / couponLocalSorage.discount) *
+                              (1 - couponLocalSorage.discount)
+                          : purchaseStore.total}
+                      </Total>
+                      <BuyButton onClick={(event) => handleBuy(event)}>
+                        Buy
+                      </BuyButton>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="notLogged">
-                  <div className="totalRow">
-                    <Total>Total: ${purchaseStore.total}</Total>
-                    <button className="disabledBtn" disabled>
-                      Buy
-                    </button>
+                ) : (
+                  <div className="notLogged">
+                    <div className="totalRow">
+                      <Total>Total: ${purchaseStore.total}</Total>
+                      <button className="disabledBtn" disabled>
+                        Buy
+                      </button>
+                    </div>
+                    <label>
+                      You cant buy if you are not{" "}
+                      <a href="http://localhost:3000/login">logged in</a>
+                    </label>
                   </div>
-                  <label>
-                    You cant buy if you are not{" "}
-                    <a href="http://localhost:3000/login">logged in</a>
-                  </label>
-                </div>
-              )}
-            </BuyBox>
-          </div>
-          : null }
+                )}
+              </BuyBox>
+            </div>
+          ) : null}
         </Container>
-      ) : (        
+      ) : (
         <Nothing>You must select your movie first!</Nothing>
       )}
       <Footer marginTop="5px" />

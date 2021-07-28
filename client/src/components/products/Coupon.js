@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getPurchaseLocalStorage,
   setPurchaseLocalStorage,
 } from "../../reducer/reducer";
 import swal from "sweetalert";
 import { validateCoupon } from "../../actions/coupons";
+import { getProducts } from "../../actions/products";
+import { useDispatch } from "react-redux";
 
 function Coupons() {
+  const dispatch = useDispatch();
   const purchaseStore = getPurchaseLocalStorage();
   const [coupon, setCoupon] = useState("");
   const couponLocalSorage = window.localStorage.getItem("coupon");
@@ -33,11 +36,15 @@ function Coupons() {
         buttons: false,
         timer: 1500,
       });
-      window.localStorage.setItem("coupon", coupon);
+      window.localStorage.setItem(
+        "coupon",
+        JSON.stringify({ couponCode: coupon, discount: result })
+      );
       setPurchaseLocalStorage({
         ...purchaseStore,
         price: purchaseStore.price * result,
       });
+      dispatch(getProducts());
     } else {
       await swal({
         title: result,
