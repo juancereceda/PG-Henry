@@ -80,7 +80,7 @@ function Footer({moviesLength}) {
 
     .h-box {
     column-count: 2;
-    column-gap: 1.25em;
+    column-gap: 4em;
     }
 
     .b-footer {
