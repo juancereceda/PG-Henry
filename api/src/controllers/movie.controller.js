@@ -206,6 +206,57 @@ const updateShow = async (req, res) => {
       { shows: updatedShows }
     );
 
+    let userslist = await User.find();
+
+    if (
+      movieFound.shows.find(
+        (el) =>
+          el.date.includes(date) &&
+          el.time.find((show) => show.hasOwnProperty(time) && !show.cancelled)
+      )
+    ) {
+      await userslist.forEach(async (user) => {
+        try {
+          if (
+            user.bookings.find(
+              (el) =>
+                el.movie_title === movie_title &&
+                el.date === date.slice(0, 10) &&
+                el.time === time
+            )
+          ) {
+            await User.findByIdAndUpdate(user._id, {
+              bookings: user.bookings.map((el) =>
+                el.movie_title !== movie_title &&
+                el.date !== date &&
+                el.time !== time
+                  ? el
+                  : {
+                      ...el,
+                      status: "cancelled",
+                    }
+              ),
+            });
+            transporter.sendMail({
+              from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>',
+              to: user.email,
+              subject: "Show has been cancelled",
+              html: `
+        <p>We are really sorry to bring you this news, but the show scheduled for ${movie_title}, the day ${date.slice(
+                0,
+                10
+              )} at time ${time} has been cancelled.
+        Get in touch with us replying to this email so we can fix the issue.</p>
+        <p>Best regards and sorry again!</p>
+        <br/><br/>All rights reserved by &copy; <a href="http://localhost:3000">Autocinema App</a></p>
+        `,
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    }
     res.send("Ok");
   } catch (error) {
     console.log(error);

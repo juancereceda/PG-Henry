@@ -1,14 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-export default function ResRow({
-  title,
-  date,
-  status,
-  url,
-  id
-}) {
+export default function ResRow({ title, date, status, url, id }) {
   function handleClick(e) {
     e.preventDefault();
 
@@ -30,10 +24,10 @@ export default function ResRow({
 
   const Li = styled(Link)`
     text-decoration: none;
-    color: #E8E8E8;
+    color: #e8e8e8;
     &:hover {
       font-style: italic;
-      color: #F05454;
+      color: #f05454;
     }
   `;
 
@@ -41,6 +35,7 @@ export default function ResRow({
     processing: "#F4D03F",
     approved: "#58D68D",
     rejected: "#F05454",
+    cancelled: "#F05454",
   };
 
   let col = colours[status];
@@ -51,7 +46,13 @@ export default function ResRow({
 
   return (
     <tr>
-      {status === "approved" ? <td><Li to={`/bookings/${id}`}>{title}</Li></td> : <td>{title}</td>}
+      {status === "approved" ? (
+        <td>
+          <Li to={`/bookings/${id}`}>{title}</Li>
+        </td>
+      ) : (
+        <td>{title}</td>
+      )}
       <td>{date}</td>
       <Stat>{status}</Stat>
       {status === "processing" ? (
