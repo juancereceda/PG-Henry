@@ -69,6 +69,7 @@ async function handleLogOut() {
             <li><Linked to='/comingsoon'>Coming Soon</Linked></li>
             <li><Linked to='/contact'>Contact</Linked></li>
             <li><Linked to='/faqs'>FAQ's</Linked></li>
+            <li><Linked to='/about'>About</Linked></li>
             <li><Linked to='/products'><Cart size="25" /></Linked></li>
             { 
               admin ? 
