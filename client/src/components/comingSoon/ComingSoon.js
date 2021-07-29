@@ -20,7 +20,7 @@ export default function ComingSoon() {
   let movieList = useSelector((state) => state.movieList);
   const releaseList = useSelector(state => state.movieList);
     let arr = [];
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 8; i++) {
     arr.push(i);
   }
 

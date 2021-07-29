@@ -19,7 +19,7 @@ import ModalRated from './modal/ModalRated';
 import ModalGenre from './modal/ModalGenre';
 import ModalRelease from './modal/ModalRelease';
 import ModalIMDb from './modal/ModalIMDb';
-
+import DetailSkeleton from './detailSkeleton/DetailSkeleton';
 
 function MovieDetail(){
  const dispatch = useDispatch();
@@ -167,7 +167,7 @@ const[state, setState]=React.useState({
               />
             </Edit>):null)}
             <ModalTitle showModalTitle={showModalTitle} setShowModalTitle={setShowModalTitle} />
-            {movieDetail.title}
+            {movieDetail.title ? movieDetail.title : <DetailSkeleton/>}
           </Title><br></br>
 
           <div>
@@ -175,7 +175,6 @@ const[state, setState]=React.useState({
             (<Edit>
               <img
                 className="edit"
-                onClick={openModalPoster}
                 alt=""
                 src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
               />
