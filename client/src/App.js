@@ -19,6 +19,7 @@ import AdminFeedbacks from "./components/adminpage/feedbacks/AdminFeedbacks";
 import DetailedBooking from "./components/userprofile/DetailedBooking";
 import { FAQs } from "./components/FAQ's";
 import Contact from "./components/contact/Contact";
+import About from "./components/about/About";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
       <Route path="/bookings/:id" component={DetailedBooking} />
       <Route path="/faqs" component={FAQs} />
       <Route path="/contact" component={Contact} />
+      <Route path="/about" component={About} />
     </div>
   );
 }
