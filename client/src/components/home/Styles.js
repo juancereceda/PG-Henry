@@ -17,13 +17,13 @@ export const ContCar = styled.div`
     background-color: #30475e;
   }
   .rec.rec-arrow:hover {
-      border-radius: 20%;
-      background-color: #293949;
+    border-radius: 20%;
+    background-color: #293949;
   }
   .rec.rec-arrow:disabled {
-      visibility: hidden;
+    visibility: hidden;
   }
-  button.rec-dot{
+  button.rec-dot {
     background-color: #293949;
     box-shadow: 0 0 3px 4px #30475e;
   }
@@ -34,7 +34,7 @@ export const ContCar = styled.div`
 
 export const Linked = styled(Link)`
   text-decoration: none;
-  padding: 2em;
+  /*   padding: 2em; */
   margin: 0px 0px 15px 10px;
 `;
 
