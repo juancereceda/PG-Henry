@@ -12,7 +12,7 @@ export const StyledBillboard = styled.div`
   display: flex;
   position: absolute;
   flex-wrap: wrap;
-  /* top: 30%; */
+  top: 30%;
   left: 0.5%;
   right: 1%;
   align-items: center;
@@ -48,7 +48,7 @@ export const StyledPagination = styled.div`
   height: 3em;
   position: absolute;
   left: 35%;
-  bottom: 315px;
+  bottom: 348px;
   border: 0.2em solid #30475e88;
   display: flex;
   justify-content: space-between;
