@@ -11,9 +11,9 @@ export default function Header() {
                     <Title>Henry Autocinema</Title>
                 </HeadInsider>
                 <HeadInsider>
-                    <Socials href="http://www.instagram.com/"><Insta size="50" /></Socials>
-                    <Socials href="http://www.twitter.com/"><Tweet size="50" /></Socials>
-                    <Socials href="http://www.facebook.com/"><Face size="50" /></Socials>
+                    <Socials href="http://www.instagram.com/" target='_blank' rel="noopener noreferrer"><Insta size="50" /></Socials>
+                    <Socials href="http://www.twitter.com/" target='_blank' rel="noopener noreferrer"><Tweet size="50" /></Socials>
+                    <Socials href="http://www.facebook.com/" target='_blank' rel="noopener noreferrer"><Face size="50" /></Socials>
                 </HeadInsider>
             </Head>
             <NavBar />
