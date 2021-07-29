@@ -51,12 +51,13 @@ export const HeaderIcon = styled.img`
   margin: 0.8em 0.8em 0.8em 2em;
   color: #e8e8e8;
   background-size: 170%;
+  cursor: pointer;
   background-position: center;
   transition: 600ms;
-    &:hover {
+  &:hover {
     transform: rotate(-180deg);
     transition: 600ms;
-    }
+  }
 `;
 
 export const Socials = styled.a`
@@ -100,7 +101,7 @@ export const NavBarAlpha = styled.div`
   ul {
     margin: 0 auto;
   }
-  
+
   .large-menu-classname ul {
     display: flex;
     justify-content: space-between;
@@ -108,13 +109,13 @@ export const NavBarAlpha = styled.div`
     align-items: center;
   }
   .small-menu-classname ul li {
-    height: 1em;    
+    height: 1em;
     width: 89%;
     padding: 1.2em 0;
     background-color: #30475e;
     border-radius: 0.7em;
     display: flex;
-    justify-content: space-evenly; 
+    justify-content: space-evenly;
     align-items: center;
   }
 

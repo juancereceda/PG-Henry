@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import { HeaderAlpha, Head, HeadInsider, HeaderIcon, Socials, Title, Face, Tweet, Insta } from './Styles';
 
@@ -7,7 +8,9 @@ export default function Header() {
         <HeaderAlpha>
             <Head>
                 <HeadInsider>
+                    <Link to='/'>
                     <HeaderIcon/>
+                    </Link>
                     <Title>Henry Autocinema</Title>
                 </HeadInsider>
                 <HeadInsider>
