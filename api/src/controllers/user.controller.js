@@ -72,7 +72,6 @@ const logIn = async (req, res) => {
 const getUsers = async (req, res) => {
   let users;
   let { name } = req.query;
-  //console.log(name)
 
   try {
     if (name) {
@@ -130,7 +129,7 @@ const putUser = async (req, res) => {
     };
 
     let user = await User.findByIdAndUpdate(req.params.id, newUser);
-    //console.log(newUser);
+
     if (resetPassword) {
       transporter.sendMail({
         from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
@@ -266,7 +265,6 @@ const restorePassword = async (req, res) => {
 
 const deleteUserAccount = async (req, res) => {
   const userById = await User.findByIdAndDelete(req.userId);
-  console.log(req.userId);
   res.status(200).json({ message: "Account Deleted" }); //no es necesario que le coloqué algo en el json,pero se lo podemos enviar.
 };
 

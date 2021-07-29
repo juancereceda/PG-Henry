@@ -54,21 +54,17 @@ const deleteProduct = async (req, res) => {
 const setPrice = async (req, res) => {
   try {
     const { extras } = req.body;
-    console.log(extras)
     let products = Object.keys(extras);
     let amount = Object.values(extras);
     let total = 0;
-    for (i = 0; i<products.length; i++){
-      let result = await Product.findOne({ name : products[i] });
+    for (i = 0; i < products.length; i++) {
+      let result = await Product.findOne({ name: products[i] });
       if (!result) {
         return res.status(404).send("Product not found");
+      } else {
+        total = total + result.price * amount[i];
       }
-      else{
-        total = total + result.price*amount[i];
-        console.log(total)
-      }      
     }
-    console.log(total)
     res.json(total);
   } catch (err) {
     console.log(err);

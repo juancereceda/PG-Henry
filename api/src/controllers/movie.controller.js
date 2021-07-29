@@ -1,4 +1,16 @@
 const Movie = require("../models/Movie");
+const User = require("../models/User");
+const nodemailer = require("nodemailer");
+
+let transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: "autocinehenry@gmail.com", // generated ethereal user
+    pass: "ykxotzanjxikdvjt", // generated ethereal password
+  },
+});
 
 const getMovieById = async (req, res) => {
   try {
@@ -13,7 +25,6 @@ const getMovieById = async (req, res) => {
 const getMovies = async (req, res) => {
   let movies;
   let { genre } = req.query;
-  console.log(genre);
   try {
     if (genre) {
       movies = await Movie.find({ genre: genre }); // tratar de encontrar la búsqueda tipo like de SQL en mongoDB.
@@ -29,7 +40,6 @@ const getMovies = async (req, res) => {
 
 const postMovie = async (req, res) => {
   try {
-
     const {
       start,
       finish,
@@ -165,7 +175,6 @@ const putMovie = async (req, res) => {
       IMDb,
     };
     await Movie.findByIdAndUpdate(req.params.id, newMovie);
-    console.log(newMovie);
     res.json({ status: "Movie Updated" });
   } catch (error) {
     res.status(400).send(error);
@@ -191,10 +200,12 @@ const updateShow = async (req, res) => {
           }
         : el
     );
+
     await Movie.findOneAndUpdate(
       { title: movie_title },
       { shows: updatedShows }
     );
+
     res.send("Ok");
   } catch (error) {
     console.log(error);

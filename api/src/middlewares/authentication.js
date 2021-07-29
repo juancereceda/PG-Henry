@@ -27,7 +27,6 @@ const isAdmin = async (req, res, next) => {
   try {
     const user = await User.findById(req.userId);
     if (!user.isAdmin) {
-      console.log(user);
       return res.status(403).send({ message: "Unauthorized" });
     }
     next();

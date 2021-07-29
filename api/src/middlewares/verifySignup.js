@@ -7,7 +7,6 @@ const client = new OAuth2Client(CLIENT_ID);
 const checkEmailAndPassword = async (req, res, next) => {
   const existingUsername = await User.findOne({ username: req.body.username });
   const existingEmail = await User.findOne({ email: req.body.email });
-  // console.log(existingEmail);
 
   try {
     if (existingUsername)
@@ -57,7 +56,6 @@ const verifyGoogleToken = async (req, res, next) => {
         .send({ message: "The token provided is not valid" });
     }
     const payload = ticket.getPayload();
-    console.log(payload);
     req.body.username = payload.name;
     req.body.email = payload.email;
     req.body.name = payload.email;
