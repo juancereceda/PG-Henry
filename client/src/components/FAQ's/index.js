@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaAngleDown } from "react-icons/fa";
 import {
   StyledFAQs,
   StyledQuestion,
   StyledAnswer,
-  Styledform,
-  Btn,
   BtnLarge,
-  InputForm,
-  TextForm,
 } from "./styles";
 import { QuestionsAndAnswers as QaAs } from "./Q&A";
-import { adminContact } from "../../actions/FAQs";
-import swal from "sweetalert";
+// import { adminContact } from "../../actions/FAQs";
+// import swal from "sweetalert";
 import { Link } from "react-router-dom";
 
 export function FAQs() {
@@ -45,45 +41,45 @@ export function FAQs() {
       }
     }
   }
-  const [click, setClick] = useState(false);
-  const [info, setInfo] = useState({
-    subject: "",
-    message: "",
-  });
+  // const [click, setClick] = useState(false);
+  // const [info, setInfo] = useState({
+  //   subject: "",
+  //   message: "",
+  // });
 
-  function handleSubject(e) {
-    setInfo({ ...info, subject: e.target.value });
-  }
-  function handleMessage(e) {
-    setInfo({ ...info, message: e.target.value });
-  }
+  // function handleSubject(e) {
+  //   setInfo({ ...info, subject: e.target.value });
+  // }
+  // function handleMessage(e) {
+  //   setInfo({ ...info, message: e.target.value });
+  // }
 
-  function handleClick(e) {
-    e.preventDefault();
-    setClick(!click);
-  }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   setClick(!click);
+  // }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    let msg = await adminContact(info.subject, info.message);
-    if (msg === "Email sent") {
-      await swal(msg, "Success", "success", {
-        buttons: false,
-        timer: 2000,
-      });
-      window.location.assign("http://localhost:3000/");
-    } else if (msg === "User not found") {
-      await swal(msg, "Error", "error", {
-        buttons: false,
-        timer: 2000,
-      });
-    } else {
-      await swal("You are not logged in!", "Error", "error", {
-        buttons: false,
-        timer: 2000,
-      });
-    }
-  }
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+  //   let msg = await adminContact(info.subject, info.message);
+  //   if (msg === "Email sent") {
+  //     await swal(msg, "Success", "success", {
+  //       buttons: false,
+  //       timer: 2000,
+  //     });
+  //     window.location.assign("http://localhost:3000/");
+  //   } else if (msg === "User not found") {
+  //     await swal(msg, "Error", "error", {
+  //       buttons: false,
+  //       timer: 2000,
+  //     });
+  //   } else {
+  //     await swal("You are not logged in!", "Error", "error", {
+  //       buttons: false,
+  //       timer: 2000,
+  //     });
+  //   }
+  // }
   return (
     <StyledFAQs>
       <h1>Frequently Asked Questions</h1>

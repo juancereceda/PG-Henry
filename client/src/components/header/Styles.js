@@ -52,6 +52,11 @@ export const HeaderIcon = styled.img`
   color: #e8e8e8;
   background-size: 170%;
   background-position: center;
+  transition: 600ms;
+    &:hover {
+    transform: rotate(-180deg);
+    transition: 600ms;
+    }
 `;
 
 export const Socials = styled.a`
