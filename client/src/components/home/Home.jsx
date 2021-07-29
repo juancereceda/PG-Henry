@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Labels, Linked, TestimonialCards, ContCar } from './Styles';
+import { Labels, Linked, TestimonialCards, ContCar } from './Styles';
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";

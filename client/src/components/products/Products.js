@@ -16,7 +16,6 @@ import {
   BuyButton,
   Total,
   ParkingLine,
-  StoredProducts,
   Screen,
   Reference,
   AddProduct,
