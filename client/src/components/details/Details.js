@@ -201,6 +201,7 @@ const[state, setState]=React.useState({
           height ='100%'
           playing
           volume= '0.7'
+          controls= 'true'
         />
       </Trailer>
 
