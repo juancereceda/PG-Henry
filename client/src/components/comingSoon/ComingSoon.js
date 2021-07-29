@@ -19,9 +19,8 @@ export default function ComingSoon() {
   const dispatch = useDispatch();
   let movieList = useSelector((state) => state.movieList);
   const releaseList = useSelector(state => state.movieList);
-    let [admin, setAdmin] = useState(null);
     let arr = [];
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 8; i++) {
     arr.push(i);
   }
 
