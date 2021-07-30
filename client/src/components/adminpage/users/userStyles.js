@@ -4,7 +4,7 @@ const StyledDiv = styled.div`
     font-family: Questrial;
     color: #E8E8E8;
     .titleSearch {
-        width: 403%;
+        width: 502%;
         display: flex;
         text-align: center;
         justify-content: space-between;
@@ -37,8 +37,8 @@ const StyledDiv = styled.div`
         background-color: #2d4059;
         box-shadow: 0 0 20px #333;
         margin: .8em auto;
-        width: 95%;
-        padding: 0 1em;
+        width: 90%;
+        padding: 0 2em;
         border-radius: .8em;
     }
 
@@ -121,7 +121,7 @@ const StyledDiv = styled.div`
         input {
             background-color: #F05454;
             border: .1em solid #30475E;
-            border-radius: .2em;
+            border-radius: .5em;
         }
         input:hover{
             border: .1em solid #E8E8E8;
