@@ -6,12 +6,12 @@ import AboutUsStyled from './styles';
 function About() {
 	let aboutUs = [
 		{
-			fullName: 'Celeny Andrea',
+			fullName: 'Celeny Andrea Santana',
 			image:
 				'https://i.postimg.cc/cHW9G6v7/celeny.jpg',
-			linkedin: 'https://www.linkedin.com/in/',
-			github: 'https://github.com/',
-			cv: 'https://res.cloudinary.com/',
+			linkedin: 'https://www.linkedin.com/in/celenysantana',
+			github: 'https://github.com/CelenyAndrea',
+			cv: 'https://www.canva.com/design/DAEiV51cSsk/9wLquQVijKnKxGvyULL4cw/view?utm_content=DAEiV51cSsk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink',
 		},
 		{
 			fullName: 'Gianfranco Pavetto',
