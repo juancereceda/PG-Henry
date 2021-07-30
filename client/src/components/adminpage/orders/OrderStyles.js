@@ -19,7 +19,7 @@ const div = styled.div`
     align-items: center;
     width: 75%;
     background-color: #30475e;
-    height: 400px;
+    height: 550px;
     padding-top: 1%;
   }
   .scrollbar {
@@ -33,7 +33,14 @@ const div = styled.div`
     justify-content: space-evenly;
     align-items: center;
     width: 90%;
-    height: 24px;
+    height: 30px;
+    // table-layout: fixed;
+    //background-color: #2d4059;
+    box-shadow: 0 0 20px #333;
+    margin: .8em auto;
+    //width: 95%;
+    padding: 0 1em;
+    border-radius: .8em;
     .userId {
       width: 13%;
       text-align: center;
@@ -75,9 +82,9 @@ const div = styled.div`
       }
     }
   }
-  .odd {
-    background-color: #222831;
-  }
+  // .odd {
+  //   background-color: #222831;
+  // }
 
   .approved {
     color: #06b20a;
